@@ -1,15 +1,68 @@
 /** リストのデータ */
+// expiration: 消費期限
+// purchase: 購入日
 export const eatMockData = [
-  { eatName: 'うどん', limitDate: '7月23日', limitTextData: 'expiration' },
-  { eatName: '卵', limitDate: '7月24日', limitTextData: 'purchase' },
-  { eatName: 'スイカ', limitDate: '7月25日', limitTextData: 'expiration' },
-  { eatName: '牛乳', limitDate: '7月26日', limitTextData: 'expiration' },
-  { eatName: 'ヨーグルト', limitDate: '7月27日', limitTextData: 'expiration' },
-  { eatName: 'テスト商品', limitDate: '7月13日', limitTextData: 'expiration' },
-  { eatName: 'テスト商品', limitDate: '6月9日', limitTextData: 'purchase' },
-  { eatName: 'テスト商品', limitDate: '7月1日', limitTextData: 'expiration' },
-  { eatName: 'テスト商品', limitDate: '7月2日', limitTextData: 'expiration' },
-  { eatName: 'テスト商品', limitDate: '7月3日', limitTextData: 'expiration' },
-  { eatName: 'テスト商品', limitDate: '8月4日', limitTextData: 'expiration' },
-  { eatName: 'テスト商品', limitDate: '8月3日', limitTextData: 'purchase' },
+  {
+    eatName: 'うどん',
+    limitDate: '2022/1/1',
+    limitTextData: 'expiration',
+  },
+  { eatName: '卵', limitDate: '2022/1/10', limitTextData: 'purchase' },
+  {
+    eatName: 'スイカ',
+    limitDate: '2022/7/20',
+    limitTextData: 'expiration',
+  },
+  { eatName: '牛乳', limitDate: '2022/7/27', limitTextData: 'expiration' },
+  {
+    eatName: 'ヨーグルト',
+    limitDate: '2022/7/28',
+    limitTextData: 'expiration',
+  },
+  { eatName: 'りんご', limitDate: '2022/7/29', limitTextData: 'expiration' },
+  {
+    eatName: 'たらこ',
+    limitDate: '2022/7/30',
+    limitTextData: 'expiration',
+  },
+  {
+    eatName: 'スーパーカップ',
+    limitDate: '2022/7/31',
+    limitTextData: 'expiration',
+  },
+  {
+    eatName: 'テスト商品',
+    limitDate: '2022/8/1',
+    limitTextData: 'expiration',
+  },
+  {
+    eatName: 'テスト商品',
+    limitDate: '2022/8/10',
+    limitTextData: 'purchase',
+  },
+  {
+    eatName: 'テスト商品',
+    limitDate: '2022/10/1',
+    limitTextData: 'expiration',
+  },
+  {
+    eatName: 'テスト商品',
+    limitDate: '2022/10/10',
+    limitTextData: 'expiration',
+  },
+  {
+    eatName: 'テスト商品',
+    limitDate: '2022/10/10',
+    limitTextData: 'expiration',
+  },
+  {
+    eatName: 'テスト商品',
+    limitDate: '2022/10/10',
+    limitTextData: 'expiration',
+  },
+  {
+    eatName: 'テスト商品',
+    limitDate: '2021/10/10',
+    limitTextData: 'expiration',
+  },
 ];

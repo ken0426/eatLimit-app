@@ -1,6 +1,5 @@
 import moment from 'moment';
 import React, { useState } from 'react';
-import { re } from 'react-devtools-core';
 import {
   FlatList,
   Image,
@@ -12,29 +11,31 @@ import {
 } from 'react-native';
 import { eatMockData } from '../moc/MockData';
 
-const years = moment().format('YYYY');
-const months = moment().format('M');
-const date = moment().format('D');
+const toDay = moment().format('YYYY年M月D日');
 
 const HomeScreen = ({ navigation }) => {
   const [text, setText] = useState('');
+
   const renderItem = ({ item, key }) => {
-    let dayMonths;
-    let dayData;
     const day = item.limitDate; // 日付の取得
-    const eatName = item.eatName;
-    if (day.length === 4) {
-      // 1月9月の場合 且つ 日にちが1日〜9日までの場合
-      dayMonths = day.substring(0, 1);
-      dayData = day.substring(2, 3); // 1月1日
-    } else if (day.length == 5) {
-      // 1月〜9月の場合 且つ 日にちが10日〜31日までの場合
-      dayMonths = day.substring(0, 1); // 月の取得
-      dayData = day.substring(2, 4); // 日にちの取得 7月26日
-    } else if (day.length === 6) {
-      // 10月〜12月の場合 且つ 日にちが10日〜31日までの場合
-      dayMonths = day.substring(0, 2); // 月の取得
-      dayData = day.substring(3, 5); // 日にちの取得
+    const eatName = item.eatName; // 商品名を取得
+    const formatDate = moment(day).format('YYYY/MM/DD');
+    const formatYearsDate = moment(day).format('YYYY');
+    const formatTextDate = moment(day).format('M月D日');
+    let dayText;
+
+    if (item.limitTextData === 'expiration') {
+      if (moment().format('YYYY/MM/DD') === formatDate) {
+        dayText = <Text style={styles.limitDateOrange}>{formatTextDate}</Text>;
+      } else if (moment().add(1, 'd').format('YYYY/MM/DD') === formatDate) {
+        dayText = <Text style={styles.limitDateOrange}>{formatTextDate}</Text>;
+      } else if (moment().format('YYYY/MM/DD') > formatDate) {
+        dayText = <Text style={styles.limitDateRed}>{formatTextDate}</Text>;
+      } else if (moment().format('YYYY/MM/DD') < formatDate) {
+        dayText = <Text style={styles.limitDate}>{formatTextDate}</Text>;
+      }
+    } else {
+      dayText = <Text style={styles.limitDate}>{formatTextDate}</Text>;
     }
 
     return text === '' ? (
@@ -65,27 +66,18 @@ const HomeScreen = ({ navigation }) => {
             ) : (
               <Text style={styles.limitText}>購入日</Text>
             )}
-
-            {item.limitTextData === 'expiration' ? (
+            {moment().format('YYYY') > formatYearsDate && (
               <Text
-                style={
-                  moment().format('M-D') > `${dayMonths}-${dayData}`
-                    ? styles.limitDateRed
-                    : moment().add(1, 'd').format('M-D') ===
-                      `${dayMonths}-${dayData}`
-                    ? styles.limitDateOrange
-                    : moment().format('M-D') === `${dayMonths}-${dayData}`
-                    ? styles.limitDateOrange
-                    : moment().format('M-DD') > `${dayMonths}-0${dayData}`
-                    ? styles.limitDateRed
-                    : styles.limitDate
-                }
+                style={{
+                  textAlign: 'center',
+                  justifyContent: 'center',
+                  color: 'red',
+                }}
               >
-                {day}
+                {formatYearsDate}年
               </Text>
-            ) : (
-              <Text style={styles.limitDate}>{day}</Text>
             )}
+            {dayText}
           </View>
         </View>
       </TouchableOpacity>
@@ -118,27 +110,18 @@ const HomeScreen = ({ navigation }) => {
               ) : (
                 <Text style={styles.limitText}>購入日</Text>
               )}
-
-              {item.limitTextData === 'expiration' ? (
+              {moment().format('YYYY') > formatYearsDate && (
                 <Text
-                  style={
-                    moment().format('M-D') > `${dayMonths}-${dayData}`
-                      ? styles.limitDateRed
-                      : moment().add(1, 'd').format('M-D') ===
-                        `${dayMonths}-${dayData}`
-                      ? styles.limitDateOrange
-                      : moment().format('M-D') === `${dayMonths}-${dayData}`
-                      ? styles.limitDateOrange
-                      : moment().format('M-DD') > `${dayMonths}-0${dayData}`
-                      ? styles.limitDateRed
-                      : styles.limitDate
-                  }
+                  style={{
+                    textAlign: 'center',
+                    justifyContent: 'center',
+                    color: 'red',
+                  }}
                 >
-                  {day}
+                  {formatYearsDate}年
                 </Text>
-              ) : (
-                <Text style={styles.limitDate}>{day}</Text>
               )}
+              {dayText}
             </View>
           </View>
         </TouchableOpacity>
@@ -149,9 +132,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     <>
       <View style={styles.dataTextBox}>
-        <Text style={styles.dataText}>
-          本日　{years}年{months}月{date}日
-        </Text>
+        <Text style={styles.dataText}>本日　{toDay}</Text>
       </View>
       <View style={styles.searchBox}>
         <View style={styles.searchImag}>
@@ -173,6 +154,7 @@ const HomeScreen = ({ navigation }) => {
               width: '100%',
               marginRight: 5,
             }}
+            autoCorrect={true}
           />
           {text !== '' && (
             <TouchableOpacity
