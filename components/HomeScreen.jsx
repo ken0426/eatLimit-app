@@ -1,8 +1,10 @@
 import moment from 'moment';
 import React, { useState } from 'react';
 import {
+  Button,
   FlatList,
   Image,
+  Modal,
   StyleSheet,
   Text,
   TextInput,
@@ -15,6 +17,7 @@ const toDay = moment().format('YYYY年M月D日');
 
 const HomeScreen = ({ navigation }) => {
   const [text, setText] = useState('');
+  const [isModal, setIsModal] = useState(false);
 
   const renderItem = ({ item, key }) => {
     const day = item.limitDate; // 日付の取得
@@ -132,7 +135,30 @@ const HomeScreen = ({ navigation }) => {
   return (
     <>
       <View style={styles.dataTextBox}>
-        <Text style={styles.dataText}>本日　{toDay}</Text>
+        <View style={{ width: '10%', height: '100%' }}></View>
+        <Text style={styles.dataText}>本日　{toDay} </Text>
+        <View
+          style={{
+            width: '10%',
+            height: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              setIsModal(!isModal);
+            }}
+          >
+            <Image
+              style={{
+                width: 25,
+                height: 25,
+              }}
+              source={require('../images/sortIcon.png')}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={styles.searchBox}>
         <View style={styles.searchImag}>
@@ -186,6 +212,115 @@ const HomeScreen = ({ navigation }) => {
         navigation={navigation}
         renderItem={renderItem}
       />
+      {/* グレーの背景 */}
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Modal transparent={true} visible={isModal}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'rgba(0,0,0,0.5)',
+              borderRadius: 20,
+              alignItems: 'center',
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 4,
+            }}
+          >
+            {/* モーダル */}
+            <Modal animationType='slide' transparent={true} visible={isModal}>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  shadowOpacity: 0.25,
+                  marginTop: 120,
+                  marginBottom: 120,
+                  marginLeft: 20,
+                  marginRight: 20,
+                  backgroundColor: 'white',
+                  borderRadius: 20,
+                  padding: 35,
+                  alignItems: 'flex-end',
+                  flexDirection: 'row',
+                  shadowColor: '#000',
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  shadowOpacity: 0.25,
+                  shadowRadius: 4,
+                }}
+              >
+                {/* 仮の表示 */}
+                <View
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Text>これはソート機能画面です</Text>
+                  <Text>実装準備中</Text>
+                  <View
+                    style={{
+                      width: '90%',
+                      height: 50,
+                      backgroundColor: '#94DFF5',
+                      borderRadius: '50%',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      shadowColor: '#000',
+                      shadowOpacity: 0.25,
+                      shadowOffset: {
+                        width: 0,
+                        height: 2,
+                      },
+                    }}
+                  >
+                    <TouchableOpacity
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                      onPress={() => setIsModal(!isModal)}
+                    >
+                      <Text
+                        style={{
+                          color: 'white',
+                          fontSize: 30,
+                          fontWeight: 'bold',
+                        }}
+                      >
+                        完了
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            </Modal>
+          </View>
+        </Modal>
+      </View>
     </>
   );
 };
@@ -203,13 +338,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   dataTextBox: {
+    width: '100%',
     height: 40,
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'row',
   },
   dataText: {
     fontSize: 20,
+    width: '80%',
+    textAlign: 'center',
   },
   searchBox: {
     width: '100%',
