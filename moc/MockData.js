@@ -3,6 +3,11 @@
 // purchase: 購入日
 export const eatMockData = [
   {
+    eatName: 'にんじん',
+    limitDate: '2022/7/20',
+    limitTextData: 'purchase',
+  },
+  {
     eatName: 'うどん',
     limitDate: '2022/1/1',
     limitTextData: 'expiration',

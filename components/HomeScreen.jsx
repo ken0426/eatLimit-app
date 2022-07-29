@@ -1,10 +1,8 @@
 import moment from 'moment';
 import React, { useState } from 'react';
 import {
-  Button,
   FlatList,
   Image,
-  Modal,
   StyleSheet,
   Text,
   TextInput,
@@ -12,6 +10,7 @@ import {
   View,
 } from 'react-native';
 import { eatMockData } from '../moc/MockData';
+import HomeScreenSortModal from './modalComponents/HomeScreenSortModal';
 
 const toDay = moment().format('YYYY年M月D日');
 
@@ -41,51 +40,8 @@ const HomeScreen = ({ navigation }) => {
       dayText = <Text style={styles.limitDate}>{formatTextDate}</Text>;
     }
 
-    return text === '' ? (
-      <TouchableOpacity
-        key={key}
-        onPress={() => {
-          navigation.navigate('detailScreen', { item: item });
-        }}
-      >
-        <View style={styles.box} key={key}>
-          <View style={styles.eatImage}>
-            <Image
-              style={{
-                width: '100%',
-                height: '100%',
-              }}
-              source={require('../images/noImage.png')}
-            />
-          </View>
-          <View style={styles.eatName}>
-            <Text numberOfLines={1} style={styles.eatTextName}>
-              {item.eatName}
-            </Text>
-          </View>
-          <View style={styles.limitBox}>
-            {item.limitTextData === 'expiration' ? (
-              <Text style={styles.limitText}>消費期限</Text>
-            ) : (
-              <Text style={styles.limitText}>購入日</Text>
-            )}
-            {moment().format('YYYY') > formatYearsDate && (
-              <Text
-                style={{
-                  textAlign: 'center',
-                  justifyContent: 'center',
-                  color: 'red',
-                }}
-              >
-                {formatYearsDate}年
-              </Text>
-            )}
-            {dayText}
-          </View>
-        </View>
-      </TouchableOpacity>
-    ) : (
-      eatName.match(text) && (
+    const SheetBox = () => {
+      return (
         <TouchableOpacity
           key={key}
           onPress={() => {
@@ -95,10 +51,7 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.box} key={key}>
             <View style={styles.eatImage}>
               <Image
-                style={{
-                  width: '100%',
-                  height: '100%',
-                }}
+                style={styles.maxSize}
                 source={require('../images/noImage.png')}
               />
             </View>
@@ -114,13 +67,7 @@ const HomeScreen = ({ navigation }) => {
                 <Text style={styles.limitText}>購入日</Text>
               )}
               {moment().format('YYYY') > formatYearsDate && (
-                <Text
-                  style={{
-                    textAlign: 'center',
-                    justifyContent: 'center',
-                    color: 'red',
-                  }}
-                >
+                <Text style={styles.limitYearsOutText}>
                   {formatYearsDate}年
                 </Text>
               )}
@@ -128,33 +75,25 @@ const HomeScreen = ({ navigation }) => {
             </View>
           </View>
         </TouchableOpacity>
-      )
-    );
+      );
+    };
+
+    return text === '' ? <SheetBox /> : eatName.match(text) && <SheetBox />;
   };
 
   return (
     <>
       <View style={styles.dataTextBox}>
-        <View style={{ width: '10%', height: '100%' }}></View>
-        <Text style={styles.dataText}>本日　{toDay} </Text>
-        <View
-          style={{
-            width: '10%',
-            height: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
+        <View style={styles.dataTextBoxLeft}></View>
+        <Text style={styles.dataText}>本日 {toDay} </Text>
+        <View style={styles.dataTextBoxRight}>
           <TouchableOpacity
             onPress={() => {
               setIsModal(!isModal);
             }}
           >
             <Image
-              style={{
-                width: 25,
-                height: 25,
-              }}
+              style={styles.sortImagSize}
               source={require('../images/sortIcon.png')}
             />
           </TouchableOpacity>
@@ -163,10 +102,7 @@ const HomeScreen = ({ navigation }) => {
       <View style={styles.searchBox}>
         <View style={styles.searchImag}>
           <Image
-            style={{
-              width: '60%',
-              height: '60%',
-            }}
+            style={styles.searchIconSize}
             source={require('../images/searchIcon.png')}
           />
         </View>
@@ -180,11 +116,10 @@ const HomeScreen = ({ navigation }) => {
               width: '100%',
               marginRight: 5,
             }}
-            autoCorrect={true}
           />
           {text !== '' && (
             <TouchableOpacity
-              style={{ alignItems: 'center', justifyContent: 'center' }}
+              style={styles.centerPosition}
               onPress={() => setText('')}
             >
               <View
@@ -196,10 +131,7 @@ const HomeScreen = ({ navigation }) => {
                 }}
               >
                 <Image
-                  style={{
-                    width: 20,
-                    height: 20,
-                  }}
+                  style={{ width: 20, height: 20 }}
                   source={require('../images/deleteButton.png')}
                 />
               </View>
@@ -212,120 +144,16 @@ const HomeScreen = ({ navigation }) => {
         navigation={navigation}
         renderItem={renderItem}
       />
-      {/* グレーの背景 */}
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Modal transparent={true} visible={isModal}>
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-              backgroundColor: 'rgba(0,0,0,0.5)',
-              borderRadius: 20,
-              alignItems: 'center',
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 4,
-            }}
-          >
-            {/* モーダル */}
-            <Modal animationType='slide' transparent={true} visible={isModal}>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  shadowOffset: {
-                    width: 0,
-                    height: 2,
-                  },
-                  shadowOpacity: 0.25,
-                  marginTop: 120,
-                  marginBottom: 120,
-                  marginLeft: 20,
-                  marginRight: 20,
-                  backgroundColor: 'white',
-                  borderRadius: 20,
-                  padding: 35,
-                  alignItems: 'flex-end',
-                  flexDirection: 'row',
-                  shadowColor: '#000',
-                  shadowOffset: {
-                    width: 0,
-                    height: 2,
-                  },
-                  shadowOpacity: 0.25,
-                  shadowRadius: 4,
-                }}
-              >
-                {/* 仮の表示 */}
-                <View
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <Text>これはソート機能画面です</Text>
-                  <Text>実装準備中</Text>
-                  <View
-                    style={{
-                      width: '90%',
-                      height: 50,
-                      backgroundColor: '#94DFF5',
-                      borderRadius: '50%',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      shadowColor: '#000',
-                      shadowOpacity: 0.25,
-                      shadowOffset: {
-                        width: 0,
-                        height: 2,
-                      },
-                    }}
-                  >
-                    <TouchableOpacity
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}
-                      onPress={() => setIsModal(!isModal)}
-                    >
-                      <Text
-                        style={{
-                          color: 'white',
-                          fontSize: 30,
-                          fontWeight: 'bold',
-                        }}
-                      >
-                        完了
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </View>
-            </Modal>
-          </View>
-        </Modal>
-      </View>
+      <HomeScreenSortModal isModal={isModal} setIsModal={setIsModal} />
     </>
   );
 };
 
 const styles = StyleSheet.create({
+  maxSize: {
+    width: '100%',
+    height: '100%',
+  },
   box: {
     width: '100%',
     height: 100,
@@ -345,6 +173,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
+  dataTextBoxLeft: {
+    width: '10%',
+    height: '100%',
+  },
+  dataTextBoxRight: {
+    width: '10%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  sortImagSize: {
+    width: 25,
+    height: 25,
+  },
   dataText: {
     fontSize: 20,
     width: '80%',
@@ -358,13 +200,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
-  searchButton: {
-    width: 90,
-    backgroundColor: 'gray',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   searchText: {
     fontSize: 25,
   },
@@ -374,11 +209,19 @@ const styles = StyleSheet.create({
     height: '100%',
     flexDirection: 'row',
   },
+  centerPosition: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   searchImag: {
     width: 40,
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  searchIconSize: {
+    width: '60%',
+    height: '60%',
   },
   eatImage: {
     width: 100,
@@ -400,6 +243,11 @@ const styles = StyleSheet.create({
   limitText: {
     textAlign: 'center',
     fontSize: 18,
+  },
+  limitYearsOutText: {
+    textAlign: 'center',
+    justifyContent: 'center',
+    color: 'red',
   },
   limitDateRed: {
     textAlign: 'center',
