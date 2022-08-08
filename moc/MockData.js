@@ -1,6 +1,8 @@
 /** リストのデータ */
+// eatName: 商品名
 // expiration: 消費期限
 // purchase: 購入日
+// eatImage: 商品画像
 export const eatMockData = [
   {
     eatName: 'にんじん',
@@ -18,11 +20,17 @@ export const eatMockData = [
     limitDate: '2022/7/20',
     limitTextData: 'expiration',
   },
-  { eatName: '牛乳', limitDate: '2022/7/27', limitTextData: 'expiration' },
+  {
+    eatName: '牛乳',
+    limitDate: '2022/7/27',
+    limitTextData: 'expiration',
+    eatImage: require('../moc/mocImages/gyuunyuu.jpeg'),
+  },
   {
     eatName: 'ヨーグルト',
     limitDate: '2022/7/28',
     limitTextData: 'expiration',
+    eatImage: require('../moc/mocImages/yo-guruto.jpeg'),
   },
   { eatName: 'りんご', limitDate: '2022/7/29', limitTextData: 'expiration' },
   {
