@@ -50,10 +50,14 @@ const HomeScreen = ({ navigation }) => {
         >
           <View style={styles.box} key={key}>
             <View style={styles.eatImage}>
-              <Image
-                style={styles.maxSize}
-                source={require('../images/noImage.png')}
-              />
+              {item.eatImage ? (
+                <Image style={styles.maxSize} source={item.eatImage} />
+              ) : (
+                <Image
+                  style={styles.maxSize}
+                  source={require('../images/noImage.png')}
+                />
+              )}
             </View>
             <View style={styles.eatName}>
               <Text numberOfLines={1} style={styles.eatTextName}>
