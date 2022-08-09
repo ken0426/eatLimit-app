@@ -1,7 +1,13 @@
 import React from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import DisplayOrderButton from '../atoms/buttons/DisplayOrderButton';
 
 const HomeScreenSortModal = ({ isModal, setIsModal }) => {
+  const displayOrderButton = [
+    { buttonName: '消費期限' },
+    { buttonName: '賞味期限' },
+    { buttonName: '登録日' },
+  ];
   return (
     /** グレーの背景 */
     <View style={(styles.centerPosition, { flex: 1 })}>
@@ -19,24 +25,19 @@ const HomeScreenSortModal = ({ isModal, setIsModal }) => {
                   justifyContent: 'space-between',
                 }}
               >
-                <Text>これはソート機能画面です</Text>
+                <View style={{ width: '100%' }}>
+                  <Text style={styles.selectTitle}>表示順</Text>
+                  <View style={styles.selectButtonRadio}>
+                    {displayOrderButton.map((item) => {
+                      return (
+                        <DisplayOrderButton buttonName={item.buttonName} />
+                      );
+                    })}
+                  </View>
+                  <Text style={styles.selectTitle}>表示設定</Text>
+                </View>
                 <Text>実装準備中</Text>
-                <View
-                  style={{
-                    width: '90%',
-                    height: 50,
-                    backgroundColor: '#94DFF5',
-                    borderRadius: '50%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    shadowColor: '#000',
-                    shadowOpacity: 0.25,
-                    shadowOffset: {
-                      width: 0,
-                      height: 2,
-                    },
-                  }}
-                >
+                <View style={styles.finishButton}>
                   <TouchableOpacity
                     style={{
                       width: '100%',
@@ -101,7 +102,10 @@ const styles = StyleSheet.create({
     marginRight: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
+    paddingTop: 35,
+    paddingBottom: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
     alignItems: 'flex-end',
     flexDirection: 'row',
     shadowColor: '#000',
@@ -111,6 +115,34 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
+  },
+  selectTitle: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 30,
+  },
+  selectButtonRadio: {
+    flexDirection: 'row',
+    marginTop: 20,
+    justifyContent: 'space-around',
+    paddingBottom: 20,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    marginBottom: 20,
+  },
+  finishButton: {
+    width: '70%',
+    height: 50,
+    backgroundColor: '#FF0000',
+    borderRadius: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.25,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
   },
 });
 
