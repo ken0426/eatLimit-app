@@ -1,13 +1,9 @@
 import React from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { displayOrderButton } from '../../constants';
 import DisplayOrderButton from '../atoms/buttons/DisplayOrderButton';
 
 const HomeScreenSortModal = ({ isModal, setIsModal }) => {
-  const displayOrderButton = [
-    { buttonName: '消費期限' },
-    { buttonName: '賞味期限' },
-    { buttonName: '登録日' },
-  ];
   return (
     /** グレーの背景 */
     <View style={(styles.centerPosition, { flex: 1 })}>
@@ -28,9 +24,15 @@ const HomeScreenSortModal = ({ isModal, setIsModal }) => {
                 <View style={{ width: '100%' }}>
                   <Text style={styles.selectTitle}>表示順</Text>
                   <View style={styles.selectButtonRadio}>
-                    {displayOrderButton.map((item) => {
+                    {displayOrderButton.map((item, key) => {
                       return (
-                        <DisplayOrderButton buttonName={item.buttonName} />
+                        <DisplayOrderButton
+                          buttonName={item.buttonName}
+                          key={key}
+                          onPress={() =>
+                            alert(`これは【${item.buttonName}】ボタンです`)
+                          }
+                        />
                       );
                     })}
                   </View>
@@ -77,7 +79,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.5)',
-    borderRadius: 20,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
