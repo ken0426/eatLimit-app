@@ -1,6 +1,10 @@
 import React from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { displayOrderButton } from '../../constants';
+import {
+  displayOrderButton,
+  displayOrderDayButton,
+  displayOrderIsImageButton,
+} from '../../constants';
 import DisplayOrderButton from '../atoms/buttons/DisplayOrderButton';
 
 const HomeScreenSortModal = ({ isModal, setIsModal }) => {
@@ -37,8 +41,63 @@ const HomeScreenSortModal = ({ isModal, setIsModal }) => {
                     })}
                   </View>
                   <Text style={styles.selectTitle}>表示設定</Text>
+                  <View
+                    style={{
+                      width: '100%',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Text style={{ marginTop: 10, fontSize: 18 }}>
+                      日付表示
+                    </Text>
+                    <View style={styles.selectButton}>
+                      {displayOrderDayButton.map((item, key) => {
+                        return (
+                          <DisplayOrderButton
+                            buttonName={item.buttonName}
+                            key={key}
+                            onPress={() =>
+                              alert(`これは【${item.buttonName}】ボタンです`)
+                            }
+                          />
+                        );
+                      })}
+                    </View>
+                    <Text style={{ marginTop: 10, fontSize: 18 }}>
+                      カテゴリ
+                    </Text>
+                    <View style={styles.selectButton}>
+                      {displayOrderButton.map((item, key) => {
+                        return (
+                          <DisplayOrderButton
+                            buttonName={item.buttonName}
+                            key={key}
+                            onPress={() =>
+                              alert(`これは【${item.buttonName}】ボタンです`)
+                            }
+                          />
+                        );
+                      })}
+                    </View>
+                    <Text style={{ marginTop: 10, fontSize: 18 }}>
+                      画像なし
+                    </Text>
+                    <View style={styles.selectButton}>
+                      {displayOrderIsImageButton.map((item, key) => {
+                        return (
+                          <DisplayOrderButton
+                            buttonName={item.buttonName}
+                            key={key}
+                            onPress={() =>
+                              alert(`これは【${item.buttonName}】ボタンです`)
+                            }
+                          />
+                        );
+                      })}
+                    </View>
+                  </View>
                 </View>
-                <Text>実装準備中</Text>
                 <View style={styles.finishButton}>
                   <TouchableOpacity
                     style={{
@@ -130,6 +189,13 @@ const styles = StyleSheet.create({
     borderBottomColor: 'black',
     borderBottomWidth: 1,
     marginBottom: 20,
+  },
+  selectButton: {
+    width: '100%',
+    flexDirection: 'row',
+    marginTop: 20,
+    justifyContent: 'space-around',
+    paddingBottom: 10,
   },
   finishButton: {
     width: '70%',
