@@ -1,6 +1,7 @@
 /** リストのデータ */
 // eatName: 商品名
 // expiration: 消費期限
+// expiry: 賞味期限
 // purchase: 購入日
 // eatImage: 商品画像
 export const eatMockData = [
