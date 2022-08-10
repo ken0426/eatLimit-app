@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-const DisplayOrderButton = ({ buttonName }) => {
+const DisplayOrderButton = ({ buttonName, onPress }) => {
   return (
     <View
       style={{
@@ -20,6 +20,7 @@ const DisplayOrderButton = ({ buttonName }) => {
           justifyContent: 'center',
           alignItems: 'center',
         }}
+        onPress={onPress}
       >
         <Text
           style={{
