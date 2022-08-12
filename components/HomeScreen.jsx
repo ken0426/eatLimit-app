@@ -32,17 +32,17 @@ const HomeScreen = ({ navigation }) => {
 
   const renderItem = ({ item, key }) => {
     /** 「消費期限」「賞味期限」の日付の取得 */
-    const day = item.limitDate;
+    const limitDay = item.limitDate;
     /** 「購入日」「登録日」の日付の取得 */
     const registerDay = item.registerDate;
     /** 商品名を取得 */
     const eatName = item.eatName;
     /** 「消費期限」「賞味期限」の文字列を日付のフォーマットに変換（年/月/日） */
-    const formatDate = moment(day).format('YYYY/MM/DD');
+    const formatDate = moment(limitDay).format('YYYY/MM/DD');
     /** 「消費期限」「賞味期限」の文字列を日付のフォーマットに変換（月/日） */
-    const formatYearsDate = moment(day).format('YYYY');
+    const formatYearsDate = moment(limitDay).format('YYYY');
     /** 「消費期限」「賞味期限」のフォーマットを実際に表示する形へ変換（◯月◯日） */
-    const formatTextDate = moment(day).format('M月D日');
+    const formatTextDate = moment(limitDay).format('M月D日');
     /** 「購入日」「登録日」のフォーマットを実際に表示する形へ変換（◯月◯日） */
     const registerDate = moment(registerDay).format('M月D日');
     /** 表示する（年＋）月 */
