@@ -7,12 +7,12 @@ export const displayOrderButton = [
 
 /** モーダルの日付表示 */
 export const displayOrderDayButton = [
-  { buttonName: '日付のみ' },
-  { buttonName: '日付＋年' },
+  { buttonName: '日付のみ', option: true },
+  { buttonName: '日付＋年', option: false },
 ];
 
 /** モーダルの画像選択で使用するボタン */
 export const displayOrderIsImageButton = [
-  { buttonName: '画像あり' },
-  { buttonName: '画像なし' },
+  { buttonName: '画像あり', option: true },
+  { buttonName: '画像なし', option: false },
 ];
