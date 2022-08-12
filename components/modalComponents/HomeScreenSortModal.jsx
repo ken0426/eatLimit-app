@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import {
   displayOrderButton,
@@ -7,7 +7,54 @@ import {
 } from '../../constants';
 import DisplayOrderButton from '../atoms/buttons/DisplayOrderButton';
 
-const HomeScreenSortModal = ({ isModal, setIsModal }) => {
+const HomeScreenSortModal = ({
+  isModal,
+  setIsModal,
+  setIsOptionDisplayButton,
+  setIsOptionDisplayImageButton,
+}) => {
+  /** モーダルの日付表示のフラグ（trueの場合は「日付のみ」） */
+  const [optionSelectDisplayButton, setOptionSelectDisplayButton] =
+    useState(true);
+
+  /** モーダルの画像表示のフラグ（trueの場合は「画像あり」） */
+  const [optionSelectDisplayImageButton, setOptionSelectDisplayImageButton] =
+    useState(true);
+
+  /** モーダルの日付表示選択ボタン */
+  const selectOnPress = ({ itemOption }) => {
+    if (optionSelectDisplayButton === itemOption) {
+      setOptionSelectDisplayButton(optionSelectDisplayButton);
+    } else {
+      setOptionSelectDisplayButton(!optionSelectDisplayButton);
+    }
+  };
+
+  /** モーダルの画像選択ボタン */
+  const selectImageOnPress = ({ itemOption }) => {
+    if (optionSelectDisplayImageButton === itemOption) {
+      setOptionSelectDisplayImageButton(optionSelectDisplayImageButton);
+    } else {
+      setOptionSelectDisplayImageButton(!optionSelectDisplayImageButton);
+    }
+  };
+
+  /** 完了ボタンを押した時の処理 */
+  const completionButton = () => {
+    if (optionSelectDisplayButton) {
+      setIsOptionDisplayButton(false);
+    } else {
+      setIsOptionDisplayButton(true);
+    }
+
+    if (!optionSelectDisplayImageButton) {
+      setIsOptionDisplayImageButton(false);
+    } else {
+      setIsOptionDisplayImageButton(true);
+    }
+    setIsModal(!isModal);
+  };
+
   return (
     /** グレーの背景 */
     <View style={(styles.centerPosition, { flex: 1 })}>
@@ -57,9 +104,14 @@ const HomeScreenSortModal = ({ isModal, setIsModal }) => {
                           <DisplayOrderButton
                             buttonName={item.buttonName}
                             key={key}
-                            onPress={() =>
-                              alert(`これは【${item.buttonName}】ボタンです`)
+                            selectButton={
+                              optionSelectDisplayButton
+                                ? item.option
+                                : !item.option
                             }
+                            onPress={() => {
+                              selectOnPress({ itemOption: item.option });
+                            }}
                           />
                         );
                       })}
@@ -89,8 +141,13 @@ const HomeScreenSortModal = ({ isModal, setIsModal }) => {
                           <DisplayOrderButton
                             buttonName={item.buttonName}
                             key={key}
+                            selectButton={
+                              optionSelectDisplayImageButton
+                                ? item.option
+                                : !item.option
+                            }
                             onPress={() =>
-                              alert(`これは【${item.buttonName}】ボタンです`)
+                              selectImageOnPress({ itemOption: item.option })
                             }
                           />
                         );
@@ -106,7 +163,7 @@ const HomeScreenSortModal = ({ isModal, setIsModal }) => {
                       justifyContent: 'center',
                       alignItems: 'center',
                     }}
-                    onPress={() => setIsModal(!isModal)}
+                    onPress={() => completionButton()}
                   >
                     <Text
                       style={{

@@ -1,8 +1,10 @@
 import moment from 'moment';
 import React, { useState } from 'react';
+import { TouchableWithoutFeedback } from 'react-native';
 import {
   FlatList,
   Image,
+  Keyboard,
   StyleSheet,
   Text,
   TextInput,
@@ -12,18 +14,38 @@ import {
 import { eatMockData } from '../moc/MockData';
 import HomeScreenSortModal from './modalComponents/HomeScreenSortModal';
 
+/** 本日の日付 */
 const toDay = moment().format('YYYY年M月D日');
 
 const HomeScreen = ({ navigation }) => {
   const [text, setText] = useState('');
+
+  /** モーダルの表示非表示に使うフラグ */
   const [isModal, setIsModal] = useState(false);
 
+  /** 年を表示するかどうかのフラグ（falseの場合は「年」を非表示にする） */
+  const [isOptionDisplayButton, setIsOptionDisplayButton] = useState(false);
+
+  /** 画像を表示するかどうかのフラグ(trueの場合は画像を表示する) */
+  const [isOptionDisplayImageButton, setIsOptionDisplayImageButton] =
+    useState(true);
+
   const renderItem = ({ item, key }) => {
-    const day = item.limitDate; // 日付の取得
-    const eatName = item.eatName; // 商品名を取得
+    /** 「消費期限」「賞味期限」の日付の取得 */
+    const day = item.limitDate;
+    /** 「購入日」「登録日」の日付の取得 */
+    const registerDay = item.registerDate;
+    /** 商品名を取得 */
+    const eatName = item.eatName;
+    /** 「消費期限」「賞味期限」の文字列を日付のフォーマットに変換（年/月/日） */
     const formatDate = moment(day).format('YYYY/MM/DD');
+    /** 「消費期限」「賞味期限」の文字列を日付のフォーマットに変換（月/日） */
     const formatYearsDate = moment(day).format('YYYY');
+    /** 「消費期限」「賞味期限」のフォーマットを実際に表示する形へ変換（◯月◯日） */
     const formatTextDate = moment(day).format('M月D日');
+    /** 「購入日」「登録日」のフォーマットを実際に表示する形へ変換（◯月◯日） */
+    const registerDate = moment(registerDay).format('M月D日');
+    /** 表示する（年＋）月 */
     let dayText;
 
     if (item.limitTextData === 'expiration') {
@@ -37,7 +59,7 @@ const HomeScreen = ({ navigation }) => {
         dayText = <Text style={styles.limitDate}>{formatTextDate}</Text>;
       }
     } else {
-      dayText = <Text style={styles.limitDate}>{formatTextDate}</Text>;
+      dayText = <Text style={styles.limitDate}>{registerDate}</Text>;
     }
 
     const SheetBox = () => {
@@ -49,17 +71,27 @@ const HomeScreen = ({ navigation }) => {
           }}
         >
           <View style={styles.box} key={key}>
-            <View style={styles.eatImage}>
-              {item.eatImage ? (
-                <Image style={styles.maxSize} source={item.eatImage} />
-              ) : (
-                <Image
-                  style={styles.maxSize}
-                  source={require('../images/noImage.png')}
-                />
-              )}
-            </View>
-            <View style={styles.eatName}>
+            {isOptionDisplayImageButton ? (
+              <View style={styles.eatImage}>
+                {item.eatImage ? (
+                  <Image style={styles.maxSize} source={item.eatImage} />
+                ) : (
+                  <Image
+                    style={styles.maxSize}
+                    source={require('../images/noImage.png')}
+                  />
+                )}
+              </View>
+            ) : (
+              <></>
+            )}
+            <View
+              style={[
+                isOptionDisplayImageButton
+                  ? styles.eatName
+                  : styles.isOptionNotImageEatName,
+              ]}
+            >
               <Text numberOfLines={1} style={styles.eatTextName}>
                 {item.eatName}
               </Text>
@@ -70,8 +102,16 @@ const HomeScreen = ({ navigation }) => {
               ) : (
                 <Text style={styles.limitText}>購入日</Text>
               )}
-              {moment().format('YYYY') > formatYearsDate && (
-                <Text style={styles.limitYearsOutText}>
+              {!isOptionDisplayButton ? (
+                <></>
+              ) : (
+                <Text
+                  style={[
+                    moment().format('YYYY') > formatYearsDate
+                      ? styles.limitYearsOutText
+                      : styles.limitYearsSafeText,
+                  ]}
+                >
                   {formatYearsDate}年
                 </Text>
               )}
@@ -93,6 +133,7 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.dataTextBoxRight}>
           <TouchableOpacity
             onPress={() => {
+              Keyboard.dismiss();
               setIsModal(!isModal);
             }}
           >
@@ -143,12 +184,20 @@ const HomeScreen = ({ navigation }) => {
           )}
         </View>
       </View>
-      <FlatList
-        data={eatMockData}
-        navigation={navigation}
-        renderItem={renderItem}
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <FlatList
+          data={eatMockData}
+          navigation={navigation}
+          renderItem={renderItem}
+        />
+      </TouchableWithoutFeedback>
+      <HomeScreenSortModal
+        isModal={isModal}
+        setIsModal={setIsModal}
+        isOptionDisplayButton={isOptionDisplayButton}
+        setIsOptionDisplayButton={setIsOptionDisplayButton}
+        setIsOptionDisplayImageButton={setIsOptionDisplayImageButton}
       />
-      <HomeScreenSortModal isModal={isModal} setIsModal={setIsModal} />
     </>
   );
 };
@@ -198,7 +247,7 @@ const styles = StyleSheet.create({
   },
   searchBox: {
     width: '100%',
-    height: 40,
+    height: 42,
     borderColor: 'gray',
     borderWidth: 1,
     flexDirection: 'row',
@@ -231,6 +280,11 @@ const styles = StyleSheet.create({
     width: 100,
     height: 80,
   },
+  isOptionNotImageEatName: {
+    justifyContent: 'center',
+    width: '73%',
+    paddingLeft: 10,
+  },
   eatName: {
     justifyContent: 'center',
     width: 160,
@@ -252,6 +306,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     justifyContent: 'center',
     color: 'red',
+  },
+  limitYearsSafeText: {
+    textAlign: 'center',
+    justifyContent: 'center',
   },
   limitDateRed: {
     textAlign: 'center',
