@@ -140,7 +140,7 @@ const HomeScreenSortModal = ({
                       })}
                     </View>
                     <Text style={{ marginTop: 10, fontSize: 18 }}>
-                      画像なし
+                      画像表示
                     </Text>
                     <View style={styles.selectButton}>
                       {displayOrderIsImageButton.map((item, key) => {
