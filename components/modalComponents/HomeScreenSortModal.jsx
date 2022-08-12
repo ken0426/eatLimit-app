@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Modal,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {
   displayOrderButton,
   displayOrderDayButton,
@@ -72,7 +79,7 @@ const HomeScreenSortModal = ({
                   justifyContent: 'space-between',
                 }}
               >
-                <View style={{ width: '100%' }}>
+                <ScrollView style={{ width: '100%' }}>
                   <Text style={styles.selectTitle}>表示順</Text>
                   <View style={styles.selectButtonRadio}>
                     {displayOrderButton.map((item, key) => {
@@ -154,7 +161,7 @@ const HomeScreenSortModal = ({
                       })}
                     </View>
                   </View>
-                </View>
+                </ScrollView>
                 <View style={styles.finishButton}>
                   <TouchableOpacity
                     style={{
