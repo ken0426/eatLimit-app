@@ -48,7 +48,10 @@ const HomeScreen = ({ navigation }) => {
     /** 表示する（年＋）月 */
     let dayText;
 
-    if (item.limitTextData === 'expiration') {
+    if (
+      item.limitTextData === 'expiration' ||
+      item.limitTextData === 'expiry'
+    ) {
       if (moment().format('YYYY/MM/DD') === formatDate) {
         dayText = <Text style={styles.limitDateOrange}>{formatTextDate}</Text>;
       } else if (moment().add(1, 'd').format('YYYY/MM/DD') === formatDate) {
@@ -99,8 +102,12 @@ const HomeScreen = ({ navigation }) => {
             <View style={styles.limitBox}>
               {item.limitTextData === 'expiration' ? (
                 <Text style={styles.limitText}>消費期限</Text>
-              ) : (
+              ) : item.limitTextData === 'expiry' ? (
+                <Text style={styles.limitText}>賞味期限</Text>
+              ) : item.limitTextData === 'purchase' ? (
                 <Text style={styles.limitText}>購入日</Text>
+              ) : (
+                <Text style={styles.limitText}>登録日</Text>
               )}
               {!isOptionDisplayButton ? (
                 <></>
