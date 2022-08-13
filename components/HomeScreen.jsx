@@ -12,6 +12,7 @@ import {
   View,
 } from 'react-native';
 import { eatMockData } from '../moc/MockData';
+import ListScreen from './ListScreen';
 import HomeScreenSortModal from './modalComponents/HomeScreenSortModal';
 
 /** 本日の日付 */
@@ -29,6 +30,26 @@ const HomeScreen = ({ navigation }) => {
   /** 画像を表示するかどうかのフラグ(trueの場合は画像を表示する) */
   const [isOptionDisplayImageButton, setIsOptionDisplayImageButton] =
     useState(true);
+
+  /** カテゴリ表示の消費期限が選択されているかのフラグ */
+  const [expiration, setExpiration] = useState(false);
+
+  /** カテゴリ表示の賞味期限が選択されているかのフラグ */
+  const [expiry, setExpiry] = useState(false);
+
+  /** カテゴリ表示の購入日が選択されているかのフラグ */
+  const [purchase, setPurchase] = useState(false);
+
+  /** カテゴリ表示の登録日が選択されているかのフラグ */
+  const [register, setRegister] = useState(false);
+
+  /** モーダルのカテゴリ選択でチェックがついているものを監視する */
+  const categoryData = [
+    { expiration: expiration },
+    { expiry: expiry },
+    { purchase: purchase },
+    { register: register },
+  ];
 
   const renderItem = ({ item, key }) => {
     /** 「消費期限」「賞味期限」の日付の取得 */
@@ -66,66 +87,34 @@ const HomeScreen = ({ navigation }) => {
     }
 
     const SheetBox = () => {
-      return (
-        <TouchableOpacity
-          key={key}
-          onPress={() => {
-            navigation.navigate('detailScreen', { item: item });
-          }}
-        >
-          <View style={styles.box} key={key}>
-            {isOptionDisplayImageButton ? (
-              <View style={styles.eatImage}>
-                {item.eatImage ? (
-                  <Image style={styles.maxSize} source={item.eatImage} />
-                ) : (
-                  <Image
-                    style={styles.maxSize}
-                    source={require('../images/noImage.png')}
-                  />
-                )}
-              </View>
-            ) : (
-              <></>
-            )}
-            <View
-              style={[
-                isOptionDisplayImageButton
-                  ? styles.eatName
-                  : styles.isOptionNotImageEatName,
-              ]}
-            >
-              <Text numberOfLines={1} style={styles.eatTextName}>
-                {item.eatName}
-              </Text>
-            </View>
-            <View style={styles.limitBox}>
-              {item.limitTextData === 'expiration' ? (
-                <Text style={styles.limitText}>消費期限</Text>
-              ) : item.limitTextData === 'expiry' ? (
-                <Text style={styles.limitText}>賞味期限</Text>
-              ) : item.limitTextData === 'purchase' ? (
-                <Text style={styles.limitText}>購入日</Text>
-              ) : (
-                <Text style={styles.limitText}>登録日</Text>
-              )}
-              {!isOptionDisplayButton ? (
-                <></>
-              ) : (
-                <Text
-                  style={[
-                    moment().format('YYYY') > formatYearsDate
-                      ? styles.limitYearsOutText
-                      : styles.limitYearsSafeText,
-                  ]}
-                >
-                  {formatYearsDate}年
-                </Text>
-              )}
-              {dayText}
-            </View>
-          </View>
-        </TouchableOpacity>
+      /** カテゴリのチェックが一つも付いていないときの処理 */
+      if (!expiration && !expiry && !purchase && !register) {
+        return (
+          <ListScreen
+            navigation={navigation}
+            item={item}
+            key={key}
+            dayText={dayText}
+            isOptionDisplayImageButton={isOptionDisplayImageButton}
+            isOptionDisplayButton={isOptionDisplayButton}
+            formatYearsDate={formatYearsDate}
+          />
+        );
+      }
+      /** カテゴリのチェックが付いているものだけを表示するロジック */
+      return categoryData.map(
+        (data) =>
+          data[item.limitTextData] && (
+            <ListScreen
+              navigation={navigation}
+              item={item}
+              key={key}
+              dayText={dayText}
+              isOptionDisplayImageButton={isOptionDisplayImageButton}
+              isOptionDisplayButton={isOptionDisplayButton}
+              formatYearsDate={formatYearsDate}
+            />
+          )
       );
     };
 
@@ -204,6 +193,10 @@ const HomeScreen = ({ navigation }) => {
         isOptionDisplayButton={isOptionDisplayButton}
         setIsOptionDisplayButton={setIsOptionDisplayButton}
         setIsOptionDisplayImageButton={setIsOptionDisplayImageButton}
+        setExpiration={setExpiration}
+        setExpiry={setExpiry}
+        setPurchase={setPurchase}
+        setRegister={setRegister}
       />
     </>
   );

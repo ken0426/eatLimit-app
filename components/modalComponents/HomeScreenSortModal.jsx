@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import {
+  CATEGORY_ID,
   displayOrderButton,
   displayOrderCategoryButton,
   displayOrderDayButton,
@@ -20,7 +21,23 @@ const HomeScreenSortModal = ({
   setIsModal,
   setIsOptionDisplayButton,
   setIsOptionDisplayImageButton,
+  setExpiration,
+  setExpiry,
+  setPurchase,
+  setRegister,
 }) => {
+  /** カテゴリ表示の消費期限が選択されているかのフラグ */
+  const [isExpiration, setIsExpiration] = useState(false);
+
+  /** カテゴリ表示の賞味期限が選択されているかのフラグ */
+  const [isExpiry, setIsExpiry] = useState(false);
+
+  /** カテゴリ表示の購入日が選択されているかのフラグ */
+  const [isPurchase, setIsPurchase] = useState(false);
+
+  /** カテゴリ表示の登録日が選択されているかのフラグ */
+  const [isRegister, setIsRegister] = useState(false);
+
   /** モーダルの日付表示のフラグ（trueの場合は「日付のみ」） */
   const [optionSelectDisplayButton, setOptionSelectDisplayButton] =
     useState(true);
@@ -35,6 +52,19 @@ const HomeScreenSortModal = ({
       setOptionSelectDisplayButton(optionSelectDisplayButton);
     } else {
       setOptionSelectDisplayButton(!optionSelectDisplayButton);
+    }
+  };
+
+  /** どのカテゴリを選択したか監視するフラグ */
+  const selectCategoryOnPress = ({ category_id }) => {
+    if (category_id === CATEGORY_ID.expiration) {
+      setIsExpiration(!isExpiration);
+    } else if (category_id === CATEGORY_ID.expiry) {
+      setIsExpiry(!isExpiry);
+    } else if (category_id === CATEGORY_ID.purchase) {
+      setIsPurchase(!isPurchase);
+    } else if (category_id === CATEGORY_ID.register) {
+      setIsRegister(!isRegister);
     }
   };
 
@@ -53,6 +83,36 @@ const HomeScreenSortModal = ({
       setIsOptionDisplayButton(false);
     } else {
       setIsOptionDisplayButton(true);
+    }
+
+    if (isExpiration) {
+      setExpiration(isExpiration);
+    } else if (!isExpiration) {
+      setExpiration(isExpiration);
+    }
+
+    if (isExpiration) {
+      setExpiry(isExpiration);
+    } else if (!isExpiration) {
+      setExpiry(isExpiration);
+    }
+
+    if (isExpiry) {
+      setExpiry(isExpiry);
+    } else if (!isExpiry) {
+      setExpiry(isExpiry);
+    }
+
+    if (isPurchase) {
+      setPurchase(isPurchase);
+    } else if (!isPurchase) {
+      setPurchase(isPurchase);
+    }
+
+    if (isRegister) {
+      setRegister(isRegister);
+    } else if (!isRegister) {
+      setRegister(isRegister);
     }
 
     if (!optionSelectDisplayImageButton) {
@@ -130,6 +190,8 @@ const HomeScreenSortModal = ({
                     </Text>
                     <View style={styles.selectCategoryButton}>
                       {displayOrderCategoryButton.map((item, key) => {
+                        const [selectCategory, setSelectCategory] =
+                          useState(false);
                         return (
                           <DisplayOrderButton
                             buttonName={item.buttonName}
@@ -137,9 +199,11 @@ const HomeScreenSortModal = ({
                             categoryMargin={true}
                             right={item.right}
                             left={item.left}
-                            onPress={() =>
-                              alert(`これは【${item.buttonName}】ボタンです`)
-                            }
+                            selectButton={selectCategory}
+                            onPress={() => {
+                              setSelectCategory(!selectCategory);
+                              selectCategoryOnPress({ category_id: item.id });
+                            }}
                           />
                         );
                       })}
