@@ -4,7 +4,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 /**
  * @param           item                          APIからのデータ（※現在はモックデータ）
- * @param {string}  dayText                       リストに表示する日付（＋年）
+ * @param {string}  dayText                       リストに表示する日付
  * @param {boolean} isOptionDisplayImageButton    リストに画像を表示するかどうかのフラグ
  * @param {boolean} isOptionDisplayButton         リストに年を表示するかどうかのフラグ
  * @param {string}  formatYearsDate               「消費期限」「賞味期限」の年数
