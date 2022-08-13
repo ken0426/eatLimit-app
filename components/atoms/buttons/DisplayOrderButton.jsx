@@ -1,7 +1,16 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-const DisplayOrderButton = ({ buttonName, key, selectButton, onPress }) => {
+const DisplayOrderButton = ({
+  buttonName,
+  key,
+  sort,
+  selectButton,
+  onPress,
+  categoryMargin,
+  right,
+  left,
+}) => {
   return (
     <View
       style={{
@@ -9,10 +18,13 @@ const DisplayOrderButton = ({ buttonName, key, selectButton, onPress }) => {
         borderRadius: '50%',
         justifyContent: 'center',
         alignItems: 'center',
-        width: 85,
+        width: sort ? 130 : 85,
         height: 30,
         borderWidth: !selectButton && 1,
         borderColor: !selectButton && '#94DFF5',
+        marginBottom: categoryMargin && 20,
+        marginRight: right && 22,
+        marginLeft: left && 22,
       }}
     >
       <TouchableOpacity

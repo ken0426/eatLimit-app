@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {
   displayOrderButton,
+  displayOrderCategoryButton,
   displayOrderDayButton,
   displayOrderIsImageButton,
 } from '../../constants';
@@ -87,6 +88,7 @@ const HomeScreenSortModal = ({
                         <DisplayOrderButton
                           buttonName={item.buttonName}
                           key={key}
+                          sort={item.sort}
                           onPress={() =>
                             alert(`これは【${item.buttonName}】ボタンです`)
                           }
@@ -126,12 +128,15 @@ const HomeScreenSortModal = ({
                     <Text style={{ marginTop: 10, fontSize: 18 }}>
                       カテゴリ
                     </Text>
-                    <View style={styles.selectButton}>
-                      {displayOrderButton.map((item, key) => {
+                    <View style={styles.selectCategoryButton}>
+                      {displayOrderCategoryButton.map((item, key) => {
                         return (
                           <DisplayOrderButton
                             buttonName={item.buttonName}
                             key={key}
+                            categoryMargin={true}
+                            right={item.right}
+                            left={item.left}
                             onPress={() =>
                               alert(`これは【${item.buttonName}】ボタンです`)
                             }
@@ -260,6 +265,13 @@ const styles = StyleSheet.create({
     marginTop: 20,
     justifyContent: 'space-around',
     paddingBottom: 10,
+  },
+  selectCategoryButton: {
+    width: '88%',
+    flexDirection: 'row',
+    marginTop: 20,
+    justifyContent: 'space-around',
+    flexWrap: 'wrap',
   },
   finishButton: {
     width: '70%',
