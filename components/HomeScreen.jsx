@@ -182,7 +182,7 @@ const HomeScreen = ({ navigation }) => {
         </View>
       </View>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        {noEatMocData.length !== 0 ? (
+        {eatMockData.length !== 0 ? (
           <FlatList
             data={eatMockData}
             navigation={navigation}
