@@ -11,9 +11,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { eatMockData } from '../moc/MockData';
+import { eatMockData, noEatMocData } from '../moc/MockData';
 import ListScreen from './ListScreen';
 import HomeScreenSortModal from './modalComponents/HomeScreenSortModal';
+import NoListScreen from './NoListScreen';
 
 /** 本日の日付 */
 const toDay = moment().format('YYYY年M月D日');
@@ -181,11 +182,15 @@ const HomeScreen = ({ navigation }) => {
         </View>
       </View>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <FlatList
-          data={eatMockData}
-          navigation={navigation}
-          renderItem={renderItem}
-        />
+        {noEatMocData.length !== 0 ? (
+          <FlatList
+            data={eatMockData}
+            navigation={navigation}
+            renderItem={renderItem}
+          />
+        ) : (
+          <NoListScreen />
+        )}
       </TouchableWithoutFeedback>
       <HomeScreenSortModal
         isModal={isModal}
