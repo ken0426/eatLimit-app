@@ -1,6 +1,15 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
+/**
+ * @param {string}    buttonName        ボタンの名前
+ * @param {boolean}   sort              ソート機能のボタンとフィルターボタンで幅が違うフラグ
+ * @param {boolean}   selectButton      ボタンにチェックが付いているか判定するフラグ
+ * @param {boolean}   categoryMargin    カテゴリボタンのUI（左右間隔）
+ * @param {boolean}   right             カテゴリボタンの右にmarginを取る
+ * @param {boolean}   left              カテゴリボタンの左にmarginを取る
+ */
+
 interface DisplayOrderButtonProps {
   buttonName: string;
   key: number;
