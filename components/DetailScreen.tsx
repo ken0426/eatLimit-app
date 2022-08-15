@@ -1,7 +1,11 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-const DetailScreen = ({ route }) => {
+interface DetailScreenProps {
+  route: { params: { item: { eatName: string } } };
+}
+
+const DetailScreen: React.FC<DetailScreenProps> = ({ route }) => {
   const { item } = route.params;
   return (
     <View>
