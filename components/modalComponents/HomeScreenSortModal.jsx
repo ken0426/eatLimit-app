@@ -140,7 +140,7 @@ const HomeScreenSortModal = ({
                 }}
               >
                 <ScrollView style={{ width: '100%' }}>
-                  <Text style={styles.selectTitle}>表示順</Text>
+                  <Text style={styles.selectTitle}>ソート</Text>
                   <View style={styles.selectButtonRadio}>
                     {displayOrderButton.map((item, key) => {
                       return (
@@ -155,7 +155,7 @@ const HomeScreenSortModal = ({
                       );
                     })}
                   </View>
-                  <Text style={styles.selectTitle}>表示設定</Text>
+                  <Text style={styles.selectTitle}>フィルター</Text>
                   <View
                     style={{
                       width: '100%',
