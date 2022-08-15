@@ -5,6 +5,9 @@
 // register: 登録日
 // eatImage: 商品画像
 
+/** 空のリストデータ */
+export const noEatMocData = [];
+
 /** リストのデータ */
 export const eatMockData = [
   {
