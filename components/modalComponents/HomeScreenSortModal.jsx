@@ -131,7 +131,6 @@ const HomeScreenSortModal = ({
           {/* モーダル */}
           <Modal animationType='slide' transparent={true} visible={isModal}>
             <View style={styles.modalBox}>
-              {/* 仮の表示 */}
               <View
                 style={{
                   width: '100%',

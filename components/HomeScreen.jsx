@@ -203,21 +203,6 @@ const HomeScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  maxSize: {
-    width: '100%',
-    height: '100%',
-  },
-  box: {
-    width: '100%',
-    height: 100,
-    borderColor: 'gray',
-    borderBottomWidth: 1,
-    borderTopWidth: 1,
-    padding: 10,
-    alignContent: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
   dataTextBox: {
     width: '100%',
     height: 40,
@@ -275,41 +260,6 @@ const styles = StyleSheet.create({
   searchIconSize: {
     width: '60%',
     height: '60%',
-  },
-  eatImage: {
-    width: 100,
-    height: 80,
-  },
-  isOptionNotImageEatName: {
-    justifyContent: 'center',
-    width: '73%',
-    paddingLeft: 10,
-  },
-  eatName: {
-    justifyContent: 'center',
-    width: 160,
-    paddingLeft: 10,
-  },
-  eatTextName: {
-    fontSize: 20,
-  },
-  limitBox: {
-    width: 100,
-    height: 80,
-    justifyContent: 'space-around',
-  },
-  limitText: {
-    textAlign: 'center',
-    fontSize: 18,
-  },
-  limitYearsOutText: {
-    textAlign: 'center',
-    justifyContent: 'center',
-    color: 'red',
-  },
-  limitYearsSafeText: {
-    textAlign: 'center',
-    justifyContent: 'center',
   },
   limitDateRed: {
     textAlign: 'center',
