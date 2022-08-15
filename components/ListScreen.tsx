@@ -3,14 +3,24 @@ import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 /**
- * @param           item                          APIからのデータ（※現在はモックデータ）
+ * @param {object}  item                          APIからのデータ（※現在はモックデータ）
  * @param {string}  dayText                       リストに表示する日付
  * @param {boolean} isOptionDisplayImageButton    リストに画像を表示するかどうかのフラグ
  * @param {boolean} isOptionDisplayButton         リストに年を表示するかどうかのフラグ
  * @param {string}  formatYearsDate               「消費期限」「賞味期限」の年数
  */
 
-const ListScreen = ({
+interface ListScreenProps {
+  navigation: any;
+  item: { eatImage: any; eatName: string; limitTextData: string };
+  key: number;
+  dayText: string;
+  isOptionDisplayImageButton: boolean;
+  isOptionDisplayButton: boolean;
+  formatYearsDate: string;
+}
+
+const ListScreen: React.FC<ListScreenProps> = ({
   navigation,
   item,
   key,
