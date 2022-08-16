@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   box: {
     width: '100%',
     height: 100,
-    borderColor: 'gray',
+    borderColor: '#d3d3d3',
     borderBottomWidth: 0.2,
     borderTopWidth: 0.2,
     padding: 10,
