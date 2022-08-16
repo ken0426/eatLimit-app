@@ -215,6 +215,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
+    backgroundColor: '#fff',
   },
   dataTextBoxLeft: {
     width: '10%',
@@ -242,6 +243,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
+    backgroundColor: '#fff',
   },
   searchText: {
     fontSize: 25,
