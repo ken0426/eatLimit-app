@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: '#fff',
   },
   maxSize: {
     width: '100%',
