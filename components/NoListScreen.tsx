@@ -12,12 +12,14 @@ const NoListScreen = () => {
 const styles = StyleSheet.create({
   viewScreen: {
     with: '100%',
-    height: '75%',
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#d3d3d3',
   },
   viewText: {
     fontSize: 20,
+    marginBottom: 140,
   },
 });
 
