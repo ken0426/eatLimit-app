@@ -136,7 +136,7 @@ const HomeScreen = ({ navigation }) => {
           >
             <Image
               style={styles.sortImagSize}
-              source={require('../images/sortIcon.png')}
+              source={require('../images/sort-down.png')}
             />
           </TouchableOpacity>
         </View>
