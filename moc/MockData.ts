@@ -11,6 +11,13 @@ export const noEatMocData = [];
 /** リストのデータ */
 export const eatMockData = [
   {
+    eatName: 'おかずラー油',
+    limitDate: '2023/9/28',
+    registerDate: '2022/8/13',
+    limitTextData: 'expiry',
+    eatImage: require('../moc/mocImages/ra-yuokazu.jpeg'),
+  },
+  {
     eatName: 'にんじん',
     limitDate: '2022/8/13',
     registerDate: '2022/8/13',
