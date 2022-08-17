@@ -121,12 +121,12 @@ const styles = StyleSheet.create({
   },
   eatName: {
     justifyContent: 'center',
-    width: 160,
+    width: 158,
     paddingLeft: 10,
   },
   isOptionNotImageEatName: {
     justifyContent: 'center',
-    width: '73%',
+    width: '72%',
     paddingLeft: 10,
   },
   eatTextName: {
