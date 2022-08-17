@@ -29,6 +29,18 @@ const ListScreen: React.FC<ListScreenProps> = ({
   isOptionDisplayButton,
   formatYearsDate,
 }) => {
+  let categoryLabelText: string;
+
+  if (item.limitTextData === 'expiration') {
+    categoryLabelText = '消費期限';
+  } else if (item.limitTextData === 'expiry') {
+    categoryLabelText = '賞味期限';
+  } else if (item.limitTextData === 'purchase') {
+    categoryLabelText = '購入日';
+  } else {
+    categoryLabelText = '登録日';
+  }
+
   return (
     <TouchableOpacity
       key={key}
@@ -63,15 +75,9 @@ const ListScreen: React.FC<ListScreenProps> = ({
           </Text>
         </View>
         <View style={styles.limitBox}>
-          {item.limitTextData === 'expiration' ? (
-            <Text style={styles.limitText}>消費期限</Text>
-          ) : item.limitTextData === 'expiry' ? (
-            <Text style={styles.limitText}>賞味期限</Text>
-          ) : item.limitTextData === 'purchase' ? (
-            <Text style={styles.limitText}>購入日</Text>
-          ) : (
-            <Text style={styles.limitText}>登録日</Text>
-          )}
+          <View style={styles.categoryLabel}>
+            <Text style={styles.limitText}>{categoryLabelText}</Text>
+          </View>
           {!isOptionDisplayButton ? (
             <></>
           ) : (
@@ -131,9 +137,17 @@ const styles = StyleSheet.create({
     height: 80,
     justifyContent: 'space-around',
   },
+  categoryLabel: {
+    borderRadius: 5,
+    backgroundColor: '#94DFF5',
+    alignItems: 'center',
+  },
   limitText: {
     textAlign: 'center',
     fontSize: 18,
+    width: '80%',
+    color: '#fff',
+    fontWeight: 'bold',
   },
   limitYearsOutText: {
     textAlign: 'center',
