@@ -147,6 +147,10 @@ const HomeScreenSortModal = ({
                         <DisplayOrderButton
                           buttonName={item.buttonName}
                           key={key}
+                          selectButton={undefined}
+                          right={undefined}
+                          left={undefined}
+                          categoryMargin={undefined}
                           sort={item.sort}
                           onPress={() =>
                             alert(`これは【${item.buttonName}】ボタンです`)
@@ -171,6 +175,10 @@ const HomeScreenSortModal = ({
                         return (
                           <DisplayOrderButton
                             buttonName={item.buttonName}
+                            sort={undefined}
+                            right={undefined}
+                            left={undefined}
+                            categoryMargin={undefined}
                             key={key}
                             selectButton={
                               optionSelectDisplayButton
@@ -195,6 +203,7 @@ const HomeScreenSortModal = ({
                           <DisplayOrderButton
                             buttonName={item.buttonName}
                             key={key}
+                            sort={undefined}
                             categoryMargin={true}
                             right={item.right}
                             left={item.left}
@@ -216,6 +225,10 @@ const HomeScreenSortModal = ({
                           <DisplayOrderButton
                             buttonName={item.buttonName}
                             key={key}
+                            sort={undefined}
+                            right={undefined}
+                            left={undefined}
+                            categoryMargin={undefined}
                             selectButton={
                               optionSelectDisplayImageButton
                                 ? item.option
@@ -270,7 +283,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.5)',
-    alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -282,7 +294,6 @@ const styles = StyleSheet.create({
   modalBox: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -301,11 +312,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     flexDirection: 'row',
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
     shadowRadius: 4,
   },
   selectTitle: {
@@ -340,7 +346,7 @@ const styles = StyleSheet.create({
     width: '70%',
     height: 50,
     backgroundColor: '#FF0000',
-    borderRadius: '50%',
+    borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',

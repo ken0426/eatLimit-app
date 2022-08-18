@@ -13,12 +13,12 @@ import { Text, TouchableOpacity, View } from 'react-native';
 interface DisplayOrderButtonProps {
   buttonName: string;
   key: number;
-  sort: boolean;
-  selectButton: boolean;
+  sort: boolean | undefined;
+  selectButton: boolean | undefined;
   onPress: () => void;
-  categoryMargin: boolean;
-  right: boolean;
-  left: boolean;
+  categoryMargin: boolean | undefined;
+  right: boolean | undefined;
+  left: boolean | undefined;
 }
 
 const DisplayOrderButton: React.FC<DisplayOrderButtonProps> = ({
