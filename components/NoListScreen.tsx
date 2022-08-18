@@ -1,9 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 const NoListScreen = () => {
   return (
     <View style={styles.viewScreen}>
+      <Image
+        style={{ width: 200, height: 200, marginBottom: 50 }}
+        source={require('../images/syokupan.png')}
+      />
       <Text style={styles.viewText}>まずは家にある食材を登録してみよう！</Text>
     </View>
   );
@@ -15,11 +19,12 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#d3d3d3',
+    marginTop: 90,
   },
   viewText: {
     fontSize: 20,
-    marginBottom: 140,
+    marginBottom: 190,
+    fontWeight: 'bold',
   },
 });
 
