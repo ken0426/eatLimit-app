@@ -132,7 +132,7 @@ const HomeScreen = ({ navigation }) => {
     return text === '' ? <SheetBox /> : eatName.match(text) && <SheetBox />;
   };
 
-  const ListEmptyComponent = () => {
+  const listEmptyComponent = () => {
     return <NoListScreen />;
   };
 
@@ -201,7 +201,7 @@ const HomeScreen = ({ navigation }) => {
           navigation={navigation}
           renderItem={renderItem}
           refreshing={refreshing}
-          ListEmptyComponent={ListEmptyComponent}
+          ListEmptyComponent={listEmptyComponent}
           onRefresh={async () => {
             setRefreshing(true);
             setApiData(eatMockData); // 現在はAPIの繋ぎ込みをしていないのでモックデータを再度復活させる
