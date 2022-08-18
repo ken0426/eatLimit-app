@@ -153,7 +153,9 @@ const HomeScreenSortModal = ({
                           categoryMargin={undefined}
                           sort={item.sort}
                           onPress={() =>
-                            alert(`これは【${item.buttonName}】ボタンです`)
+                            alert(
+                              `これは【${item.buttonName}】ボタンです\n※現在準備中`
+                            )
                           }
                         />
                       );
