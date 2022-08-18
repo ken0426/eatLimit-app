@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
   },
   isOptionNotImageEatName: {
     justifyContent: 'center',
-    width: '73%',
+    width: '72%',
     paddingLeft: 10,
   },
   eatTextName: {
