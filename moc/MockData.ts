@@ -132,4 +132,12 @@ export const eatMockData = [
     limitTextData: 'expiration',
     key: 17,
   },
+  {
+    eatName: '納豆',
+    limitDate: '2022/8/27',
+    registerDate: '2022/8/18',
+    limitTextData: 'expiration',
+    eatImage: require('../moc/mocImages/nattou.jpeg'),
+    key: 18,
+  },
 ];
