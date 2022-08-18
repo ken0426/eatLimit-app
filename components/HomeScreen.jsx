@@ -52,6 +52,12 @@ const HomeScreen = ({ navigation }) => {
     { register: register },
   ];
 
+  /** APIからのデータを更新するときに使用するフラグ（主に削除機能） */
+  const [apiData, setApiData] = useState(eatMockData);
+
+  /** リストを下に引っ張ってデータの更新を行うときに使うフラグ */
+  const [refreshing, setRefreshing] = useState(false);
+
   const renderItem = ({ item, key }) => {
     /** 「消費期限」「賞味期限」の日付の取得 */
     const limitDay = item.limitDate;
@@ -99,6 +105,8 @@ const HomeScreen = ({ navigation }) => {
             isOptionDisplayImageButton={isOptionDisplayImageButton}
             isOptionDisplayButton={isOptionDisplayButton}
             formatYearsDate={formatYearsDate}
+            apiData={apiData}
+            setApiData={setApiData}
           />
         );
       }
@@ -114,12 +122,18 @@ const HomeScreen = ({ navigation }) => {
               isOptionDisplayImageButton={isOptionDisplayImageButton}
               isOptionDisplayButton={isOptionDisplayButton}
               formatYearsDate={formatYearsDate}
+              apiData={apiData}
+              setApiData={setApiData}
             />
           )
       );
     };
 
     return text === '' ? <SheetBox /> : eatName.match(text) && <SheetBox />;
+  };
+
+  const ListEmptyComponent = () => {
+    return <NoListScreen />;
   };
 
   return (
@@ -182,15 +196,18 @@ const HomeScreen = ({ navigation }) => {
         </View>
       </View>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        {eatMockData.length !== 0 ? (
-          <FlatList
-            data={eatMockData}
-            navigation={navigation}
-            renderItem={renderItem}
-          />
-        ) : (
-          <NoListScreen />
-        )}
+        <FlatList
+          data={apiData}
+          navigation={navigation}
+          renderItem={renderItem}
+          refreshing={refreshing}
+          ListEmptyComponent={ListEmptyComponent}
+          onRefresh={async () => {
+            setRefreshing(true);
+            setApiData(eatMockData); // 現在はAPIの繋ぎ込みをしていないのでモックデータを再度復活させる
+            setRefreshing(false);
+          }}
+        />
       </TouchableWithoutFeedback>
       <HomeScreenSortModal
         isModal={isModal}
