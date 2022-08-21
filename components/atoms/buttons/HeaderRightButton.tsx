@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Image, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { RegisterScreenNavigationProp } from '../../../type/Stack';
 
 interface HeaderRightButtonProps {
   newAddButton: boolean;
@@ -10,7 +11,7 @@ interface HeaderRightButtonProps {
 const HeaderRightButton: React.FC<HeaderRightButtonProps> = ({
   newAddButton,
 }) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<RegisterScreenNavigationProp>();
   return newAddButton ? (
     <>
       <TouchableOpacity
@@ -19,7 +20,7 @@ const HeaderRightButton: React.FC<HeaderRightButtonProps> = ({
           justifyContent: 'center',
         }}
         onPress={() => {
-          navigation.navigate('registerScreen', {});
+          navigation.navigate('registerScreen');
         }}
       >
         <Image

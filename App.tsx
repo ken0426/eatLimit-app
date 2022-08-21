@@ -6,7 +6,9 @@ import DetailScreen from './components/DetailScreen';
 import HeaderRightButton from './components/atoms/buttons/HeaderRightButton';
 import RegisterScreen from './components/RegisterScreen';
 import HeaderLeftButton from './components/atoms/HeaderLeftButton';
-const Stack = createNativeStackNavigator();
+import { StackPramList } from './type/Stack';
+
+const Stack = createNativeStackNavigator<StackPramList>();
 
 const App = () => {
   return (
