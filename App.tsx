@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './components/HomeScreen';
 import DetailScreen from './components/DetailScreen';
 import HeaderRightButton from './components/atoms/buttons/HeaderRightButton';
-import RegisterScreen from './components/modalComponents/RegisterScreen';
+import RegisterScreen from './components/RegisterScreen';
 import HeaderLeftButton from './components/atoms/HeaderLeftButton';
 const Stack = createNativeStackNavigator();
 
