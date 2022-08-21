@@ -347,6 +347,7 @@ const styles = StyleSheet.create({
   finishButton: {
     width: '70%',
     height: 50,
+    marginTop: 20,
     backgroundColor: '#FF0000',
     borderRadius: 50,
     justifyContent: 'center',
