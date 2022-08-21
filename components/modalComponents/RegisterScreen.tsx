@@ -4,7 +4,7 @@ import { Text, View } from 'react-native';
 const RegisterScreen = () => {
   return (
     <View>
-      <Text>aaa</Text>
+      <Text>ここは登録画面です</Text>
     </View>
   );
 };
