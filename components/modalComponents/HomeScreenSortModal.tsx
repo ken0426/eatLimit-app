@@ -14,6 +14,7 @@ import {
   displayOrderDayButton,
   displayOrderIsImageButton,
 } from '../../constants';
+import { theme } from '../../styles';
 import DisplayOrderButton from '../atoms/buttons/DisplayOrderButton';
 
 const HomeScreenSortModal = ({
@@ -125,7 +126,7 @@ const HomeScreenSortModal = ({
 
   return (
     /** グレーの背景 */
-    <View style={(styles.centerPosition, { flex: 1 })}>
+    <View style={(theme.centerPosition, { flex: 1 })}>
       <Modal transparent={true} visible={isModal}>
         <View style={styles.modalBackColor}>
           {/* モーダル */}
@@ -247,17 +248,15 @@ const HomeScreenSortModal = ({
                 </ScrollView>
                 <View style={styles.finishButton}>
                   <TouchableOpacity
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
+                    style={[
+                      theme.maxSize,
+                      { alignItems: 'center', justifyContent: 'center' },
+                    ]}
                     onPress={() => completionButton()}
                   >
                     <Text
                       style={{
-                        color: 'white',
+                        color: theme.colors.white,
                         fontSize: 30,
                         fontWeight: 'bold',
                       }}
@@ -276,16 +275,12 @@ const HomeScreenSortModal = ({
 };
 
 const styles = StyleSheet.create({
-  centerPosition: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   modalBackColor: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.5)',
-    shadowColor: '#000',
+    shadowColor: theme.colors.black,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -305,7 +300,7 @@ const styles = StyleSheet.create({
     marginBottom: 120,
     marginLeft: 20,
     marginRight: 20,
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.white,
     borderRadius: 20,
     paddingTop: 35,
     paddingBottom: 15,
@@ -313,7 +308,7 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     alignItems: 'flex-end',
     flexDirection: 'row',
-    shadowColor: '#000',
+    shadowColor: theme.colors.black,
     shadowRadius: 4,
   },
   selectTitle: {
@@ -352,7 +347,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#000',
+    shadowColor: theme.colors.black,
     shadowOpacity: 0.25,
     shadowOffset: {
       width: 0,

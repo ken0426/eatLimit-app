@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import { ListItem } from '@rneui/themed';
+import { theme } from '../styles';
 
 /**
  * @param {object}  item                          APIからのデータ（※現在はモックデータ）
@@ -103,10 +104,10 @@ const ListScreen: React.FC<ListScreenProps> = ({
         {isOptionDisplayImageButton ? (
           <View style={styles.eatImage}>
             {item.eatImage ? (
-              <Image style={styles.maxSize} source={item.eatImage} />
+              <Image style={theme.maxSize} source={item.eatImage} />
             ) : (
               <Image
-                style={styles.maxSize}
+                style={theme.maxSize}
                 source={require('../images/noImage.png')}
               />
             )}
@@ -160,10 +161,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: '#fff',
-  },
-  maxSize: {
-    width: '100%',
-    height: '100%',
   },
   eatImage: {
     width: 100,

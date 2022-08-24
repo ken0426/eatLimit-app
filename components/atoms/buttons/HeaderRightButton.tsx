@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Image, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { theme } from '../../../styles';
 import { RegisterScreenNavigationProp } from '../../../type';
 
 interface HeaderRightButtonProps {
@@ -35,7 +36,7 @@ const HeaderRightButton: React.FC<HeaderRightButtonProps> = ({
         navigation.goBack();
       }}
     >
-      <Text style={{ color: '#fff', fontSize: 18 }}>登録</Text>
+      <Text style={{ color: theme.colors.white, fontSize: 18 }}>登録</Text>
     </TouchableOpacity>
   );
 };

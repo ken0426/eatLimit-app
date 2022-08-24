@@ -7,6 +7,7 @@ import HeaderRightButton from './components/atoms/buttons/HeaderRightButton';
 import RegisterScreen from './components/RegisterScreen';
 import HeaderLeftButton from './components/atoms/HeaderLeftButton';
 import { StackPramList } from './type';
+import { theme } from './styles';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
@@ -20,13 +21,13 @@ const App = () => {
           options={{
             title: 'ホーム',
             headerStyle: {
-              backgroundColor: '#94DFF5',
+              backgroundColor: theme.colors.rightBlue,
             },
             headerTitleStyle: {
               fontWeight: 'bold',
               fontSize: 25,
             },
-            headerTintColor: '#fff',
+            headerTintColor: theme.colors.white,
             headerRight: () => <HeaderRightButton newAddButton={true} />,
           }}
         />
@@ -36,13 +37,13 @@ const App = () => {
           options={{
             title: '詳細',
             headerStyle: {
-              backgroundColor: '#94DFF5',
+              backgroundColor: theme.colors.rightBlue,
             },
             headerTitleStyle: {
               fontWeight: 'bold',
               fontSize: 25,
             },
-            headerTintColor: '#fff',
+            headerTintColor: theme.colors.white,
           }}
         />
         <Stack.Screen
@@ -51,13 +52,13 @@ const App = () => {
           options={{
             title: '新規登録',
             headerStyle: {
-              backgroundColor: '#94DFF5',
+              backgroundColor: theme.colors.rightBlue,
             },
             headerTitleStyle: {
               fontWeight: 'bold',
               fontSize: 25,
             },
-            headerTintColor: '#fff',
+            headerTintColor: theme.colors.white,
             presentation: 'fullScreenModal',
             headerRight: () => <HeaderRightButton newAddButton={false} />,
             headerLeft: () => <HeaderLeftButton />,
