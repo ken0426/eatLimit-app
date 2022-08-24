@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.white,
   },
   dataTextBoxLeft: {
     width: '10%',
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
     borderBottomColor: 'gray',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.white,
   },
   searchText: {
     fontSize: 25,
