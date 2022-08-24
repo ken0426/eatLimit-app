@@ -12,6 +12,7 @@ import {
   View,
 } from 'react-native';
 import { eatMockData, noEatMocData } from '../moc/MockData';
+import { theme } from '../styles';
 import ListScreen from './ListScreen';
 import HomeScreenSortModal from './modalComponents/HomeScreenSortModal';
 import NoListScreen from './NoListScreen';
