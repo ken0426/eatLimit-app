@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Image, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { RegisterScreenNavigationProp } from '../../../type/Stack';
+import { RegisterScreenNavigationProp } from '../../../type';
 
 interface HeaderRightButtonProps {
   newAddButton: boolean;
