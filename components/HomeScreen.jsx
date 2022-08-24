@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
   searchBox: {
     width: '100%',
     height: 42,
-    borderWidth: 1,
+    borderWidth: 0.3,
     borderTopColor: 'gray',
     borderBottomColor: 'gray',
     flexDirection: 'row',
