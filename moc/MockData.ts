@@ -15,6 +15,7 @@ export const eatMockData = [
     limitDate: '2023/9/28',
     registerDate: '2022/8/13',
     limitTextData: 'expiry',
+    category: '冷蔵',
     eatImage: require('../moc/mocImages/ra-yuokazu.jpeg'),
     key: 1,
   },
@@ -23,6 +24,7 @@ export const eatMockData = [
     limitDate: '2022/8/13',
     registerDate: '2022/8/13',
     limitTextData: 'expiry',
+    category: '常温',
     key: 2,
   },
   {
@@ -30,6 +32,7 @@ export const eatMockData = [
     limitDate: '2022/8/14',
     registerDate: '2022/8/13',
     limitTextData: 'expiration',
+    category: '冷蔵',
     key: 3,
   },
   {
@@ -37,6 +40,7 @@ export const eatMockData = [
     limitDate: '2022/8/14',
     registerDate: '2022/8/13',
     limitTextData: 'purchase',
+    category: '冷蔵',
     key: 4,
   },
   {
@@ -44,6 +48,7 @@ export const eatMockData = [
     limitDate: '2022/8/15',
     registerDate: '2022/8/13',
     limitTextData: 'expiration',
+    category: '冷蔵',
     key: 5,
   },
   {
@@ -51,6 +56,7 @@ export const eatMockData = [
     limitDate: '2022/8/16',
     registerDate: '2022/8/13',
     limitTextData: 'expiration',
+    category: '冷蔵',
     eatImage: require('../moc/mocImages/gyuunyuu.jpeg'),
     key: 6,
   },
@@ -59,6 +65,7 @@ export const eatMockData = [
     limitDate: '2022/8/17',
     registerDate: '2022/8/13',
     limitTextData: 'expiration',
+    category: '冷蔵',
     eatImage: require('../moc/mocImages/yo-guruto.jpeg'),
     key: 7,
   },
@@ -67,6 +74,7 @@ export const eatMockData = [
     limitDate: '2022/8/18',
     registerDate: '2022/8/13',
     limitTextData: 'expiration',
+    category: '冷蔵',
     key: 8,
   },
   {
@@ -74,6 +82,7 @@ export const eatMockData = [
     limitDate: '2022/8/19',
     registerDate: '2022/8/13',
     limitTextData: 'expiration',
+    category: '冷蔵',
     key: 9,
   },
   {
@@ -81,6 +90,7 @@ export const eatMockData = [
     limitDate: '2022/8/20',
     registerDate: '2022/7/1',
     limitTextData: 'expiration',
+    category: '冷凍',
     key: 10,
   },
   {
@@ -88,6 +98,7 @@ export const eatMockData = [
     limitDate: '2022/8/21',
     registerDate: '2022/8/13',
     limitTextData: 'expiration',
+    category: '冷凍',
     key: 11,
   },
   {
@@ -95,6 +106,7 @@ export const eatMockData = [
     limitDate: '2022/8/22',
     registerDate: '2022/8/13',
     limitTextData: 'purchase',
+    category: '常温',
     key: 12,
   },
   {
@@ -102,6 +114,7 @@ export const eatMockData = [
     limitDate: '2022/10/1',
     registerDate: '2022/7/1',
     limitTextData: 'register',
+    category: '常温',
     key: 13,
   },
   {
@@ -109,6 +122,7 @@ export const eatMockData = [
     limitDate: '2022/10/10',
     registerDate: '2022/7/1',
     limitTextData: 'expiration',
+    category: '常温',
     key: 14,
   },
   {
@@ -116,6 +130,7 @@ export const eatMockData = [
     limitDate: '2022/10/10',
     registerDate: '2022/7/1',
     limitTextData: 'register',
+    category: '常温',
     key: 15,
   },
   {
@@ -123,6 +138,7 @@ export const eatMockData = [
     limitDate: '2022/10/10',
     registerDate: '2022/7/1',
     limitTextData: 'register',
+    category: '常温',
     key: 16,
   },
   {
@@ -130,6 +146,7 @@ export const eatMockData = [
     limitDate: '2021/10/10',
     registerDate: '2022/10/1',
     limitTextData: 'expiration',
+    category: '常温',
     key: 17,
   },
   {
@@ -137,6 +154,7 @@ export const eatMockData = [
     limitDate: '2022/8/27',
     registerDate: '2022/8/18',
     limitTextData: 'expiration',
+    category: '常温',
     eatImage: require('../moc/mocImages/nattou.jpeg'),
     key: 18,
   },
