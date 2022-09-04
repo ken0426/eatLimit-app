@@ -220,45 +220,6 @@ const styles = StyleSheet.create({
     width: 100,
     height: 80,
   },
-  eatName: {
-    justifyContent: 'center',
-    width: 154,
-    paddingLeft: 6,
-  },
-  isOptionNotImageEatName: {
-    justifyContent: 'center',
-    width: '72%',
-    paddingLeft: 10,
-  },
-  eatTextName: {
-    fontSize: 20,
-  },
-  limitBox: {
-    width: 100,
-    height: 80,
-    justifyContent: 'space-around',
-  },
-  categoryLabel: {
-    borderRadius: 5,
-    backgroundColor: '#94DFF5',
-    alignItems: 'center',
-  },
-  limitText: {
-    textAlign: 'center',
-    fontSize: 18,
-    width: '80%',
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  limitYearsOutText: {
-    textAlign: 'center',
-    justifyContent: 'center',
-    color: 'red',
-  },
-  limitYearsSafeText: {
-    textAlign: 'center',
-    justifyContent: 'center',
-  },
 });
 
 export default ListScreen;
