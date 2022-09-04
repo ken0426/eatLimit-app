@@ -33,6 +33,10 @@ const HomeScreen = ({ navigation }) => {
   const [isOptionDisplayImageButton, setIsOptionDisplayImageButton] =
     useState(true);
 
+  /** ラベルを表示するかどうかのフラグ（trueの場合はラベルを表示する） */
+  const [isOptionDisplayLabelButton, setIsOptionDisplayLabelButton] =
+    useState(true);
+
   /** カテゴリ表示の消費期限が選択されているかのフラグ */
   const [expiration, setExpiration] = useState(false);
 
@@ -120,6 +124,7 @@ const HomeScreen = ({ navigation }) => {
             dayText={dayText}
             allDayText={allDayText}
             isOptionDisplayImageButton={isOptionDisplayImageButton}
+            isOptionDisplayLabelButton={isOptionDisplayLabelButton}
             isOptionDisplayButton={isOptionDisplayButton}
             apiData={apiData}
             setApiData={setApiData}
@@ -137,6 +142,7 @@ const HomeScreen = ({ navigation }) => {
               dayText={dayText}
               allDayText={allDayText}
               isOptionDisplayImageButton={isOptionDisplayImageButton}
+              isOptionDisplayLabelButton={isOptionDisplayLabelButton}
               isOptionDisplayButton={isOptionDisplayButton}
               apiData={apiData}
               setApiData={setApiData}
@@ -231,6 +237,7 @@ const HomeScreen = ({ navigation }) => {
         isOptionDisplayButton={isOptionDisplayButton}
         setIsOptionDisplayButton={setIsOptionDisplayButton}
         setIsOptionDisplayImageButton={setIsOptionDisplayImageButton}
+        setIsOptionDisplayLabelButton={setIsOptionDisplayLabelButton}
         setExpiration={setExpiration}
         setExpiry={setExpiry}
         setPurchase={setPurchase}

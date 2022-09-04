@@ -24,6 +24,12 @@ export const displayOrderIsImageButton = [
   { buttonName: '画像なし', option: false },
 ];
 
+/** モーダルのラベルで選択しようするボタン */
+export const displayOrderLabelButton = [
+  { buttonName: 'ラベルあり', option: true },
+  { buttonName: 'ラベルなし', option: false },
+];
+
 /** カテゴリボタンのID */
 export const CATEGORY_ID = {
   expiration: 1,

@@ -34,6 +34,7 @@ interface ListScreenProps {
   dayText: string;
   allDayText: string;
   isOptionDisplayImageButton: boolean;
+  isOptionDisplayLabelButton: boolean;
   isOptionDisplayButton: boolean;
   apiData: Array<object>;
   setApiData: ({}) => void;
@@ -45,6 +46,7 @@ const ListScreen: React.FC<ListScreenProps> = ({
   dayText,
   allDayText,
   isOptionDisplayImageButton,
+  isOptionDisplayLabelButton,
   isOptionDisplayButton,
   apiData,
   setApiData,
@@ -144,19 +146,21 @@ const ListScreen: React.FC<ListScreenProps> = ({
                 borderRadius: 5,
               }}
             >
-              <Text
-                style={{
-                  color: theme.colors.white,
-                  fontWeight: 'bold',
-                  fontSize: 17,
-                }}
-              >
-                {item.label === LABEL_ID.refrigeration
-                  ? LABEL_NAME.refrigeration
-                  : item.label === LABEL_ID.frozen
-                  ? LABEL_NAME.frozen
-                  : LABEL_NAME.normal}
-              </Text>
+              {isOptionDisplayLabelButton && (
+                <Text
+                  style={{
+                    color: theme.colors.white,
+                    fontWeight: 'bold',
+                    fontSize: 17,
+                  }}
+                >
+                  {item.label === LABEL_ID.refrigeration
+                    ? LABEL_NAME.refrigeration
+                    : item.label === LABEL_ID.frozen
+                    ? LABEL_NAME.frozen
+                    : LABEL_NAME.normal}
+                </Text>
+              )}
             </View>
           </View>
           <View

@@ -13,6 +13,7 @@ import {
   displayOrderCategoryButton,
   displayOrderDayButton,
   displayOrderIsImageButton,
+  displayOrderLabelButton,
 } from '../../constants';
 import { theme } from '../../styles';
 import DisplayOrderButton from '../atoms/buttons/DisplayOrderButton';
@@ -22,6 +23,7 @@ const HomeScreenSortModal = ({
   setIsModal,
   setIsOptionDisplayButton,
   setIsOptionDisplayImageButton,
+  setIsOptionDisplayLabelButton,
   setExpiration,
   setExpiry,
   setPurchase,
@@ -45,6 +47,10 @@ const HomeScreenSortModal = ({
 
   /** モーダルの画像表示のフラグ（trueの場合は「画像あり」） */
   const [optionSelectDisplayImageButton, setOptionSelectDisplayImageButton] =
+    useState(true);
+
+  /** モーダルのラベル表示のフラグ（trueの場合は「ラベルあり」） */
+  const [optionSelectDisplayLabelButton, setOptionSelectDisplayLabelButton] =
     useState(true);
 
   /** モーダルの日付表示選択ボタン */
@@ -75,6 +81,15 @@ const HomeScreenSortModal = ({
       setOptionSelectDisplayImageButton(optionSelectDisplayImageButton);
     } else {
       setOptionSelectDisplayImageButton(!optionSelectDisplayImageButton);
+    }
+  };
+
+  /** モーダルのラベル選択ボタン */
+  const selectLabelOnPress = ({ itemOption }) => {
+    if (optionSelectDisplayLabelButton === itemOption) {
+      setOptionSelectDisplayLabelButton(optionSelectDisplayLabelButton);
+    } else {
+      setOptionSelectDisplayLabelButton(!optionSelectDisplayLabelButton);
     }
   };
 
@@ -121,6 +136,13 @@ const HomeScreenSortModal = ({
     } else {
       setIsOptionDisplayImageButton(true);
     }
+
+    if (!optionSelectDisplayLabelButton) {
+      setIsOptionDisplayLabelButton(false);
+    } else {
+      setIsOptionDisplayLabelButton(true);
+    }
+
     setIsModal(!isModal);
   };
 
@@ -215,6 +237,29 @@ const HomeScreenSortModal = ({
                             }
                             onPress={() =>
                               selectImageOnPress({ itemOption: item.option })
+                            }
+                          />
+                        );
+                      })}
+                    </View>
+                    <Text style={{ marginTop: 10, fontSize: 18 }}>ラベル</Text>
+                    <View style={styles.selectButton}>
+                      {displayOrderLabelButton.map((item, key) => {
+                        return (
+                          <DisplayOrderButton
+                            buttonName={item.buttonName}
+                            key={key}
+                            sort={undefined}
+                            right={undefined}
+                            left={undefined}
+                            categoryMargin={undefined}
+                            selectButton={
+                              optionSelectDisplayLabelButton
+                                ? item.option
+                                : !item.option
+                            }
+                            onPress={() =>
+                              selectLabelOnPress({ itemOption: item.option })
                             }
                           />
                         );
