@@ -28,18 +28,30 @@ const HomeScreenSortModal = ({
   setExpiry,
   setPurchase,
   setRegister,
+  setRefrigeration,
+  setFrozen,
+  setNormal,
 }) => {
-  /** カテゴリ表示の消費期限が選択されているかのフラグ */
+  /** 絞り込みの消費期限が選択されているかのフラグ */
   const [isExpiration, setIsExpiration] = useState(false);
 
-  /** カテゴリ表示の賞味期限が選択されているかのフラグ */
+  /** 絞り込み表示の賞味期限が選択されているかのフラグ */
   const [isExpiry, setIsExpiry] = useState(false);
 
-  /** カテゴリ表示の購入日が選択されているかのフラグ */
+  /** 絞り込み表示の購入日が選択されているかのフラグ */
   const [isPurchase, setIsPurchase] = useState(false);
 
-  /** カテゴリ表示の登録日が選択されているかのフラグ */
+  /** 絞り込み表示の登録日が選択されているかのフラグ */
   const [isRegister, setIsRegister] = useState(false);
+
+  /** 絞り込み表示の冷蔵が選択されているかのフラグ */
+  const [isRefrigeration, setIsRefrigeration] = useState(false);
+
+  /** 絞り込み表示の冷凍が選択されているかのフラグ */
+  const [isFrozen, setIsFrozen] = useState(false);
+
+  /** 絞り込み表示の常温が選択されているかのフラグ */
+  const [isNormal, setIsNormal] = useState(false);
 
   /** モーダルの日付表示のフラグ（trueの場合は「日付のみ」） */
   const [optionSelectDisplayButton, setOptionSelectDisplayButton] =
@@ -72,6 +84,12 @@ const HomeScreenSortModal = ({
       setIsPurchase(!isPurchase);
     } else if (category_id === CATEGORY_ID.register) {
       setIsRegister(!isRegister);
+    } else if (category_id === CATEGORY_ID.refrigeration) {
+      setIsRefrigeration(!isRefrigeration);
+    } else if (category_id === CATEGORY_ID.frozen) {
+      setIsFrozen(!isFrozen);
+    } else if (category_id === CATEGORY_ID.normal) {
+      setIsNormal(!isNormal);
     }
   };
 
@@ -129,6 +147,24 @@ const HomeScreenSortModal = ({
       setRegister(isRegister);
     } else if (!isRegister) {
       setRegister(isRegister);
+    }
+
+    if (isRefrigeration) {
+      setRefrigeration(isRefrigeration);
+    } else if (!isRefrigeration) {
+      setRefrigeration(isRefrigeration);
+    }
+
+    if (isFrozen) {
+      setFrozen(isFrozen);
+    } else if (!isFrozen) {
+      setFrozen(isFrozen);
+    }
+
+    if (isNormal) {
+      setNormal(isNormal);
+    } else if (!isNormal) {
+      setNormal(isNormal);
     }
 
     if (!optionSelectDisplayImageButton) {

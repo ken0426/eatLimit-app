@@ -37,17 +37,26 @@ const HomeScreen = ({ navigation }) => {
   const [isOptionDisplayLabelButton, setIsOptionDisplayLabelButton] =
     useState(true);
 
-  /** カテゴリ表示の消費期限が選択されているかのフラグ */
+  /** 絞り込み表示の消費期限が選択されているかのフラグ */
   const [expiration, setExpiration] = useState(false);
 
-  /** カテゴリ表示の賞味期限が選択されているかのフラグ */
+  /** 絞り込み表示の賞味期限が選択されているかのフラグ */
   const [expiry, setExpiry] = useState(false);
 
-  /** カテゴリ表示の購入日が選択されているかのフラグ */
+  /** 絞り込み表示の購入日が選択されているかのフラグ */
   const [purchase, setPurchase] = useState(false);
 
-  /** カテゴリ表示の登録日が選択されているかのフラグ */
+  /** 絞り込み表示の登録日が選択されているかのフラグ */
   const [register, setRegister] = useState(false);
+
+  /** 絞り込み表示の冷蔵が選択されているかのフラグ */
+  const [refrigeration, setRefrigeration] = useState(false);
+
+  /** 絞り込み表示の冷凍が選択されているかのフラグ */
+  const [frozen, setFrozen] = useState(false);
+
+  /** 絞り込み表示の常温が選択されているかのフラグ */
+  const [normal, setNormal] = useState(false);
 
   /** モーダルのカテゴリ選択でチェックがついているものを監視する */
   const categoryData = [
@@ -55,6 +64,12 @@ const HomeScreen = ({ navigation }) => {
     { expiry: expiry },
     { purchase: purchase },
     { register: register },
+  ];
+
+  const categoryDateStorage = [
+    { refrigeration: refrigeration },
+    { frozen: frozen },
+    { normal: normal },
   ];
 
   /** APIからのデータを更新するときに使用するフラグ（主に削除機能） */
@@ -114,8 +129,16 @@ const HomeScreen = ({ navigation }) => {
     }
 
     const SheetBox = () => {
-      /** カテゴリのチェックが一つも付いていないときの処理 */
-      if (!expiration && !expiry && !purchase && !register) {
+      /** 絞り込みのチェックが一つも付いていないときの処理 */
+      if (
+        !expiration &&
+        !expiry &&
+        !purchase &&
+        !register &&
+        !refrigeration &&
+        !frozen &&
+        !normal
+      ) {
         return (
           <ListScreen
             navigation={navigation}
@@ -131,22 +154,69 @@ const HomeScreen = ({ navigation }) => {
           />
         );
       }
-      /** カテゴリのチェックが付いているものだけを表示するロジック */
+
+      /** 「消費期限」「賞味期限」「購入日」「登録日」が選択されていない状態で「冷蔵」「冷凍」「常温」が選択された場合 */
+      if (!expiration && !expiry && !purchase && !register) {
+        return categoryDateStorage.map(
+          (data) =>
+            data[item.labelName] && (
+              <ListScreen
+                navigation={navigation}
+                item={item}
+                key={key}
+                dayText={dayText}
+                allDayText={allDayText}
+                isOptionDisplayImageButton={isOptionDisplayImageButton}
+                isOptionDisplayLabelButton={isOptionDisplayLabelButton}
+                isOptionDisplayButton={isOptionDisplayButton}
+                apiData={apiData}
+                setApiData={setApiData}
+              />
+            )
+        );
+      }
+
+      /** 「冷蔵」「冷凍」「常温」が選択されていない状態で「消費期限」「賞味期限」「購入日」「登録日」が選択された場合 */
+      if (!refrigeration && !frozen && !normal) {
+        return categoryData.map(
+          (data) =>
+            data[item.limitTextData] && (
+              <ListScreen
+                navigation={navigation}
+                item={item}
+                key={key}
+                dayText={dayText}
+                allDayText={allDayText}
+                isOptionDisplayImageButton={isOptionDisplayImageButton}
+                isOptionDisplayLabelButton={isOptionDisplayLabelButton}
+                isOptionDisplayButton={isOptionDisplayButton}
+                apiData={apiData}
+                setApiData={setApiData}
+              />
+            )
+        );
+      }
+
+      /** 「消費期限」「賞味期限」「購入日」「登録日」がいづれか一つ以上且つ「冷蔵」「冷凍」「常温」がいづれか一つ以上選択された場合 */
       return categoryData.map(
         (data) =>
-          data[item.limitTextData] && (
-            <ListScreen
-              navigation={navigation}
-              item={item}
-              key={key}
-              dayText={dayText}
-              allDayText={allDayText}
-              isOptionDisplayImageButton={isOptionDisplayImageButton}
-              isOptionDisplayLabelButton={isOptionDisplayLabelButton}
-              isOptionDisplayButton={isOptionDisplayButton}
-              apiData={apiData}
-              setApiData={setApiData}
-            />
+          data[item.limitTextData] &&
+          categoryDateStorage.map(
+            (d) =>
+              d[item.labelName] && (
+                <ListScreen
+                  navigation={navigation}
+                  item={item}
+                  key={key}
+                  dayText={dayText}
+                  allDayText={allDayText}
+                  isOptionDisplayImageButton={isOptionDisplayImageButton}
+                  isOptionDisplayLabelButton={isOptionDisplayLabelButton}
+                  isOptionDisplayButton={isOptionDisplayButton}
+                  apiData={apiData}
+                  setApiData={setApiData}
+                />
+              )
           )
       );
     };
@@ -242,6 +312,9 @@ const HomeScreen = ({ navigation }) => {
         setExpiry={setExpiry}
         setPurchase={setPurchase}
         setRegister={setRegister}
+        setRefrigeration={setRefrigeration}
+        setFrozen={setFrozen}
+        setNormal={setNormal}
       />
     </>
   );

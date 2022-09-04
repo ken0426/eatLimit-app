@@ -19,6 +19,7 @@ export const eatMockData = [
     registerDate: '2022/8/13',
     limitTextData: 'expiry',
     label: 1,
+    labelName: 'refrigeration',
     eatImage: require('../moc/mocImages/ra-yuokazu.jpeg'),
     key: 1,
   },
@@ -28,6 +29,7 @@ export const eatMockData = [
     registerDate: '2022/8/13',
     limitTextData: 'expiry',
     label: 3,
+    labelName: 'normal',
     key: 2,
   },
   {
@@ -36,6 +38,7 @@ export const eatMockData = [
     registerDate: '2022/8/13',
     limitTextData: 'expiration',
     label: 1,
+    labelName: 'refrigeration',
     key: 3,
   },
   {
@@ -44,6 +47,7 @@ export const eatMockData = [
     registerDate: '2022/8/13',
     limitTextData: 'purchase',
     label: 1,
+    labelName: 'refrigeration',
     key: 4,
   },
   {
@@ -52,6 +56,7 @@ export const eatMockData = [
     registerDate: '2022/8/13',
     limitTextData: 'expiration',
     label: 1,
+    labelName: 'refrigeration',
     key: 5,
   },
   {
@@ -60,6 +65,7 @@ export const eatMockData = [
     registerDate: '2022/8/13',
     limitTextData: 'expiration',
     label: 1,
+    labelName: 'refrigeration',
     eatImage: require('../moc/mocImages/gyuunyuu.jpeg'),
     key: 6,
   },
@@ -69,6 +75,7 @@ export const eatMockData = [
     registerDate: '2022/8/13',
     limitTextData: 'expiration',
     label: 1,
+    labelName: 'refrigeration',
     eatImage: require('../moc/mocImages/yo-guruto.jpeg'),
     key: 7,
   },
@@ -78,6 +85,7 @@ export const eatMockData = [
     registerDate: '2022/8/13',
     limitTextData: 'expiration',
     label: 1,
+    labelName: 'refrigeration',
     key: 8,
   },
   {
@@ -86,6 +94,7 @@ export const eatMockData = [
     registerDate: '2022/8/13',
     limitTextData: 'expiration',
     label: 1,
+    labelName: 'refrigeration',
     key: 9,
   },
   {
@@ -94,6 +103,7 @@ export const eatMockData = [
     registerDate: '2022/7/1',
     limitTextData: 'expiration',
     label: 2,
+    labelName: 'frozen',
     key: 10,
   },
   {
@@ -102,6 +112,7 @@ export const eatMockData = [
     registerDate: '2022/9/3',
     limitTextData: 'expiration',
     label: 2,
+    labelName: 'frozen',
     key: 11,
   },
   {
@@ -110,6 +121,7 @@ export const eatMockData = [
     registerDate: '2022/8/13',
     limitTextData: 'purchase',
     label: 3,
+    labelName: 'normal',
     key: 12,
   },
   {
@@ -118,6 +130,7 @@ export const eatMockData = [
     registerDate: '2022/7/1',
     limitTextData: 'register',
     label: 3,
+    labelName: 'normal',
     key: 13,
   },
   {
@@ -126,6 +139,7 @@ export const eatMockData = [
     registerDate: '2022/7/1',
     limitTextData: 'expiration',
     label: 3,
+    labelName: 'normal',
     key: 14,
   },
   {
@@ -134,6 +148,7 @@ export const eatMockData = [
     registerDate: '2022/7/1',
     limitTextData: 'register',
     label: 3,
+    labelName: 'normal',
     key: 15,
   },
   {
@@ -142,6 +157,7 @@ export const eatMockData = [
     registerDate: '2022/7/1',
     limitTextData: 'register',
     label: 3,
+    labelName: 'normal',
     key: 16,
   },
   {
@@ -150,6 +166,7 @@ export const eatMockData = [
     registerDate: '2022/10/10',
     limitTextData: 'expiration',
     label: 3,
+    labelName: 'normal',
     key: 17,
   },
   {
@@ -158,6 +175,7 @@ export const eatMockData = [
     registerDate: '2022/8/18',
     limitTextData: 'expiration',
     label: 1,
+    labelName: 'refrigeration',
     eatImage: require('../moc/mocImages/nattou.jpeg'),
     key: 18,
   },
