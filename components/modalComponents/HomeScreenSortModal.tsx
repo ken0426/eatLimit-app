@@ -196,30 +196,6 @@ const HomeScreenSortModal = ({
                       })}
                     </View>
                     <Text style={{ marginTop: 10, fontSize: 18 }}>
-                      カテゴリ
-                    </Text>
-                    <View style={styles.selectCategoryButton}>
-                      {displayOrderCategoryButton.map((item, key) => {
-                        const [selectCategory, setSelectCategory] =
-                          useState(false);
-                        return (
-                          <DisplayOrderButton
-                            buttonName={item.buttonName}
-                            key={key}
-                            sort={undefined}
-                            categoryMargin={true}
-                            right={item.right}
-                            left={item.left}
-                            selectButton={selectCategory}
-                            onPress={() => {
-                              setSelectCategory(!selectCategory);
-                              selectCategoryOnPress({ category_id: item.id });
-                            }}
-                          />
-                        );
-                      })}
-                    </View>
-                    <Text style={{ marginTop: 10, fontSize: 18 }}>
                       画像表示
                     </Text>
                     <View style={styles.selectButton}>
@@ -240,6 +216,30 @@ const HomeScreenSortModal = ({
                             onPress={() =>
                               selectImageOnPress({ itemOption: item.option })
                             }
+                          />
+                        );
+                      })}
+                    </View>
+                    <Text style={{ marginTop: 10, fontSize: 18 }}>
+                      カテゴリ
+                    </Text>
+                    <View style={styles.selectCategoryButton}>
+                      {displayOrderCategoryButton.map((item, key) => {
+                        const [selectCategory, setSelectCategory] =
+                          useState(false);
+                        return (
+                          <DisplayOrderButton
+                            buttonName={item.buttonName}
+                            key={key}
+                            sort={undefined}
+                            categoryMargin={true}
+                            right={item.right}
+                            left={item.left}
+                            selectButton={selectCategory}
+                            onPress={() => {
+                              setSelectCategory(!selectCategory);
+                              selectCategoryOnPress({ category_id: item.id });
+                            }}
                           />
                         );
                       })}
