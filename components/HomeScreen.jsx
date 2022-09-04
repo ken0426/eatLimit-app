@@ -82,6 +82,23 @@ const HomeScreen = ({ navigation }) => {
     { normal: normal },
   ];
 
+  let sortImag = require('../images/sort-down.png');
+
+  if (
+    !expiration &&
+    !expiry &&
+    !purchase &&
+    !register &&
+    !refrigeration &&
+    !frozen &&
+    !normal &&
+    !expired
+  ) {
+    sortImag = require('../images/sort-down.png');
+  } else {
+    sortImag = require('../images/sort-down-blue.png');
+  }
+
   const renderItem = ({ item, key }) => {
     /** 「消費期限」「賞味期限」の日付の取得 */
     const limitDay = item.limitDate;
@@ -250,10 +267,7 @@ const HomeScreen = ({ navigation }) => {
               setIsModal(!isModal);
             }}
           >
-            <Image
-              style={styles.sortImagSize}
-              source={require('../images/sort-down.png')}
-            />
+            <Image style={styles.sortImagSize} source={sortImag} />
           </TouchableOpacity>
         </View>
       </View>
