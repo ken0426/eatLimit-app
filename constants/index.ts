@@ -50,9 +50,9 @@ export const CATEGORY_ID = {
  * @param {number} normal         3:常温
  */
 export const LABEL_ID = {
-  refrigeration: 1,
-  frozen: 2,
-  normal: 3,
+  refrigeration: 5,
+  frozen: 6,
+  normal: 7,
 };
 
 /** ラベルの名前
