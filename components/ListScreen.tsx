@@ -1,5 +1,4 @@
-import moment from 'moment';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Alert,
   Image,
@@ -10,24 +9,32 @@ import {
 } from 'react-native';
 import { ListItem } from '@rneui/themed';
 import { theme } from '../styles';
+import { LABEL_ID, LABEL_NAME } from '../constants';
 
 /**
  * @param {object}  item                          APIからのデータ（※現在はモックデータ）
- * @param {string}  dayText                       リストに表示する日付
+ * @param {string}  dayText                       リストに表示する日付（月のみ）
+ * @param {string}  allDayText                    リストに表示する日付（年＋月）
  * @param {boolean} isOptionDisplayImageButton    リストに画像を表示するかどうかのフラグ
  * @param {boolean} isOptionDisplayButton         リストに年を表示するかどうかのフラグ
- * @param {string}  formatYearsDate               「消費期限」「賞味期限」の年数
  * @param {Array}   apiData                       APIからのデータ（※現在はモックデータ）
  * @param {void}    setApiData                    リストの更新を行うための関数
  */
 
 interface ListScreenProps {
   navigation: any;
-  item: { eatImage: any; eatName: string; limitTextData: string; key: number };
+  item: {
+    eatImage: any;
+    eatName: string;
+    limitDate: string;
+    limitTextData: string;
+    label: number;
+    key: number;
+  };
   dayText: string;
+  allDayText: string;
   isOptionDisplayImageButton: boolean;
   isOptionDisplayButton: boolean;
-  formatYearsDate: string;
   apiData: Array<object>;
   setApiData: ({}) => void;
 }
@@ -36,9 +43,9 @@ const ListScreen: React.FC<ListScreenProps> = ({
   navigation,
   item,
   dayText,
+  allDayText,
   isOptionDisplayImageButton,
   isOptionDisplayButton,
-  formatYearsDate,
   apiData,
   setApiData,
 }) => {
@@ -96,6 +103,7 @@ const ListScreen: React.FC<ListScreenProps> = ({
       <TouchableOpacity
         style={{
           flexDirection: 'row',
+          width: '100%',
         }}
         onPress={() => {
           navigation.navigate('detailScreen', { item: item });
@@ -116,34 +124,80 @@ const ListScreen: React.FC<ListScreenProps> = ({
           <></>
         )}
         <View
-          style={[
-            isOptionDisplayImageButton
-              ? styles.eatName
-              : styles.isOptionNotImageEatName,
-          ]}
+          style={{
+            width: '73%',
+            paddingLeft: 15,
+            justifyContent: 'space-around',
+          }}
         >
-          <Text numberOfLines={1} style={styles.eatTextName}>
-            {item.eatName}
-          </Text>
-        </View>
-        <View style={styles.limitBox}>
-          <View style={styles.categoryLabel}>
-            <Text style={styles.limitText}>{categoryLabelText}</Text>
-          </View>
-          {!isOptionDisplayButton ? (
-            <></>
-          ) : (
-            <Text
-              style={[
-                moment().format('YYYY') > formatYearsDate
-                  ? styles.limitYearsOutText
-                  : styles.limitYearsSafeText,
-              ]}
+          <View style={{ alignItems: 'flex-end' }}>
+            <View
+              style={{
+                width: 80,
+                backgroundColor:
+                  item.label === LABEL_ID.refrigeration
+                    ? theme.labelColors.blue
+                    : item.label === LABEL_ID.frozen
+                    ? theme.labelColors.lightBlue
+                    : theme.labelColors.lightOrang,
+                alignItems: 'center',
+                borderRadius: 5,
+              }}
             >
-              {formatYearsDate}年
+              <Text
+                style={{
+                  color: theme.colors.white,
+                  fontWeight: 'bold',
+                  fontSize: 17,
+                }}
+              >
+                {item.label === LABEL_ID.refrigeration
+                  ? LABEL_NAME.refrigeration
+                  : item.label === LABEL_ID.frozen
+                  ? LABEL_NAME.frozen
+                  : LABEL_NAME.normal}
+              </Text>
+            </View>
+          </View>
+          <View style={{ alignItems: 'flex-start' }}>
+            <Text numberOfLines={1} style={{ fontSize: 22 }}>
+              {item.eatName}
             </Text>
-          )}
-          {dayText}
+          </View>
+          <View style={{ flexDirection: 'column', alignItems: 'flex-end' }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+            >
+              <Image
+                style={{ width: 10, height: 10 }}
+                source={require('../images/clockIcon.png')}
+              />
+              <Text
+                style={{
+                  paddingLeft: 4,
+                  width: isOptionDisplayButton ? 68 : 39,
+                  color: 'gray',
+                  fontSize: 12,
+                  textAlign: 'left',
+                }}
+              >
+                {isOptionDisplayButton ? allDayText : dayText}
+              </Text>
+              <View style={{ width: 45, alignItems: 'center' }}>
+                <Text
+                  style={{
+                    color: 'gray',
+                    fontSize: 12,
+                  }}
+                >
+                  {categoryLabelText}
+                </Text>
+              </View>
+            </View>
+          </View>
         </View>
       </TouchableOpacity>
     </ListItem.Swipeable>

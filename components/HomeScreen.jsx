@@ -68,14 +68,18 @@ const HomeScreen = ({ navigation }) => {
     const eatName = item.eatName;
     /** 「消費期限」「賞味期限」の文字列を日付のフォーマットに変換（年/月/日） */
     const formatDate = moment(limitDay).format('YYYY/MM/DD');
-    /** 「消費期限」「賞味期限」の文字列を日付のフォーマットに変換（月/日） */
-    const formatYearsDate = moment(limitDay).format('YYYY');
     /** 「消費期限」「賞味期限」のフォーマットを実際に表示する形へ変換（◯月◯日） */
-    const formatTextDate = moment(limitDay).format('M月D日');
+    const formatTextDate = moment(limitDay).format('M/D');
+    /** 「消費期限」「賞味期限」のフォーマットを実際に表示する形へ変換（◯◯◯◯年◯月◯日） */
+    const allFormatTextDate = moment(limitDay).format('YYYY/M/D');
     /** 「購入日」「登録日」のフォーマットを実際に表示する形へ変換（◯月◯日） */
-    const registerDate = moment(registerDay).format('M月D日');
-    /** 表示する（年＋）月 */
+    const registerDate = moment(registerDay).format('M/D');
+    /** 「購入日」「登録日」のフォーマットを実際に表示する形へ変換（◯◯◯◯年◯月◯日） */
+    const allRegisterDate = moment(registerDay).format('YYYY/M/D');
+    /** 表示する月 */
     let dayText;
+    /** 表示する年＋月 */
+    let allDayText;
 
     if (
       item.limitTextData === 'expiration' ||
@@ -83,15 +87,26 @@ const HomeScreen = ({ navigation }) => {
     ) {
       if (moment().format('YYYY/MM/DD') === formatDate) {
         dayText = <Text style={styles.limitDateOrange}>{formatTextDate}</Text>;
+        allDayText = (
+          <Text style={styles.limitDateOrange}>{allFormatTextDate}</Text>
+        );
       } else if (moment().add(1, 'd').format('YYYY/MM/DD') === formatDate) {
         dayText = <Text style={styles.limitDateOrange}>{formatTextDate}</Text>;
+        allDayText = (
+          <Text style={styles.limitDateOrange}>{allFormatTextDate}</Text>
+        );
       } else if (moment().format('YYYY/MM/DD') > formatDate) {
         dayText = <Text style={styles.limitDateRed}>{formatTextDate}</Text>;
+        allDayText = (
+          <Text style={styles.limitDateRed}>{allFormatTextDate}</Text>
+        );
       } else if (moment().format('YYYY/MM/DD') < formatDate) {
         dayText = <Text style={styles.limitDate}>{formatTextDate}</Text>;
+        allDayText = <Text style={styles.limitDate}>{allFormatTextDate}</Text>;
       }
     } else {
       dayText = <Text style={styles.limitDate}>{registerDate}</Text>;
+      allDayText = <Text style={styles.limitDate}>{allRegisterDate}</Text>;
     }
 
     const SheetBox = () => {
@@ -103,9 +118,9 @@ const HomeScreen = ({ navigation }) => {
             item={item}
             key={key}
             dayText={dayText}
+            allDayText={allDayText}
             isOptionDisplayImageButton={isOptionDisplayImageButton}
             isOptionDisplayButton={isOptionDisplayButton}
-            formatYearsDate={formatYearsDate}
             apiData={apiData}
             setApiData={setApiData}
           />
@@ -120,9 +135,9 @@ const HomeScreen = ({ navigation }) => {
               item={item}
               key={key}
               dayText={dayText}
+              allDayText={allDayText}
               isOptionDisplayImageButton={isOptionDisplayImageButton}
               isOptionDisplayButton={isOptionDisplayButton}
-              formatYearsDate={formatYearsDate}
               apiData={apiData}
               setApiData={setApiData}
             />
@@ -289,19 +304,19 @@ const styles = StyleSheet.create({
   },
   limitDateRed: {
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 12,
     color: 'red',
     fontWeight: 'bold',
   },
   limitDateOrange: {
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 12,
     color: '#ffa500',
     fontWeight: 'bold',
   },
   limitDate: {
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 12,
   },
 });
 
