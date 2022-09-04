@@ -25,7 +25,7 @@ export const eatMockData = [
   },
   {
     eatName: 'にんじん',
-    limitDate: '2022/9/10',
+    limitDate: '2022/9/3',
     registerDate: '2022/8/13',
     limitTextData: 'expiry',
     label: 7,
