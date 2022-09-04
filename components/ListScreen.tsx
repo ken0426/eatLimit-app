@@ -91,7 +91,7 @@ const ListScreen: React.FC<ListScreenProps> = ({
             ]);
           }}
         >
-          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+          <View style={{ justifyContent: 'center' }}>
             <Image
               style={{ width: 30, height: 30 }}
               source={require('../images/check-icon.png')}
@@ -125,8 +125,8 @@ const ListScreen: React.FC<ListScreenProps> = ({
         )}
         <View
           style={{
-            width: '73%',
-            paddingLeft: 15,
+            width: isOptionDisplayImageButton ? '73%' : '100%',
+            paddingLeft: isOptionDisplayImageButton ? 15 : 0,
             justifyContent: 'space-around',
           }}
         >
@@ -159,7 +159,12 @@ const ListScreen: React.FC<ListScreenProps> = ({
               </Text>
             </View>
           </View>
-          <View style={{ alignItems: 'flex-start' }}>
+          <View
+            style={{
+              alignItems: 'flex-start',
+              marginTop: !isOptionDisplayImageButton && 10,
+            }}
+          >
             <Text numberOfLines={1} style={{ fontSize: 22 }}>
               {item.eatName}
             </Text>
@@ -169,6 +174,7 @@ const ListScreen: React.FC<ListScreenProps> = ({
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
+                marginTop: !isOptionDisplayImageButton && 10,
               }}
             >
               <Image
