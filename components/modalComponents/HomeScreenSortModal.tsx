@@ -242,7 +242,9 @@ const HomeScreenSortModal = ({
                         );
                       })}
                     </View>
-                    <Text style={{ marginTop: 10, fontSize: 18 }}>ラベル</Text>
+                    <Text style={{ marginTop: 10, fontSize: 18 }}>
+                      ラベル表示
+                    </Text>
                     <View style={styles.selectButton}>
                       {displayOrderLabelButton.map((item, key) => {
                         return (
