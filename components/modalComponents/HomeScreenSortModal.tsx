@@ -266,7 +266,7 @@ const HomeScreenSortModal = ({
                       })}
                     </View>
                     <Text style={{ marginTop: 10, fontSize: 18 }}>
-                      カテゴリ
+                      絞り込み検索
                     </Text>
                     <View style={styles.selectCategoryButton}>
                       {displayOrderCategoryButton.map((item, key) => {
