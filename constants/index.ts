@@ -31,3 +31,25 @@ export const CATEGORY_ID = {
   purchase: 3,
   register: 4,
 };
+
+/** ラベルID
+ * @param {number} refrigeration  1:冷蔵
+ * @param {number} frozen         2:冷凍
+ * @param {number} normal         3:常温
+ */
+export const LABEL_ID = {
+  refrigeration: 1,
+  frozen: 2,
+  normal: 3,
+};
+
+/** ラベルの名前
+ * @param {string} refrigeration   冷蔵
+ * @param {string} frozen          冷凍
+ * @param {string} normal          常温
+ */
+export const LABEL_NAME = {
+  refrigeration: '冷蔵',
+  frozen: '冷凍',
+  normal: '常温',
+};
