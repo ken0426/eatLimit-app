@@ -69,6 +69,12 @@ const HomeScreenSortModal = ({
   const [optionSelectDisplayLabelButton, setOptionSelectDisplayLabelButton] =
     useState(true);
 
+  /** クリアボタンを押したかどうかのフラグ */
+  const [isClearButton, setIsClearButton] = useState(false);
+
+  /** モーダルのボタンをデフォルトから変更しているかどうかのフラグ */
+  let isDefault = false;
+
   /** モーダルの日付表示選択ボタン */
   const selectOnPress = ({ itemOption }) => {
     if (optionSelectDisplayButton === itemOption) {
@@ -116,6 +122,25 @@ const HomeScreenSortModal = ({
       setOptionSelectDisplayLabelButton(!optionSelectDisplayLabelButton);
     }
   };
+
+  /** クリアボタンを表示するか非表示にするかのロジック */
+  if (
+    isExpiration === true ||
+    isExpiry === true ||
+    isPurchase === true ||
+    isRegister === true ||
+    isRefrigeration === true ||
+    isFrozen === true ||
+    isNormal === true ||
+    isExpired === true ||
+    optionSelectDisplayButton === false ||
+    optionSelectDisplayImageButton === false ||
+    optionSelectDisplayLabelButton === false
+  ) {
+    isDefault = true;
+  } else {
+    isDefault = false;
+  }
 
   /** 完了ボタンを押した時の処理 */
   const completionButton = () => {
@@ -322,6 +347,13 @@ const HomeScreenSortModal = ({
                       {displayOrderCategoryButton.map((item, key) => {
                         const [selectCategory, setSelectCategory] =
                           useState(false);
+
+                        /** もしクリアボタンが押されたら選択しているボタンはすべて解除する */
+                        if (isClearButton) {
+                          setSelectCategory(false);
+                          setIsClearButton(false);
+                        }
+
                         return (
                           <DisplayOrderButton
                             buttonName={item.buttonName}
@@ -341,24 +373,71 @@ const HomeScreenSortModal = ({
                     </View>
                   </View>
                 </ScrollView>
-                <View style={styles.finishButton}>
-                  <TouchableOpacity
-                    style={[
-                      theme.maxSize,
-                      { alignItems: 'center', justifyContent: 'center' },
-                    ]}
-                    onPress={() => completionButton()}
-                  >
-                    <Text
-                      style={{
-                        color: theme.colors.white,
-                        fontSize: 30,
-                        fontWeight: 'bold',
-                      }}
+                <View
+                  style={{
+                    width: '100%',
+                    justifyContent: 'space-around',
+                    flexDirection: 'row',
+                  }}
+                >
+                  <View style={{ width: '25%' }}></View>
+                  <View style={styles.finishButton}>
+                    <TouchableOpacity
+                      style={[
+                        theme.maxSize,
+                        { alignItems: 'center', justifyContent: 'center' },
+                      ]}
+                      onPress={() => completionButton()}
                     >
-                      完了
-                    </Text>
-                  </TouchableOpacity>
+                      <Text
+                        style={{
+                          color: theme.colors.white,
+                          fontSize: 30,
+                          fontWeight: 'bold',
+                        }}
+                      >
+                        完了
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                  <View
+                    style={{
+                      width: '25%',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      paddingTop: 10,
+                    }}
+                  >
+                    {isDefault && (
+                      <TouchableOpacity
+                        style={styles.clearButton}
+                        onPress={() => {
+                          setIsClearButton(true);
+                          setIsExpiration(false);
+                          setIsExpiry(false);
+                          setIsPurchase(false);
+                          setIsRegister(false);
+                          setIsRefrigeration(false);
+                          setIsFrozen(false);
+                          setIsNormal(false);
+                          setIsExpired(false);
+                          setOptionSelectDisplayButton(true);
+                          setOptionSelectDisplayImageButton(true);
+                          setOptionSelectDisplayLabelButton(true);
+                        }}
+                      >
+                        <Text
+                          style={{
+                            color: theme.colors.white,
+                            textAlign: 'center',
+                            fontWeight: 'bold',
+                          }}
+                        >
+                          クリア
+                        </Text>
+                      </TouchableOpacity>
+                    )}
+                  </View>
                 </View>
               </View>
             </View>
@@ -435,13 +514,24 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   finishButton: {
-    width: '70%',
+    width: '50%',
     height: 50,
     marginTop: 20,
     backgroundColor: '#FF0000',
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: theme.colors.black,
+    shadowOpacity: 0.25,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+  },
+  clearButton: {
+    backgroundColor: '#ffb6c1',
+    width: '80%',
+    borderRadius: 50,
     shadowColor: theme.colors.black,
     shadowOpacity: 0.25,
     shadowOffset: {
