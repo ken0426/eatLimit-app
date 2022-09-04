@@ -62,6 +62,12 @@ const HomeScreen = ({ navigation }) => {
   /** 絞り込み表示で期限切れが選択されているかのフラグ */
   const [expired, setExpired] = useState(false);
 
+  /** APIからのデータを更新するときに使用するフラグ（主に削除機能） */
+  const [apiData, setApiData] = useState(eatMockData);
+
+  /** リストを下に引っ張ってデータの更新を行うときに使うフラグ */
+  const [refreshing, setRefreshing] = useState(false);
+
   /** モーダルのカテゴリ選択でチェックがついているものを監視する */
   const categoryData = [
     { expiration: expiration },
@@ -75,12 +81,6 @@ const HomeScreen = ({ navigation }) => {
     { frozen: frozen },
     { normal: normal },
   ];
-
-  /** APIからのデータを更新するときに使用するフラグ（主に削除機能） */
-  const [apiData, setApiData] = useState(eatMockData);
-
-  /** リストを下に引っ張ってデータの更新を行うときに使うフラグ */
-  const [refreshing, setRefreshing] = useState(false);
 
   const renderItem = ({ item, key }) => {
     /** 「消費期限」「賞味期限」の日付の取得 */
