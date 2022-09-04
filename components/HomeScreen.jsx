@@ -19,6 +19,7 @@ import NoListScreen from './NoListScreen';
 
 /** 本日の日付 */
 const toDay = moment().format('YYYY年M月D日');
+const toDayData = moment().format('YYYY/M/D');
 
 const HomeScreen = ({ navigation }) => {
   const [text, setText] = useState('');
@@ -57,6 +58,9 @@ const HomeScreen = ({ navigation }) => {
 
   /** 絞り込み表示の常温が選択されているかのフラグ */
   const [normal, setNormal] = useState(false);
+
+  /** 絞り込み表示で期限切れが選択されているかのフラグ */
+  const [expired, setExpired] = useState(false);
 
   /** モーダルのカテゴリ選択でチェックがついているものを監視する */
   const categoryData = [
@@ -221,7 +225,13 @@ const HomeScreen = ({ navigation }) => {
       );
     };
 
-    return text === '' ? <SheetBox /> : eatName.match(text) && <SheetBox />;
+    if (expired) {
+      if (moment(limitDay).isBefore(toDayData)) {
+        return text === '' ? <SheetBox /> : eatName.match(text) && <SheetBox />;
+      }
+    } else {
+      return text === '' ? <SheetBox /> : eatName.match(text) && <SheetBox />;
+    }
   };
 
   const listEmptyComponent = () => {
@@ -315,6 +325,7 @@ const HomeScreen = ({ navigation }) => {
         setRefrigeration={setRefrigeration}
         setFrozen={setFrozen}
         setNormal={setNormal}
+        setExpired={setExpired}
       />
     </>
   );

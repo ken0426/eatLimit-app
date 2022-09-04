@@ -18,7 +18,8 @@ export const displayOrderCategoryButton = [
   { buttonName: '登録日', id: 4, left: true },
   { buttonName: '冷蔵', id: 5, right: true },
   { buttonName: '冷凍', id: 6, left: true },
-  { buttonName: '常温', id: 7 },
+  { buttonName: '常温', id: 7, right: true },
+  { buttonName: '期限切れ', id: 8, left: true },
 ];
 
 /** モーダルの画像選択で使用するボタン */
@@ -42,6 +43,7 @@ export const CATEGORY_ID = {
   refrigeration: 5,
   frozen: 6,
   normal: 7,
+  expired: 8,
 };
 
 /** ラベルID

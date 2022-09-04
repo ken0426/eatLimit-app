@@ -31,6 +31,7 @@ const HomeScreenSortModal = ({
   setRefrigeration,
   setFrozen,
   setNormal,
+  setExpired,
 }) => {
   /** 絞り込みの消費期限が選択されているかのフラグ */
   const [isExpiration, setIsExpiration] = useState(false);
@@ -52,6 +53,9 @@ const HomeScreenSortModal = ({
 
   /** 絞り込み表示の常温が選択されているかのフラグ */
   const [isNormal, setIsNormal] = useState(false);
+
+  /** 絞り込み表示の期限切れが選択されているかのフラグ */
+  const [isExpired, setIsExpired] = useState(false);
 
   /** モーダルの日付表示のフラグ（trueの場合は「日付のみ」） */
   const [optionSelectDisplayButton, setOptionSelectDisplayButton] =
@@ -90,6 +94,8 @@ const HomeScreenSortModal = ({
       setIsFrozen(!isFrozen);
     } else if (category_id === CATEGORY_ID.normal) {
       setIsNormal(!isNormal);
+    } else if (category_id === CATEGORY_ID.expired) {
+      setIsExpired(!isExpired);
     }
   };
 
@@ -165,6 +171,12 @@ const HomeScreenSortModal = ({
       setNormal(isNormal);
     } else if (!isNormal) {
       setNormal(isNormal);
+    }
+
+    if (isExpired) {
+      setExpired(isExpired);
+    } else if (!isExpired) {
+      setExpired(isExpired);
     }
 
     if (!optionSelectDisplayImageButton) {
