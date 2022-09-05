@@ -1,7 +1,7 @@
 /** モーダルの表示順とカテゴリで使用するボタン */
 export const displayOrderButton = [
-  { buttonName: '消費期限/賞味期限', sort: true },
-  { buttonName: '購入日/登録日', sort: true },
+  { buttonName: '消費期限/賞味期限' },
+  { buttonName: '購入日/登録日' },
 ];
 
 /** モーダルの日付表示 */
@@ -12,14 +12,14 @@ export const displayOrderDayButton = [
 
 /** モーダルのカテゴリ表示で使用するボタン */
 export const displayOrderCategoryButton = [
-  { buttonName: '消費期限', id: 1, right: true },
-  { buttonName: '賞味期限', id: 2, left: true },
-  { buttonName: '購入日', id: 3, right: true },
-  { buttonName: '登録日', id: 4, left: true },
-  { buttonName: '冷蔵', id: 5, right: true },
-  { buttonName: '冷凍', id: 6, left: true },
-  { buttonName: '常温', id: 7, right: true },
-  { buttonName: '期限切れ', id: 8, left: true },
+  { buttonName: '消費期限', id: 1 },
+  { buttonName: '賞味期限', id: 2 },
+  { buttonName: '購入日', id: 3 },
+  { buttonName: '登録日', id: 4 },
+  { buttonName: '冷蔵', id: 5 },
+  { buttonName: '冷凍', id: 6 },
+  { buttonName: '常温', id: 7 },
+  { buttonName: '期限切れ', id: 8 },
 ];
 
 /** モーダルの画像選択で使用するボタン */

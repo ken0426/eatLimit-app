@@ -4,7 +4,6 @@ import { theme } from '../../../styles';
 
 /**
  * @param {string}    buttonName        ボタンの名前
- * @param {boolean}   sort              ソート機能のボタンとフィルターボタンで幅が違うフラグ
  * @param {boolean}   selectButton      ボタンにチェックが付いているか判定するフラグ
  * @param {boolean}   categoryMargin    カテゴリボタンのUI（左右間隔）
  * @param {boolean}   right             カテゴリボタンの右にmarginを取る
@@ -14,23 +13,17 @@ import { theme } from '../../../styles';
 interface DisplayOrderButtonProps {
   buttonName: string;
   key: number;
-  sort: boolean | undefined;
   selectButton: boolean | undefined;
   onPress: () => void;
   categoryMargin: boolean | undefined;
-  right: boolean | undefined;
-  left: boolean | undefined;
 }
 
 const DisplayOrderButton: React.FC<DisplayOrderButtonProps> = ({
   buttonName,
   key,
-  sort,
   selectButton,
   onPress,
   categoryMargin,
-  right,
-  left,
 }) => {
   return (
     <View
@@ -41,13 +34,11 @@ const DisplayOrderButton: React.FC<DisplayOrderButtonProps> = ({
         borderRadius: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        width: sort ? 130 : 85,
-        height: 30,
+        width: 130,
+        height: 40,
         borderWidth: !selectButton && 1,
         borderColor: !selectButton && theme.colors.rightBlue,
         marginBottom: categoryMargin && 20,
-        marginRight: right && 22,
-        marginLeft: left && 22,
       }}
     >
       <TouchableOpacity

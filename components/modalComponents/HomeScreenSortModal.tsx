@@ -244,10 +244,7 @@ const HomeScreenSortModal = ({
                           buttonName={item.buttonName}
                           key={key}
                           selectButton={undefined}
-                          right={undefined}
-                          left={undefined}
                           categoryMargin={undefined}
-                          sort={item.sort}
                           onPress={() =>
                             alert(
                               `これは【${item.buttonName}】ボタンです\n※現在準備中`
@@ -273,9 +270,6 @@ const HomeScreenSortModal = ({
                         return (
                           <DisplayOrderButton
                             buttonName={item.buttonName}
-                            sort={undefined}
-                            right={undefined}
-                            left={undefined}
                             categoryMargin={undefined}
                             key={key}
                             selectButton={
@@ -299,9 +293,6 @@ const HomeScreenSortModal = ({
                           <DisplayOrderButton
                             buttonName={item.buttonName}
                             key={key}
-                            sort={undefined}
-                            right={undefined}
-                            left={undefined}
                             categoryMargin={undefined}
                             selectButton={
                               optionSelectDisplayImageButton
@@ -324,9 +315,6 @@ const HomeScreenSortModal = ({
                           <DisplayOrderButton
                             buttonName={item.buttonName}
                             key={key}
-                            sort={undefined}
-                            right={undefined}
-                            left={undefined}
                             categoryMargin={undefined}
                             selectButton={
                               optionSelectDisplayLabelButton
@@ -358,10 +346,7 @@ const HomeScreenSortModal = ({
                           <DisplayOrderButton
                             buttonName={item.buttonName}
                             key={key}
-                            sort={undefined}
                             categoryMargin={true}
-                            right={item.right}
-                            left={item.left}
                             selectButton={selectCategory}
                             onPress={() => {
                               setSelectCategory(!selectCategory);
@@ -507,7 +492,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   selectCategoryButton: {
-    width: '88%',
+    width: '100%',
     flexDirection: 'row',
     marginTop: 20,
     justifyContent: 'space-around',
