@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  Image,
   Modal,
   ScrollView,
   StyleSheet,
@@ -71,6 +72,9 @@ const HomeScreenSortModal = ({
 
   /** クリアボタンを押したかどうかのフラグ */
   const [isClearButton, setIsClearButton] = useState(false);
+
+  /** ソートの上下画像のフラグtrueなら下falseなら上 */
+  const [isArrowImage, setIsArrowImage] = useState(true);
 
   /** モーダルのボタンをデフォルトから変更しているかどうかのフラグ */
   let isDefault = false;
@@ -236,7 +240,34 @@ const HomeScreenSortModal = ({
                 }}
               >
                 <ScrollView style={{ width: '100%' }}>
-                  <Text style={styles.selectTitle}>ソート</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-around',
+                      paddingRight: 80,
+                      paddingLeft: 80,
+                    }}
+                  >
+                    <View style={{ width: 30, height: 30 }}></View>
+                    <Text style={styles.selectTitle}>ソート</Text>
+                    <View style={{ width: 30, height: 30 }}>
+                      <TouchableOpacity
+                        onPress={() => setIsArrowImage(!isArrowImage)}
+                      >
+                        <Image
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                          }}
+                          source={
+                            isArrowImage
+                              ? require('../../images/downArrow.png')
+                              : require('../../images/upArrow.png')
+                          }
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
                   <View style={styles.selectButtonRadio}>
                     {displayOrderButton.map((item, key) => {
                       return (
