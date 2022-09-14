@@ -27,6 +27,9 @@ const HomeScreen = ({ navigation }) => {
   /** モーダルの表示非表示に使うフラグ */
   const [isModal, setIsModal] = useState(false);
 
+  /** ソートアイコンの上下反転ロジック */
+  const [isUpDownIcon, setIsUpDownIcon] = useState(true);
+
   /** 年を表示するかどうかのフラグ（falseの場合は「年」を非表示にする） */
   const [isOptionDisplayButton, setIsOptionDisplayButton] = useState(false);
 
@@ -94,9 +97,13 @@ const HomeScreen = ({ navigation }) => {
     !normal &&
     !expired
   ) {
-    sortImag = require('../images/sort-down.png');
+    sortImag = isUpDownIcon
+      ? require('../images/sort-down.png')
+      : require('../images/sort-up.png');
   } else {
-    sortImag = require('../images/sort-down-blue.png');
+    sortImag = isUpDownIcon
+      ? require('../images/sort-down-blue.png')
+      : require('../images/sort-up-blue.png');
   }
 
   const renderItem = ({ item, key }) => {
@@ -340,6 +347,7 @@ const HomeScreen = ({ navigation }) => {
         setFrozen={setFrozen}
         setNormal={setNormal}
         setExpired={setExpired}
+        setIsUpDownIcon={setIsUpDownIcon}
       />
     </>
   );

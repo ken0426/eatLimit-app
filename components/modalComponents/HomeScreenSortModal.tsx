@@ -33,6 +33,7 @@ const HomeScreenSortModal = ({
   setFrozen,
   setNormal,
   setExpired,
+  setIsUpDownIcon,
 }) => {
   /** 絞り込みの消費期限が選択されているかのフラグ */
   const [isExpiration, setIsExpiration] = useState(false);
@@ -219,6 +220,8 @@ const HomeScreenSortModal = ({
     } else {
       setIsOptionDisplayLabelButton(true);
     }
+
+    setIsUpDownIcon(isArrowImage);
 
     setIsModal(!isModal);
   };
