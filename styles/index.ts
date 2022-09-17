@@ -19,5 +19,14 @@ export const theme = {
    * @param lightBlue 冷凍
    * @param lightOrang 常温
    */
-  labelColors: { blue: '#4169e1', lightBlue: '#afeeee', lightOrang: '#f4a460' },
+  labelColors: {
+    blue: '#4169e1',
+    lightBlue: '#afeeee',
+    lightOrang: '#f4a460',
+  },
+
+  /** スクリーンの背景色 */
+  backGroundScreenColor: {
+    gray: '#f5f5f',
+  },
 };
