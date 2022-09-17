@@ -297,7 +297,6 @@ const HomeScreenSortModal = ({
                           buttonName={item.buttonName}
                           key={key}
                           selectButton={optionSort ? item.option : !item.option}
-                          categoryMargin={undefined}
                           onPress={() =>
                             selectSortOnPress({ itemOption: item.option })
                           }
@@ -321,7 +320,6 @@ const HomeScreenSortModal = ({
                         return (
                           <DisplayOrderButton
                             buttonName={item.buttonName}
-                            categoryMargin={undefined}
                             key={key}
                             selectButton={
                               optionSelectDisplayButton
@@ -344,7 +342,6 @@ const HomeScreenSortModal = ({
                           <DisplayOrderButton
                             buttonName={item.buttonName}
                             key={key}
-                            categoryMargin={undefined}
                             selectButton={
                               optionSelectDisplayImageButton
                                 ? item.option
@@ -366,7 +363,6 @@ const HomeScreenSortModal = ({
                           <DisplayOrderButton
                             buttonName={item.buttonName}
                             key={key}
-                            categoryMargin={undefined}
                             selectButton={
                               optionSelectDisplayLabelButton
                                 ? item.option

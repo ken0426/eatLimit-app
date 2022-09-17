@@ -13,7 +13,7 @@ interface DisplayOrderButtonProps {
   key: number;
   selectButton: boolean | undefined;
   onPress: () => void;
-  categoryMargin: boolean | undefined;
+  categoryMargin?: boolean;
 }
 
 const DisplayOrderButton: React.FC<DisplayOrderButtonProps> = ({
