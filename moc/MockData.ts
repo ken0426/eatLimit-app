@@ -125,7 +125,6 @@ export const eatMockData = [
   },
   {
     eatName: 'テスト商品（登録系）',
-    // limitDate: '2022/10/1',
     registerDate: '2022/1/1',
     limitTextData: 'register',
     label: 7,
@@ -134,7 +133,6 @@ export const eatMockData = [
   },
   {
     eatName: 'テスト商品D',
-    // limitDate: '2022/10/1',
     registerDate: '2022/7/1',
     limitTextData: 'register',
     label: 7,
@@ -143,7 +141,6 @@ export const eatMockData = [
   },
   {
     eatName: 'テスト商品E',
-    // limitDate: '2022/10/10',
     registerDate: '2022/7/1',
     limitTextData: 'register',
     label: 7,
