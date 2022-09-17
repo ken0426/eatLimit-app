@@ -91,7 +91,7 @@ export const eatMockData = [
   {
     eatName: 'たらこ',
     limitDate: '2022/8/19',
-    registerDate: '2022/8/13',
+    registerDate: '2022/3/13',
     limitTextData: 'expiration',
     label: 5,
     labelName: 'refrigeration',
@@ -100,7 +100,7 @@ export const eatMockData = [
   {
     eatName: 'スーパーカップ',
     limitDate: '2022/8/20',
-    registerDate: '2022/7/1',
+    registerDate: '2022/2/1',
     limitTextData: 'expiration',
     label: 6,
     labelName: 'frozen',
@@ -125,9 +125,9 @@ export const eatMockData = [
     key: 12,
   },
   {
-    eatName: 'テスト商品',
+    eatName: 'テスト商品（登録系）',
     // limitDate: '2022/10/1',
-    registerDate: '2022/7/1',
+    registerDate: '2022/1/1',
     limitTextData: 'register',
     label: 7,
     labelName: 'normal',
