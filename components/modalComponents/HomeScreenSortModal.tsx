@@ -79,7 +79,7 @@ const HomeScreenSortModal = ({
   const [isClearButton, setIsClearButton] = useState(false);
 
   /** ソートの上下画像のフラグtrueなら下falseなら上 */
-  const [isArrowImage, setIsArrowImage] = useState(true);
+  const [isArrowImage, setIsArrowImage] = useState(false);
 
   /** モーダルのボタンをデフォルトから変更しているかどうかのフラグ */
   let isDefault = false;

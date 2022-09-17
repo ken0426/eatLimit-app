@@ -27,8 +27,8 @@ const HomeScreen = ({ navigation }) => {
   /** モーダルの表示非表示に使うフラグ */
   const [isModal, setIsModal] = useState(false);
 
-  /** ソートアイコンの上下反転ロジック（trueの場合は降順） */
-  const [isUpDownIcon, setIsUpDownIcon] = useState(true);
+  /** ソートアイコンの上下反転ロジック（falseの場合は昇順） */
+  const [isUpDownIcon, setIsUpDownIcon] = useState(false);
 
   /** 並べ替えのフラグ（true）の場合は「消費期限」「消費期限」順 */
   const [isSort, setIsSort] = useState(true);
@@ -81,11 +81,11 @@ const HomeScreen = ({ navigation }) => {
     if (isSort) {
       if (a.limitDate) {
         if (isUpDownIcon) {
-          // 降順
-          listSortData = moment(a.limitDate) - moment(b.limitDate);
-        } else {
           // 昇順
           listSortData = moment(b.limitDate) - moment(a.limitDate);
+        } else {
+          // 降順
+          listSortData = moment(a.limitDate) - moment(b.limitDate);
         }
       } else {
         listSortData.push(a.registerDate);
@@ -93,11 +93,11 @@ const HomeScreen = ({ navigation }) => {
     } else {
       // もし並べ替えが「登録日」「購入日」順であれば
       if (isUpDownIcon) {
-        // 降順
-        listSortData = moment(a.registerDate) - moment(b.registerDate);
-      } else {
         // 昇順
         listSortData = moment(b.registerDate) - moment(a.registerDate);
+      } else {
+        // 降順
+        listSortData = moment(a.registerDate) - moment(b.registerDate);
       }
     }
     return listSortData;
@@ -117,7 +117,7 @@ const HomeScreen = ({ navigation }) => {
     { normal: normal },
   ];
 
-  let sortImag = require('../images/sort-down.png');
+  let sortImag = require('../images/sort-up.png');
 
   if (
     !expiration &&

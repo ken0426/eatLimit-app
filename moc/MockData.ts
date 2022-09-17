@@ -25,7 +25,7 @@ export const eatMockData = [
   },
   {
     eatName: 'にんじん',
-    limitDate: '2022/9/3',
+    limitDate: '2022/10/10',
     registerDate: '2022/8/13',
     limitTextData: 'expiry',
     label: 7,
@@ -43,7 +43,6 @@ export const eatMockData = [
   },
   {
     eatName: '卵',
-    // limitDate: '2022/8/14',
     registerDate: '2022/8/13',
     limitTextData: 'purchase',
     label: 5,
@@ -107,7 +106,7 @@ export const eatMockData = [
     key: 10,
   },
   {
-    eatName: 'テスト商品',
+    eatName: 'テスト商品A',
     limitDate: '2022/8/21',
     registerDate: '2022/9/3',
     limitTextData: 'expiration',
@@ -116,7 +115,7 @@ export const eatMockData = [
     key: 11,
   },
   {
-    eatName: 'テスト商品',
+    eatName: 'テスト商品B',
     // limitDate: '2022/9/3',
     registerDate: '2022/8/13',
     limitTextData: 'purchase',
@@ -134,31 +133,22 @@ export const eatMockData = [
     key: 13,
   },
   {
-    eatName: 'テスト商品',
-    limitDate: '2022/10/10',
-    registerDate: '2022/7/1',
-    limitTextData: 'expiration',
-    label: 7,
-    labelName: 'normal',
-    key: 14,
-  },
-  {
-    eatName: 'テスト商品',
+    eatName: 'テスト商品D',
     // limitDate: '2022/10/1',
     registerDate: '2022/7/1',
     limitTextData: 'register',
     label: 7,
     labelName: 'normal',
-    key: 15,
+    key: 14,
   },
   {
-    eatName: 'テスト商品',
+    eatName: 'テスト商品E',
     // limitDate: '2022/10/10',
     registerDate: '2022/7/1',
     limitTextData: 'register',
     label: 7,
     labelName: 'normal',
-    key: 16,
+    key: 15,
   },
   {
     eatName: 'テスト商品あああああああああああああ',
@@ -167,7 +157,7 @@ export const eatMockData = [
     limitTextData: 'expiration',
     label: 7,
     labelName: 'normal',
-    key: 17,
+    key: 16,
   },
   {
     eatName: '納豆',
@@ -177,6 +167,6 @@ export const eatMockData = [
     label: 5,
     labelName: 'refrigeration',
     eatImage: require('../moc/mocImages/nattou.jpeg'),
-    key: 18,
+    key: 17,
   },
 ];
