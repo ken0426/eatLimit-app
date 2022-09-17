@@ -34,6 +34,7 @@ const HomeScreenSortModal = ({
   setNormal,
   setExpired,
   setIsUpDownIcon,
+  setIsSort,
 }) => {
   /** 絞り込みの消費期限が選択されているかのフラグ */
   const [isExpiration, setIsExpiration] = useState(false);
@@ -59,6 +60,9 @@ const HomeScreenSortModal = ({
   /** 絞り込み表示の期限切れが選択されているかのフラグ */
   const [isExpired, setIsExpired] = useState(false);
 
+  /** ソートの並べ替えのボタンの初期値（trueの場合は「消費期限」「賞味期限」順） */
+  const [optionSort, setOptionSort] = useState(true);
+
   /** モーダルの日付表示のフラグ（trueの場合は「日付のみ」） */
   const [optionSelectDisplayButton, setOptionSelectDisplayButton] =
     useState(true);
@@ -79,6 +83,15 @@ const HomeScreenSortModal = ({
 
   /** モーダルのボタンをデフォルトから変更しているかどうかのフラグ */
   let isDefault = false;
+
+  /** ソートのボタン */
+  const selectSortOnPress = ({ itemOption }) => {
+    if (optionSort === itemOption) {
+      setOptionSort(optionSort);
+    } else {
+      setOptionSort(!optionSort);
+    }
+  };
 
   /** モーダルの日付表示選択ボタン */
   const selectOnPress = ({ itemOption }) => {
@@ -149,6 +162,12 @@ const HomeScreenSortModal = ({
 
   /** 完了ボタンを押した時の処理 */
   const completionButton = () => {
+    if (optionSort) {
+      setIsSort(true);
+    } else {
+      setIsSort(false);
+    }
+
     if (optionSelectDisplayButton) {
       setIsOptionDisplayButton(false);
     } else {
@@ -277,12 +296,10 @@ const HomeScreenSortModal = ({
                         <DisplayOrderButton
                           buttonName={item.buttonName}
                           key={key}
-                          selectButton={undefined}
+                          selectButton={optionSort ? item.option : !item.option}
                           categoryMargin={undefined}
                           onPress={() =>
-                            alert(
-                              `これは【${item.buttonName}】ボタンです\n※現在準備中`
-                            )
+                            selectSortOnPress({ itemOption: item.option })
                           }
                         />
                       );

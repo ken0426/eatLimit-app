@@ -27,8 +27,11 @@ const HomeScreen = ({ navigation }) => {
   /** モーダルの表示非表示に使うフラグ */
   const [isModal, setIsModal] = useState(false);
 
-  /** ソートアイコンの上下反転ロジック */
+  /** ソートアイコンの上下反転ロジック（trueの場合は降順） */
   const [isUpDownIcon, setIsUpDownIcon] = useState(true);
+
+  /** 並べ替えのフラグ（true）の場合は「消費期限」「消費期限」順 */
+  const [isSort, setIsSort] = useState(true);
 
   /** 年を表示するかどうかのフラグ（falseの場合は「年」を非表示にする） */
   const [isOptionDisplayButton, setIsOptionDisplayButton] = useState(false);
@@ -70,6 +73,35 @@ const HomeScreen = ({ navigation }) => {
 
   /** リストを下に引っ張ってデータの更新を行うときに使うフラグ */
   const [refreshing, setRefreshing] = useState(false);
+
+  /** 表示するリストのソートするロジック */
+  const sortData = apiData.sort((a, b) => {
+    let listSortData = [];
+    // もし並べ替えが「賞味期限」「賞味期限」であれば
+    if (isSort) {
+      if (a.limitDate) {
+        if (isUpDownIcon) {
+          // 降順
+          listSortData = moment(a.limitDate) - moment(b.limitDate);
+        } else {
+          // 昇順
+          listSortData = moment(b.limitDate) - moment(a.limitDate);
+        }
+      } else {
+        listSortData.push(a.registerDate);
+      }
+    } else {
+      // もし並べ替えが「登録日」「購入日」順であれば
+      if (isUpDownIcon) {
+        // 降順
+        listSortData = moment(a.registerDate) - moment(b.registerDate);
+      } else {
+        // 昇順
+        listSortData = moment(b.registerDate) - moment(a.registerDate);
+      }
+    }
+    return listSortData;
+  });
 
   /** モーダルのカテゴリ選択でチェックがついているものを監視する */
   const categoryData = [
@@ -320,7 +352,7 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <FlatList
-          data={apiData}
+          data={sortData}
           navigation={navigation}
           renderItem={renderItem}
           refreshing={refreshing}
@@ -348,6 +380,7 @@ const HomeScreen = ({ navigation }) => {
         setNormal={setNormal}
         setExpired={setExpired}
         setIsUpDownIcon={setIsUpDownIcon}
+        setIsSort={setIsSort}
       />
     </>
   );
