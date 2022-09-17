@@ -1,14 +1,15 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import { theme } from '../styles';
 
 interface DetailScreenProps {
   route: {
     params: { item: { eatName: string; limitDate: string; eatImage: any } };
   };
+  navigation: { goBack: () => void };
 }
 
-const DetailScreen: React.FC<DetailScreenProps> = ({ route }) => {
+const DetailScreen: React.FC<DetailScreenProps> = ({ route, navigation }) => {
   const { item } = route.params;
   return (
     <View
@@ -103,7 +104,17 @@ const DetailScreen: React.FC<DetailScreenProps> = ({ route }) => {
           borderRadius: 50,
           backgroundColor: theme.colors.rightBlue,
         }}
-        onPress={() => alert('準備中です')}
+        onPress={() =>
+          Alert.alert(`${item.eatName}を\n消化済みにしますか？`, '', [
+            { text: 'キャンセル', onPress: () => {} },
+            {
+              text: '消化済み',
+              onPress: () => {
+                navigation.goBack();
+              },
+            },
+          ])
+        }
       >
         <Text
           style={{

@@ -108,7 +108,10 @@ const ListScreen: React.FC<ListScreenProps> = ({
           width: '100%',
         }}
         onPress={() => {
-          navigation.navigate('detailScreen', { item: item });
+          navigation.navigate('detailScreen', {
+            item: item,
+            navigation: navigation,
+          });
         }}
       >
         {isOptionDisplayImageButton ? (
