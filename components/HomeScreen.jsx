@@ -322,11 +322,7 @@ const HomeScreen = ({ navigation }) => {
             value={text}
             onChangeText={setText}
             placeholder='キーワード検索'
-            style={{
-              height: '100%',
-              width: '100%',
-              marginRight: 5,
-            }}
+            style={[theme.maxSize, { marginRight: 5 }]}
           />
           {text !== '' && (
             <TouchableOpacity
@@ -334,12 +330,7 @@ const HomeScreen = ({ navigation }) => {
               onPress={() => setText('')}
             >
               <View
-                style={{
-                  width: '12%',
-                  height: '100%',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
+                style={[theme.centerPosition, { width: '12%', height: '100%' }]}
               >
                 <Image
                   style={{ width: 20, height: 20 }}

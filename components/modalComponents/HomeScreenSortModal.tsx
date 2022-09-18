@@ -561,7 +561,7 @@ const styles = StyleSheet.create({
     },
   },
   clearButton: {
-    backgroundColor: '#ffb6c1',
+    backgroundColor: theme.colors.completionButton,
     width: '80%',
     borderRadius: 50,
     shadowColor: theme.colors.black,

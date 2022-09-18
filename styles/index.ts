@@ -11,8 +11,14 @@ export const theme = {
     height: '100%',
   },
 
-  /** テキストのカラー */
-  colors: { white: '#fff', rightBlue: '#94DFF5', black: '#000' },
+  /** テキスト||ボタンのカラー */
+  colors: {
+    white: '#fff',
+    rightBlue: '#94DFF5',
+    black: '#000',
+    red: 'red',
+    completionButton: '#ffb6c1',
+  },
 
   /** ラベルのカラー
    * @param blue      冷蔵
