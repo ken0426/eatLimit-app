@@ -116,7 +116,19 @@ const DetailScreen: React.FC<DetailScreenProps> = ({ route, navigation }) => {
           ])
         }
       >
-        <Text style={styles.deleteButtonText}>消化済み</Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Image
+            style={{ width: 20, height: 20, marginRight: 5 }}
+            source={require('../images/dustIcon.png')}
+          />
+          <Text style={styles.deleteButtonText}>消化済み</Text>
+        </View>
       </TouchableOpacity>
     </View>
   );
