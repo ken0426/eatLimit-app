@@ -25,7 +25,7 @@ const App = () => {
             },
             headerTitleStyle: {
               fontWeight: 'bold',
-              fontSize: 27,
+              fontSize: theme.fontSize.headerTextButton,
             },
             headerTintColor: theme.colors.white,
             headerRight: () => <HeaderRightButton newAddButton={true} />,
@@ -41,7 +41,7 @@ const App = () => {
             },
             headerTitleStyle: {
               fontWeight: 'bold',
-              fontSize: 27,
+              fontSize: theme.fontSize.headerTextButton,
             },
             headerTintColor: theme.colors.white,
             headerRight: () => (
@@ -62,7 +62,7 @@ const App = () => {
             },
             headerTitleStyle: {
               fontWeight: 'bold',
-              fontSize: 27,
+              fontSize: theme.fontSize.headerTextButton,
             },
             headerTintColor: theme.colors.white,
             presentation: 'fullScreenModal',

@@ -11,6 +11,11 @@ export const theme = {
     height: '100%',
   },
 
+  /** フォントサイズ */
+  fontSize: {
+    headerTextButton: 27,
+  },
+
   /** テキスト||ボタンのカラー */
   colors: {
     white: '#fff',
