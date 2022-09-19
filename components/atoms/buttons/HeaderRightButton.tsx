@@ -7,10 +7,12 @@ import { RegisterScreenNavigationProp } from '../../../type';
 
 interface HeaderRightButtonProps {
   newAddButton: boolean;
+  rightButtonText?: string;
 }
 
 const HeaderRightButton: React.FC<HeaderRightButtonProps> = ({
   newAddButton,
+  rightButtonText,
 }) => {
   const navigation = useNavigation<RegisterScreenNavigationProp>();
   return newAddButton ? (
@@ -33,10 +35,12 @@ const HeaderRightButton: React.FC<HeaderRightButtonProps> = ({
   ) : (
     <TouchableOpacity
       onPress={() => {
-        navigation.goBack();
+        rightButtonText === '登録' ? navigation.goBack() : alert('準備中です');
       }}
     >
-      <Text style={{ color: theme.colors.white, fontSize: 18 }}>登録</Text>
+      <Text style={{ color: theme.colors.white, fontSize: 18 }}>
+        {rightButtonText}
+      </Text>
     </TouchableOpacity>
   );
 };

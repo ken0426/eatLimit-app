@@ -44,6 +44,12 @@ const App = () => {
               fontSize: 27,
             },
             headerTintColor: theme.colors.white,
+            headerRight: () => (
+              <HeaderRightButton
+                newAddButton={false}
+                rightButtonText={'編集'}
+              />
+            ),
           }}
         />
         <Stack.Screen
@@ -60,7 +66,12 @@ const App = () => {
             },
             headerTintColor: theme.colors.white,
             presentation: 'fullScreenModal',
-            headerRight: () => <HeaderRightButton newAddButton={false} />,
+            headerRight: () => (
+              <HeaderRightButton
+                newAddButton={false}
+                rightButtonText={'登録'}
+              />
+            ),
             headerLeft: () => <HeaderLeftButton />,
           }}
         />
