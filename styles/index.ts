@@ -17,6 +17,7 @@ export const theme = {
     rightBlue: '#94DFF5',
     black: '#000',
     red: 'red',
+    orange: '#ffa500',
     completionButton: '#ffb6c1',
   },
 

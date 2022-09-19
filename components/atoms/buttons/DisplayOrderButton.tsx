@@ -5,7 +5,7 @@ import { theme } from '../../../styles';
 /**
  * @param {string}    buttonName        ボタンの名前
  * @param {boolean}   selectButton      ボタンにチェックが付いているか判定するフラグ
- * @param {boolean}   categoryMargin    カテゴリボタンのUI（左右間隔）
+ * @param {boolean}   categoryMargin    絞り込みボタンのボトム
  */
 
 interface DisplayOrderButtonProps {

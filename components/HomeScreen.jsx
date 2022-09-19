@@ -326,7 +326,7 @@ const HomeScreen = ({ navigation }) => {
           />
           {text !== '' && (
             <TouchableOpacity
-              style={styles.centerPosition}
+              style={theme.centerPosition}
               onPress={() => setText('')}
             >
               <View
@@ -425,10 +425,6 @@ const styles = StyleSheet.create({
     height: '100%',
     flexDirection: 'row',
   },
-  centerPosition: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   searchImag: {
     width: 40,
     height: '100%',
@@ -448,7 +444,7 @@ const styles = StyleSheet.create({
   limitDateOrange: {
     textAlign: 'center',
     fontSize: 12,
-    color: '#ffa500',
+    color: theme.colors.orange,
     fontWeight: 'bold',
   },
   limitDate: {
