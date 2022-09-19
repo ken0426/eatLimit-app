@@ -21,6 +21,7 @@ interface DetailScreenProps {
         limitTextData: string;
         label: number;
       };
+      categoryLabelText: string;
     };
   };
   navigation: { goBack: () => void };
@@ -28,18 +29,7 @@ interface DetailScreenProps {
 
 const DetailScreen: React.FC<DetailScreenProps> = ({ route, navigation }) => {
   const { item } = route.params;
-
-  let categoryLabelText: string;
-
-  if (item.limitTextData === 'expiration') {
-    categoryLabelText = '消費期限';
-  } else if (item.limitTextData === 'expiry') {
-    categoryLabelText = '賞味期限';
-  } else if (item.limitTextData === 'purchase') {
-    categoryLabelText = '購入日';
-  } else {
-    categoryLabelText = '登録日';
-  }
+  const { categoryLabelText } = route.params;
   return (
     <View style={styles.detailScreenStyle}>
       <View style={styles.namePicture}>

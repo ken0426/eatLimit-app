@@ -110,6 +110,7 @@ const ListScreen: React.FC<ListScreenProps> = ({
         onPress={() => {
           navigation.navigate('detailScreen', {
             item: item,
+            categoryLabelText: categoryLabelText,
             navigation: navigation,
           });
         }}
