@@ -35,7 +35,9 @@ const HeaderRightButton: React.FC<HeaderRightButtonProps> = ({
   ) : (
     <TouchableOpacity
       onPress={() => {
-        rightButtonText === '登録' ? navigation.goBack() : alert('準備中です');
+        rightButtonText === '登録'
+          ? navigation.goBack()
+          : navigation.navigate('updateRegisterScreen');
       }}
     >
       <Text style={{ color: theme.colors.white, fontSize: 18 }}>

@@ -4,6 +4,7 @@ export type StackPramList = {
   homeScreen: undefined;
   detailScreen: undefined;
   registerScreen: undefined;
+  updateRegisterScreen: undefined;
 };
 
 export type RegisterScreenNavigationProp = StackNavigationProp<

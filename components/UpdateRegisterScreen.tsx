@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 
 const UpdateRegisterScreen = () => {
-  return <Text>UpdateRegisterScreen</Text>;
+  return <Text>これは編集画面です</Text>;
 };
 
 export default UpdateRegisterScreen;

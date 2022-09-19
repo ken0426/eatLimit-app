@@ -8,6 +8,7 @@ import RegisterScreen from './components/RegisterScreen';
 import HeaderLeftButton from './components/atoms/HeaderLeftButton';
 import { StackPramList } from './type';
 import { theme } from './styles';
+import UpdateRegisterScreen from './components/UpdateRegisterScreen';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
@@ -57,6 +58,29 @@ const App = () => {
           component={RegisterScreen}
           options={{
             title: '新規登録',
+            headerStyle: {
+              backgroundColor: theme.colors.rightBlue,
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontSize: theme.fontSize.headerTextButton,
+            },
+            headerTintColor: theme.colors.white,
+            presentation: 'fullScreenModal',
+            headerRight: () => (
+              <HeaderRightButton
+                newAddButton={false}
+                rightButtonText={'登録'}
+              />
+            ),
+            headerLeft: () => <HeaderLeftButton />,
+          }}
+        />
+        <Stack.Screen
+          name='updateRegisterScreen'
+          component={UpdateRegisterScreen}
+          options={{
+            title: '編集',
             headerStyle: {
               backgroundColor: theme.colors.rightBlue,
             },
