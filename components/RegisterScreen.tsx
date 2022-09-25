@@ -8,11 +8,10 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  Alert,
+  ActionSheetIOS,
 } from 'react-native';
 import { theme } from '../styles';
 import * as ImagePicker from 'expo-image-picker';
-import PhotoUpload from 'react-native-photo-upload';
 
 const RegisterScreen = () => {
   const [image, setImage] = useState(null);
@@ -28,6 +27,25 @@ const RegisterScreen = () => {
     if (!result.cancelled) {
       setImage(result.uri);
     }
+  };
+
+  const onPressAction = () => {
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        options: ['キャンセル', '写真を撮影', '写真を選択'],
+        cancelButtonIndex: 0,
+      },
+      (buttonIndex) => {
+        if (buttonIndex === 0) {
+          // キャンセルのアクション
+        } else if (buttonIndex === 1) {
+          // カメラを起動
+        } else if (buttonIndex === 2) {
+          // ライブラリから写真を選択
+          pickImage();
+        }
+      }
+    );
   };
 
   return (
@@ -52,13 +70,9 @@ const RegisterScreen = () => {
           </Text>
           {!image ? (
             <TouchableOpacity
+              activeOpacity={1}
               onPress={() => {
-                // Alert.alert('あああ', [
-                //   { text: 'あああ' },
-                //   { text: 'いいい' },
-                //   { text: 'ううう' },
-                // ]);
-                pickImage();
+                onPressAction();
               }}
             >
               <View
@@ -105,17 +119,12 @@ const RegisterScreen = () => {
                 height: 100,
                 marginBottom: 20,
                 alignItems: 'center',
-                // backgroundColor: 'blue',
               }}
             >
-              <TouchableOpacity
+              <View
                 style={{
-                  // width: '100%',
-                  // height: '100%',
-                  // alignItems: 'center',
                   position: 'relative',
                 }}
-                onPress={() => pickImage()}
               >
                 <Image
                   source={{ uri: image }}
@@ -123,11 +132,11 @@ const RegisterScreen = () => {
                     alignItems: 'center',
                     width: 140,
                     height: '100%',
-                    // backgroundColor: 'blue',
                   }}
                 />
                 <TouchableOpacity
-                  onPress={() => setImage(null)}
+                  onPress={() => onPressAction()}
+                  activeOpacity={1}
                   style={{ position: 'absolute', bottom: 0, right: 0 }}
                 >
                   <Image
@@ -138,10 +147,10 @@ const RegisterScreen = () => {
                       bottom: -10,
                       right: -15,
                     }}
-                    source={require('../images/dustIconButton.png')}
+                    source={require('../images/cameraIcon.png')}
                   />
                 </TouchableOpacity>
-              </TouchableOpacity>
+              </View>
             </View>
           )}
           <View>
