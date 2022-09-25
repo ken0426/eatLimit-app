@@ -15,6 +15,8 @@ import * as ImagePicker from 'expo-image-picker';
 
 const RegisterScreen = () => {
   const [image, setImage] = useState(null);
+
+  /** 写真フォルダから画像を選択するロジック */
   const pickImage = async () => {
     let result: { uri?: string; cancelled: boolean } =
       await ImagePicker.launchImageLibraryAsync({
@@ -29,6 +31,7 @@ const RegisterScreen = () => {
     }
   };
 
+  /** 画像をアップロードするときに出るモーダル */
   const onPressAction = ({ isImage }) => {
     ActionSheetIOS.showActionSheetWithOptions(
       {
