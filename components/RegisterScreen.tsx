@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Image,
   Text,
@@ -12,9 +12,40 @@ import {
 } from 'react-native';
 import { theme } from '../styles';
 import * as ImagePicker from 'expo-image-picker';
+import { Camera } from 'expo-camera';
 
 const RegisterScreen = () => {
+  /** 画像が挿入されているかどうかのフラグ */
   const [image, setImage] = useState(null);
+
+  /** アプリがカメラへのアクセス権限を求めるためのフラグ */
+  const [hasPermission, setHasPermission] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
+
+  if (hasPermission === null) {
+    return <View />;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
+
+  /** カメラの起動 */
+  const takePhoto = async () => {
+    let result: { uri?: string; cancelled: boolean } =
+      await ImagePicker.launchCameraAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      });
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
 
   /** 写真フォルダから画像を選択するロジック */
   const pickImage = async () => {
@@ -46,6 +77,7 @@ const RegisterScreen = () => {
           // キャンセルのアクション
         } else if (buttonIndex === 1) {
           // カメラを起動
+          takePhoto();
         } else if (buttonIndex === 2) {
           // ライブラリから写真を選択
           pickImage();
@@ -114,11 +146,6 @@ const RegisterScreen = () => {
                   画像をアップロードする
                 </Text>
               </View>
-              <Image
-                source={{
-                  uri: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg',
-                }}
-              ></Image>
             </TouchableOpacity>
           ) : (
             <View
