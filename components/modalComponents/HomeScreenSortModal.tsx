@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import {
   Image,
-  Modal,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import Modal from 'react-native-modal';
 import {
   CATEGORY_ID,
   displayOrderButton,
@@ -246,276 +246,226 @@ const HomeScreenSortModal = ({
   };
 
   return (
-    /** グレーの背景 */
-    <View style={(theme.centerPosition, { flex: 1 })}>
-      <Modal transparent={true} visible={isModal}>
-        <View style={styles.modalBackColor}>
-          {/* モーダル */}
-          <Modal animationType='slide' transparent={true} visible={isModal}>
-            <View style={styles.modalBox}>
-              <View
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <ScrollView style={{ width: '100%' }}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-around',
-                      paddingRight: 80,
-                      paddingLeft: 80,
-                    }}
-                  >
-                    <View style={{ width: 30, height: 30 }}></View>
-                    <Text style={styles.selectTitle}>ソート</Text>
-                    <View style={{ width: 30, height: 30 }}>
-                      <TouchableOpacity
-                        onPress={() => setIsArrowImage(!isArrowImage)}
-                      >
-                        <Image
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                          }}
-                          source={
-                            isArrowImage
-                              ? require('../../images/downArrow.png')
-                              : require('../../images/upArrow.png')
-                          }
-                        />
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                  <View style={styles.selectButtonRadio}>
-                    {displayOrderButton.map((item, key) => {
-                      return (
-                        <DisplayOrderButton
-                          buttonName={item.buttonName}
-                          key={key}
-                          selectButton={optionSort ? item.option : !item.option}
-                          onPress={() =>
-                            selectSortOnPress({ itemOption: item.option })
-                          }
-                        />
-                      );
-                    })}
-                  </View>
-                  <Text style={styles.selectTitle}>フィルター</Text>
-                  <View
+    <Modal isVisible={isModal} style={{ alignItems: 'center' }}>
+      <View style={styles.modalBox}>
+        <View
+          style={{
+            width: 300,
+          }}
+        >
+          <ScrollView>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+              }}
+            >
+              <View style={{ width: 30, height: 30 }}></View>
+              <Text style={styles.selectTitle}>ソート</Text>
+              <View style={{ width: 30, height: 30 }}>
+                <TouchableOpacity
+                  onPress={() => setIsArrowImage(!isArrowImage)}
+                >
+                  <Image
                     style={{
                       width: '100%',
-                      alignItems: 'center',
-                      justifyContent: 'center',
+                      height: '100%',
                     }}
-                  >
-                    <Text style={{ marginTop: 10, fontSize: 18 }}>
-                      日付表示
-                    </Text>
-                    <View style={styles.selectButton}>
-                      {displayOrderDayButton.map((item, key) => {
-                        return (
-                          <DisplayOrderButton
-                            buttonName={item.buttonName}
-                            key={key}
-                            selectButton={
-                              optionSelectDisplayButton
-                                ? item.option
-                                : !item.option
-                            }
-                            onPress={() => {
-                              selectOnPress({ itemOption: item.option });
-                            }}
-                          />
-                        );
-                      })}
-                    </View>
-                    <Text style={{ marginTop: 10, fontSize: 18 }}>
-                      画像表示
-                    </Text>
-                    <View style={styles.selectButton}>
-                      {displayOrderIsImageButton.map((item, key) => {
-                        return (
-                          <DisplayOrderButton
-                            buttonName={item.buttonName}
-                            key={key}
-                            selectButton={
-                              optionSelectDisplayImageButton
-                                ? item.option
-                                : !item.option
-                            }
-                            onPress={() =>
-                              selectImageOnPress({ itemOption: item.option })
-                            }
-                          />
-                        );
-                      })}
-                    </View>
-                    <Text style={{ marginTop: 10, fontSize: 18 }}>
-                      ラベル表示
-                    </Text>
-                    <View style={styles.selectButton}>
-                      {displayOrderLabelButton.map((item, key) => {
-                        return (
-                          <DisplayOrderButton
-                            buttonName={item.buttonName}
-                            key={key}
-                            selectButton={
-                              optionSelectDisplayLabelButton
-                                ? item.option
-                                : !item.option
-                            }
-                            onPress={() =>
-                              selectLabelOnPress({ itemOption: item.option })
-                            }
-                          />
-                        );
-                      })}
-                    </View>
-                    <Text style={{ marginTop: 10, fontSize: 18 }}>
-                      絞り込み検索
-                    </Text>
-                    <View style={styles.selectCategoryButton}>
-                      {displayOrderCategoryButton.map((item, key) => {
-                        const [selectCategory, setSelectCategory] =
-                          useState(false);
-
-                        /** もしクリアボタンが押されたら選択しているボタンはすべて解除する */
-                        if (isClearButton) {
-                          setSelectCategory(false);
-                          setIsClearButton(false);
-                        }
-
-                        return (
-                          <DisplayOrderButton
-                            buttonName={item.buttonName}
-                            key={key}
-                            categoryMargin={true}
-                            selectButton={selectCategory}
-                            onPress={() => {
-                              setSelectCategory(!selectCategory);
-                              selectCategoryOnPress({ category_id: item.id });
-                            }}
-                          />
-                        );
-                      })}
-                    </View>
-                  </View>
-                </ScrollView>
-                <View
-                  style={{
-                    width: '100%',
-                    justifyContent: 'space-around',
-                    flexDirection: 'row',
-                  }}
-                >
-                  <View style={{ width: '25%' }}></View>
-                  <View style={styles.finishButton}>
-                    <TouchableOpacity
-                      style={[
-                        theme.maxSize,
-                        { alignItems: 'center', justifyContent: 'center' },
-                      ]}
-                      onPress={() => completionButton()}
-                    >
-                      <Text
-                        style={{
-                          color: theme.colors.white,
-                          fontSize: 30,
-                          fontWeight: 'bold',
-                        }}
-                      >
-                        完了
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                  <View
-                    style={{
-                      width: '25%',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      paddingTop: 10,
-                    }}
-                  >
-                    {isDefault && (
-                      <TouchableOpacity
-                        style={styles.clearButton}
-                        onPress={() => {
-                          setIsClearButton(true);
-                          setIsExpiration(false);
-                          setIsExpiry(false);
-                          setIsPurchase(false);
-                          setIsRegister(false);
-                          setIsRefrigeration(false);
-                          setIsFrozen(false);
-                          setIsNormal(false);
-                          setIsExpired(false);
-                          setOptionSelectDisplayButton(true);
-                          setOptionSelectDisplayImageButton(true);
-                          setOptionSelectDisplayLabelButton(true);
-                        }}
-                      >
-                        <Text
-                          style={{
-                            color: theme.colors.white,
-                            textAlign: 'center',
-                            fontWeight: 'bold',
-                          }}
-                        >
-                          クリア
-                        </Text>
-                      </TouchableOpacity>
-                    )}
-                  </View>
-                </View>
+                    source={
+                      isArrowImage
+                        ? require('../../images/downArrow.png')
+                        : require('../../images/upArrow.png')
+                    }
+                  />
+                </TouchableOpacity>
               </View>
             </View>
-          </Modal>
+            <View style={styles.selectButtonRadio}>
+              {displayOrderButton.map((item, key) => {
+                return (
+                  <DisplayOrderButton
+                    buttonName={item.buttonName}
+                    key={key}
+                    selectButton={optionSort ? item.option : !item.option}
+                    onPress={() =>
+                      selectSortOnPress({ itemOption: item.option })
+                    }
+                  />
+                );
+              })}
+            </View>
+            <Text style={styles.selectTitle}>フィルター</Text>
+            <View
+              style={{
+                width: '100%',
+                alignItems: 'center',
+              }}
+            >
+              <Text style={{ marginTop: 10, fontSize: 18 }}>日付表示</Text>
+              <View style={styles.selectButton}>
+                {displayOrderDayButton.map((item, key) => {
+                  return (
+                    <DisplayOrderButton
+                      buttonName={item.buttonName}
+                      key={key}
+                      selectButton={
+                        optionSelectDisplayButton ? item.option : !item.option
+                      }
+                      onPress={() => {
+                        selectOnPress({ itemOption: item.option });
+                      }}
+                    />
+                  );
+                })}
+              </View>
+              <Text style={{ marginTop: 10, fontSize: 18 }}>画像表示</Text>
+              <View style={styles.selectButton}>
+                {displayOrderIsImageButton.map((item, key) => {
+                  return (
+                    <DisplayOrderButton
+                      buttonName={item.buttonName}
+                      key={key}
+                      selectButton={
+                        optionSelectDisplayImageButton
+                          ? item.option
+                          : !item.option
+                      }
+                      onPress={() =>
+                        selectImageOnPress({ itemOption: item.option })
+                      }
+                    />
+                  );
+                })}
+              </View>
+              <Text style={{ marginTop: 10, fontSize: 18 }}>ラベル表示</Text>
+              <View style={styles.selectButton}>
+                {displayOrderLabelButton.map((item, key) => {
+                  return (
+                    <DisplayOrderButton
+                      buttonName={item.buttonName}
+                      key={key}
+                      selectButton={
+                        optionSelectDisplayLabelButton
+                          ? item.option
+                          : !item.option
+                      }
+                      onPress={() =>
+                        selectLabelOnPress({ itemOption: item.option })
+                      }
+                    />
+                  );
+                })}
+              </View>
+              <Text style={{ marginTop: 10, fontSize: 18 }}>絞り込み検索</Text>
+              <View style={styles.selectCategoryButton}>
+                {displayOrderCategoryButton.map((item, key) => {
+                  const [selectCategory, setSelectCategory] = useState(false);
+
+                  /** もしクリアボタンが押されたら選択しているボタンはすべて解除する */
+                  if (isClearButton) {
+                    setSelectCategory(false);
+                    setIsClearButton(false);
+                  }
+
+                  return (
+                    <DisplayOrderButton
+                      buttonName={item.buttonName}
+                      key={key}
+                      categoryMargin={true}
+                      selectButton={selectCategory}
+                      onPress={() => {
+                        setSelectCategory(!selectCategory);
+                        selectCategoryOnPress({ category_id: item.id });
+                      }}
+                    />
+                  );
+                })}
+              </View>
+            </View>
+          </ScrollView>
+          <View
+            style={{
+              width: '100%',
+              justifyContent: 'space-around',
+              flexDirection: 'row',
+            }}
+          >
+            <View style={{ width: '25%' }}></View>
+            <View style={styles.finishButton}>
+              <TouchableOpacity
+                style={[
+                  theme.maxSize,
+                  { alignItems: 'center', justifyContent: 'center' },
+                ]}
+                onPress={() => completionButton()}
+              >
+                <Text
+                  style={{
+                    color: theme.colors.white,
+                    fontSize: 30,
+                    fontWeight: 'bold',
+                  }}
+                >
+                  完了
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                width: '25%',
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingTop: 10,
+              }}
+            >
+              {isDefault && (
+                <TouchableOpacity
+                  style={styles.clearButton}
+                  onPress={() => {
+                    setIsClearButton(true);
+                    setIsExpiration(false);
+                    setIsExpiry(false);
+                    setIsPurchase(false);
+                    setIsRegister(false);
+                    setIsRefrigeration(false);
+                    setIsFrozen(false);
+                    setIsNormal(false);
+                    setIsExpired(false);
+                    setOptionSelectDisplayButton(true);
+                    setOptionSelectDisplayImageButton(true);
+                    setOptionSelectDisplayLabelButton(true);
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: theme.colors.white,
+                      textAlign: 'center',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    クリア
+                  </Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          </View>
         </View>
-      </Modal>
-    </View>
+      </View>
+    </Modal>
   );
 };
 
 const styles = StyleSheet.create({
-  modalBackColor: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    shadowColor: theme.colors.black,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-  },
   modalBox: {
-    flex: 1,
-    justifyContent: 'center',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
     marginTop: 120,
     marginBottom: 120,
-    marginLeft: 20,
-    marginRight: 20,
     backgroundColor: theme.colors.white,
     borderRadius: 20,
     paddingTop: 35,
     paddingBottom: 15,
     paddingLeft: 15,
     paddingRight: 15,
-    alignItems: 'flex-end',
     flexDirection: 'row',
-    shadowColor: theme.colors.black,
-    shadowRadius: 4,
   },
   selectTitle: {
     fontWeight: 'bold',
