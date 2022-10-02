@@ -13,10 +13,13 @@ import {
 import { theme } from '../styles';
 import * as ImagePicker from 'expo-image-picker';
 import { Camera } from 'expo-camera';
+import SelectorModal from './modalComponents/SelectorModal';
 
 const RegisterScreen = () => {
   /** 画像が挿入されているかどうかのフラグ */
   const [image, setImage] = useState(null);
+
+  const [isModal, setIsModal] = useState(false);
 
   /** アプリがカメラへのアクセス権限を求めるためのフラグ */
   const [hasPermission, setHasPermission] = useState(null);
@@ -89,139 +92,165 @@ const RegisterScreen = () => {
   };
 
   return (
-    <TouchableWithoutFeedback
-      onPress={() => {
-        Keyboard.dismiss();
-      }}
-    >
-      <ScrollView
-        style={{ height: '100%', backgroundColor: theme.colors.white }}
+    <>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
       >
-        <View
-          style={{
-            height: '100%',
-            paddingTop: 20,
-            paddingRight: 20,
-            paddingLeft: 20,
-          }}
+        <ScrollView
+          style={{ height: '100%', backgroundColor: theme.colors.white }}
         >
-          <Text style={{ marginBottom: 10, fontSize: 25, fontWeight: 'bold' }}>
-            画像
-          </Text>
-          {!image ? (
-            <TouchableOpacity
-              activeOpacity={1}
-              onPress={() => {
-                onPressAction({ isImage: false });
-              }}
+          <View
+            style={{
+              height: '100%',
+              paddingTop: 20,
+              paddingRight: 20,
+              paddingLeft: 20,
+            }}
+          >
+            <Text
+              style={{ marginBottom: 10, fontSize: 25, fontWeight: 'bold' }}
             >
+              画像
+            </Text>
+            {!image ? (
+              <TouchableOpacity
+                activeOpacity={1}
+                onPress={() => {
+                  onPressAction({ isImage: false });
+                }}
+              >
+                <View
+                  style={{
+                    width: '100%',
+                    height: 100,
+                    marginBottom: 20,
+                    borderWidth: 2,
+                    borderStyle: 'dashed',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: '#dcdcdc',
+                  }}
+                >
+                  <View
+                    style={{
+                      width: 30,
+                      height: 30,
+                      marginBottom: 10,
+                    }}
+                  >
+                    <Image
+                      style={{
+                        width: 30,
+                        height: 30,
+                      }}
+                      source={require('../images/upload_24.png')}
+                    />
+                  </View>
+                  <Text style={{ width: '100%', textAlign: 'center' }}>
+                    画像をアップロードする
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ) : (
               <View
                 style={{
                   width: '100%',
                   height: 100,
                   marginBottom: 20,
-                  borderWidth: 2,
-                  borderStyle: 'dashed',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: '#dcdcdc',
                 }}
               >
                 <View
                   style={{
-                    width: 30,
-                    height: 30,
-                    marginBottom: 10,
+                    position: 'relative',
                   }}
                 >
                   <Image
+                    source={{ uri: image }}
                     style={{
-                      width: 30,
-                      height: 30,
+                      alignItems: 'center',
+                      width: 140,
+                      height: '100%',
                     }}
-                    source={require('../images/upload_24.png')}
                   />
+                  <TouchableOpacity
+                    onPress={() => onPressAction({ isImage: true })}
+                    activeOpacity={1}
+                    style={{ position: 'absolute', bottom: 0, right: 0 }}
+                  >
+                    <Image
+                      style={{
+                        width: 40,
+                        height: 40,
+                        position: 'absolute',
+                        bottom: -10,
+                        right: -15,
+                      }}
+                      source={require('../images/cameraIcon.png')}
+                    />
+                  </TouchableOpacity>
                 </View>
-                <Text style={{ width: '100%', textAlign: 'center' }}>
-                  画像をアップロードする
-                </Text>
               </View>
-            </TouchableOpacity>
-          ) : (
-            <View
-              style={{
-                width: '100%',
-                height: 100,
-                marginBottom: 20,
-                alignItems: 'center',
-              }}
-            >
+            )}
+            <View style={{ marginBottom: 20 }}>
+              <Text
+                style={{ marginBottom: 10, fontSize: 25, fontWeight: 'bold' }}
+              >
+                商品名
+              </Text>
               <View
                 style={{
-                  position: 'relative',
+                  width: '100%',
+                  height: 50,
+                  borderColor: 'gray',
+                  borderWidth: 1,
+                  borderRadius: 5,
                 }}
               >
-                <Image
-                  source={{ uri: image }}
+                <TextInput
+                  placeholder='商品名を入力してください'
                   style={{
-                    alignItems: 'center',
-                    width: 140,
+                    fontSize: 20,
+                    width: '100%',
                     height: '100%',
+                    paddingRight: 8,
+                    paddingLeft: 8,
                   }}
                 />
-                <TouchableOpacity
-                  onPress={() => onPressAction({ isImage: true })}
-                  activeOpacity={1}
-                  style={{ position: 'absolute', bottom: 0, right: 0 }}
-                >
-                  <Image
-                    style={{
-                      width: 40,
-                      height: 40,
-                      position: 'absolute',
-                      bottom: -10,
-                      right: -15,
-                    }}
-                    source={require('../images/cameraIcon.png')}
-                  />
-                </TouchableOpacity>
               </View>
             </View>
-          )}
-          <View>
-            <Text
-              style={{ marginBottom: 10, fontSize: 25, fontWeight: 'bold' }}
-            >
-              商品名
-            </Text>
-            <View
-              style={{
-                width: '100%',
-                height: 50,
-                borderColor: 'gray',
-                borderWidth: 1,
-                borderRadius: 5,
-              }}
-            >
-              <TextInput
-                placeholder='商品名を入力してください'
+            <View>
+              <Text
+                style={{ marginBottom: 10, fontSize: 25, fontWeight: 'bold' }}
+              >
+                分類
+              </Text>
+              <TouchableOpacity
+                onPress={() => setIsModal(!isModal)}
                 style={{
-                  fontSize: 20,
                   width: '100%',
-                  height: '100%',
+                  height: 50,
+                  borderColor: 'gray',
+                  borderWidth: 1,
+                  borderRadius: 5,
                   paddingRight: 8,
                   paddingLeft: 8,
+                  justifyContent: 'center',
                 }}
-              />
+              >
+                <Text style={{ fontSize: 20 }}></Text>
+              </TouchableOpacity>
             </View>
+            <View></View>
+            <View></View>
+            <View></View>
           </View>
-          <View></View>
-          <View></View>
-          <View></View>
-          <View></View>
-        </View>
-      </ScrollView>
-    </TouchableWithoutFeedback>
+        </ScrollView>
+      </TouchableWithoutFeedback>
+      <SelectorModal isModal={isModal} setIsModal={setIsModal} />
+    </>
   );
 };
 
