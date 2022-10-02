@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { theme } from '../../styles';
+import { theme } from '../../../styles';
 
 const HeaderLeftButton = () => {
   const navigation = useNavigation();

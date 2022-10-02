@@ -5,7 +5,7 @@ import HomeScreen from './components/HomeScreen';
 import DetailScreen from './components/DetailScreen';
 import HeaderRightButton from './components/atoms/buttons/HeaderRightButton';
 import RegisterScreen from './components/RegisterScreen';
-import HeaderLeftButton from './components/atoms/HeaderLeftButton';
+import HeaderLeftButton from './components/atoms/buttons/HeaderLeftButton';
 import { StackPramList } from './type';
 import { theme } from './styles';
 import UpdateRegisterScreen from './components/UpdateRegisterScreen';
