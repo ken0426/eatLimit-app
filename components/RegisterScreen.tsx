@@ -43,6 +43,7 @@ const RegisterScreen = () => {
   /** アプリがカメラへのアクセス権限を求めるためのフラグ */
   const [hasPermission, setHasPermission] = useState(null);
 
+  /** 初めてこの画面を開いた際にカメラへのアクセス権限を聞くロジック */
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
@@ -54,7 +55,7 @@ const RegisterScreen = () => {
     return <View />;
   }
   if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
+    return <Text>カメラにアクセスできません</Text>;
   }
 
   /** カメラの起動 */
