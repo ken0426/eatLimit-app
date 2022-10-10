@@ -14,12 +14,29 @@ import { theme } from '../styles';
 import * as ImagePicker from 'expo-image-picker';
 import { Camera } from 'expo-camera';
 import SelectorModal from './modalComponents/SelectorModal';
+import { classificationData, keepMethodData, selectData } from '../constants';
 
 const RegisterScreen = () => {
   /** 画像が挿入されているかどうかのフラグ */
   const [image, setImage] = useState(null);
 
+  /** モーダルの表示非表示のフラグ */
   const [isModal, setIsModal] = useState(false);
+
+  /** 分類のテキスト */
+  const [classification, setClassification] = useState('選択してください');
+
+  /** 保存方法のテキスト */
+  const [keepMethod, setKeepMethod] = useState('選択してください');
+
+  /** 選択されたのテキストデータ */
+  const [radioTextData, setRadioTextData] = useState('');
+
+  /** どの項目をタップしたか判定するフラグ */
+  const [onPressSelect, setOnPressSelect] = useState('');
+
+  /** ラジオボタンのデータ */
+  const [radioData, setRadioData] = useState([]);
 
   /** アプリがカメラへのアクセス権限を求めるためのフラグ */
   const [hasPermission, setHasPermission] = useState(null);
@@ -221,14 +238,19 @@ const RegisterScreen = () => {
                 />
               </View>
             </View>
-            <View>
+            <View style={{ marginBottom: 20 }}>
               <Text
                 style={{ marginBottom: 10, fontSize: 25, fontWeight: 'bold' }}
               >
                 分類
               </Text>
               <TouchableOpacity
-                onPress={() => setIsModal(!isModal)}
+                onPress={() => {
+                  setRadioData(classificationData);
+                  setIsModal(!isModal);
+                  setRadioTextData(classification);
+                  setOnPressSelect(selectData.classification);
+                }}
                 style={{
                   width: '100%',
                   height: 50,
@@ -240,16 +262,50 @@ const RegisterScreen = () => {
                   justifyContent: 'center',
                 }}
               >
-                <Text style={{ fontSize: 20 }}></Text>
+                <Text style={{ fontSize: 20 }}>{classification}</Text>
               </TouchableOpacity>
             </View>
-            <View></View>
+            <View style={{ marginBottom: 20 }}>
+              <Text
+                style={{ marginBottom: 10, fontSize: 25, fontWeight: 'bold' }}
+              >
+                保存方法
+              </Text>
+              <TouchableOpacity
+                onPress={() => {
+                  setRadioData(keepMethodData);
+                  setIsModal(!isModal);
+                  setRadioTextData(keepMethod);
+                  setOnPressSelect(selectData.keepMethod);
+                }}
+                style={{
+                  width: '100%',
+                  height: 50,
+                  borderColor: 'gray',
+                  borderWidth: 1,
+                  borderRadius: 5,
+                  paddingRight: 8,
+                  paddingLeft: 8,
+                  justifyContent: 'center',
+                }}
+              >
+                <Text style={{ fontSize: 20 }}>{keepMethod}</Text>
+              </TouchableOpacity>
+            </View>
             <View></View>
             <View></View>
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>
-      <SelectorModal isModal={isModal} setIsModal={setIsModal} />
+      <SelectorModal
+        isModal={isModal}
+        setIsModal={setIsModal}
+        radioData={radioData}
+        setClassification={setClassification}
+        setKeepMethod={setKeepMethod}
+        radioTextData={radioTextData}
+        onPressSelect={onPressSelect}
+      />
     </>
   );
 };

@@ -67,3 +67,24 @@ export const LABEL_NAME = {
   frozen: '冷凍',
   normal: '常温',
 };
+
+/** 分類で使用するボタンデータ */
+export const classificationData = [
+  { buttonName: '消費期限' },
+  { buttonName: '賞味期限' },
+  { buttonName: '購入日' },
+  { buttonName: '登録日' },
+];
+
+/** 保存方法で使用するボタンのデータ */
+export const keepMethodData = [
+  { buttonName: '冷蔵' },
+  { buttonName: '冷凍' },
+  { buttonName: '常温' },
+];
+
+/** 項目のデータ */
+export const selectData = {
+  classification: 'classification',
+  keepMethod: 'keepMethod',
+};

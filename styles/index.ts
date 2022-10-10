@@ -23,7 +23,9 @@ export const theme = {
     black: '#000',
     red: 'red',
     orange: '#ffa500',
-    completionButton: '#ffb6c1',
+    completionButton: '#ffb6c1', // リセットボタン
+    gray: '#a9a9a9',
+    selectBlue: '#2096ED',
   },
 
   /** ラベルのカラー
