@@ -20,7 +20,6 @@ const HeaderRightButton: React.FC<HeaderRightButtonProps> = ({
       <TouchableOpacity
         style={{
           alignItems: 'center',
-          justifyContent: 'center',
         }}
         onPress={() => {
           navigation.navigate('registerScreen');
