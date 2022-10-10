@@ -15,6 +15,8 @@ import * as ImagePicker from 'expo-image-picker';
 import { Camera } from 'expo-camera';
 import SelectorModal from './modalComponents/SelectorModal';
 import { classificationData, keepMethodData, selectData } from '../constants';
+import CommonSingleSelect from './CommonSingleSelect';
+import CommonInputText from './CommonInputText';
 
 const RegisterScreen = () => {
   /** 画像が挿入されているかどうかのフラグ */
@@ -211,87 +213,30 @@ const RegisterScreen = () => {
                 </View>
               </View>
             )}
-            <View style={{ marginBottom: 20 }}>
-              <Text
-                style={{ marginBottom: 10, fontSize: 25, fontWeight: 'bold' }}
-              >
-                商品名
-              </Text>
-              <View
-                style={{
-                  width: '100%',
-                  height: 50,
-                  borderColor: 'gray',
-                  borderWidth: 1,
-                  borderRadius: 5,
-                }}
-              >
-                <TextInput
-                  placeholder='商品名を入力してください'
-                  style={{
-                    fontSize: 20,
-                    width: '100%',
-                    height: '100%',
-                    paddingRight: 8,
-                    paddingLeft: 8,
-                  }}
-                />
-              </View>
-            </View>
-            <View style={{ marginBottom: 20 }}>
-              <Text
-                style={{ marginBottom: 10, fontSize: 25, fontWeight: 'bold' }}
-              >
-                分類
-              </Text>
-              <TouchableOpacity
-                onPress={() => {
-                  setRadioData(classificationData);
-                  setIsModal(!isModal);
-                  setRadioTextData(classification);
-                  setOnPressSelect(selectData.classification);
-                }}
-                style={{
-                  width: '100%',
-                  height: 50,
-                  borderColor: 'gray',
-                  borderWidth: 1,
-                  borderRadius: 5,
-                  paddingRight: 8,
-                  paddingLeft: 8,
-                  justifyContent: 'center',
-                }}
-              >
-                <Text style={{ fontSize: 20 }}>{classification}</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={{ marginBottom: 20 }}>
-              <Text
-                style={{ marginBottom: 10, fontSize: 25, fontWeight: 'bold' }}
-              >
-                保存方法
-              </Text>
-              <TouchableOpacity
-                onPress={() => {
-                  setRadioData(keepMethodData);
-                  setIsModal(!isModal);
-                  setRadioTextData(keepMethod);
-                  setOnPressSelect(selectData.keepMethod);
-                }}
-                style={{
-                  width: '100%',
-                  height: 50,
-                  borderColor: 'gray',
-                  borderWidth: 1,
-                  borderRadius: 5,
-                  paddingRight: 8,
-                  paddingLeft: 8,
-                  justifyContent: 'center',
-                }}
-              >
-                <Text style={{ fontSize: 20 }}>{keepMethod}</Text>
-              </TouchableOpacity>
-            </View>
+            <CommonInputText
+              label={'商品名'}
+              placeholder={'商品名を入力してください'}
+            />
+            <CommonSingleSelect
+              label={'分類'}
+              onPress={() => {
+                setRadioData(classificationData);
+                setIsModal(!isModal);
+                setRadioTextData(classification);
+                setOnPressSelect(selectData.classification);
+              }}
+              selectText={classification}
+            />
+            <CommonSingleSelect
+              label={'保存方法'}
+              onPress={() => {
+                setRadioData(keepMethodData);
+                setIsModal(!isModal);
+                setRadioTextData(keepMethod);
+                setOnPressSelect(selectData.keepMethod);
+              }}
+              selectText={keepMethod}
+            />
             <View></View>
             <View></View>
           </View>
