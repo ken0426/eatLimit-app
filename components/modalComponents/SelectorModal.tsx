@@ -35,9 +35,10 @@ const SelectorModal = ({
           alignItems: 'center',
         }}
       >
-        {radioData.map((item: { buttonName: string }) => {
+        {radioData.map((item: { buttonName: string }, key: number) => {
           return (
             <TouchableOpacity
+              key={key}
               style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
