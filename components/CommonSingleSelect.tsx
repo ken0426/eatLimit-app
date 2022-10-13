@@ -11,7 +11,13 @@ const CommonSingleSelect = ({ label, onPress, selectText }) => {
         onPress={onPress}
         style={styles.touchArea}
       >
-        <Text style={{ fontSize: 20, color: theme.colors.black }}>
+        <Text
+          style={{
+            fontSize: 20,
+            color: theme.colors.black,
+            fontFamily: 'HiraginoSans-W3',
+          }}
+        >
           {selectText}
         </Text>
       </TouchableOpacity>
@@ -24,6 +30,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   label: {
+    fontFamily: 'HiraginoSans-W3',
     marginBottom: 10,
     fontSize: 25,
     fontWeight: 'bold',

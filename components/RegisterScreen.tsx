@@ -134,7 +134,12 @@ const RegisterScreen = () => {
             }}
           >
             <Text
-              style={{ marginBottom: 10, fontSize: 25, fontWeight: 'bold' }}
+              style={{
+                marginBottom: 10,
+                fontSize: 25,
+                fontWeight: 'bold',
+                fontFamily: 'HiraginoSans-W3',
+              }}
             >
               画像
             </Text>

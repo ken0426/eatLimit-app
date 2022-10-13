@@ -41,7 +41,9 @@ const SelectorModal = ({
               }}
               activeOpacity={1}
             >
-              <Text style={{ fontSize: 28 }}>{item.buttonName}</Text>
+              <Text style={{ fontSize: 28, fontFamily: 'HiraginoSans-W3' }}>
+                {item.buttonName}
+              </Text>
               <View
                 style={[
                   styles.selectButtonOutside,

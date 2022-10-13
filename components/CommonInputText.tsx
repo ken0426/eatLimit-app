@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   label: {
+    fontFamily: 'HiraginoSans-W3',
     marginBottom: 10,
     fontSize: 25,
     fontWeight: 'bold',
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
     height: '100%',
     paddingRight: 8,
     paddingLeft: 8,
+    fontFamily: 'HiraginoSans-W3',
   },
 });
 

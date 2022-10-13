@@ -34,6 +34,7 @@ const CommonInputDate = ({ setIsKeyboardUp }) => {
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Text
           style={{
+            fontFamily: 'HiraginoSans-W3',
             marginBottom: 10,
             fontSize: 25,
             fontWeight: 'bold',
@@ -85,6 +86,7 @@ const CommonInputDate = ({ setIsKeyboardUp }) => {
           />
           <Text
             style={{
+              fontFamily: 'HiraginoSans-W3',
               fontSize: 20,
               fontWeight: 'bold',
             }}
@@ -112,6 +114,7 @@ const CommonInputDate = ({ setIsKeyboardUp }) => {
           />
           <Text
             style={{
+              fontFamily: 'HiraginoSans-W3',
               fontSize: 20,
               fontWeight: 'bold',
             }}
@@ -139,6 +142,7 @@ const CommonInputDate = ({ setIsKeyboardUp }) => {
           />
           <Text
             style={{
+              fontFamily: 'HiraginoSans-W3',
               fontSize: 20,
               fontWeight: 'bold',
             }}
