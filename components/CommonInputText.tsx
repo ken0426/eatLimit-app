@@ -2,12 +2,16 @@ import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { theme } from '../styles';
 
-const CommonInputText = ({ label, placeholder }) => {
+const CommonInputText = ({ label, placeholder, setIsKeyboardUp }) => {
   return (
     <View style={styles.textInputArea}>
       <Text style={styles.label}>{label}</Text>
       <View style={styles.textArea}>
-        <TextInput placeholder={placeholder} style={styles.textInput} />
+        <TextInput
+          onPressIn={() => setIsKeyboardUp(false)}
+          placeholder={placeholder}
+          style={styles.textInput}
+        />
       </View>
     </View>
   );
