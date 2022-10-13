@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import {
   Image,
   Text,
-  TextInput,
   Keyboard,
   TouchableWithoutFeedback,
   View,
   TouchableOpacity,
   ScrollView,
   ActionSheetIOS,
+  KeyboardAvoidingView,
 } from 'react-native';
 import { theme } from '../styles';
 import * as ImagePicker from 'expo-image-picker';
@@ -17,6 +17,7 @@ import SelectorModal from './modalComponents/SelectorModal';
 import { classificationData, keepMethodData, selectData } from '../constants';
 import CommonSingleSelect from './CommonSingleSelect';
 import CommonInputText from './CommonInputText';
+import CommonInputDate from './CommonInputDate';
 
 const RegisterScreen = () => {
   /** 画像が挿入されているかどうかのフラグ */
@@ -42,6 +43,9 @@ const RegisterScreen = () => {
 
   /** アプリがカメラへのアクセス権限を求めるためのフラグ */
   const [hasPermission, setHasPermission] = useState(null);
+
+  /** キーボードによって要素が隠れる場合要素を上げるかどうかのフラグ */
+  const [isKeyboardUp, setIsKeyboardUp] = useState(true);
 
   /** 初めてこの画面を開いた際にカメラへのアクセス権限を聞くロジック */
   useEffect(() => {
@@ -112,7 +116,7 @@ const RegisterScreen = () => {
   };
 
   return (
-    <>
+    <KeyboardAvoidingView behavior='position' enabled={isKeyboardUp}>
       <TouchableWithoutFeedback
         onPress={() => {
           Keyboard.dismiss();
@@ -217,6 +221,7 @@ const RegisterScreen = () => {
             <CommonInputText
               label={'商品名'}
               placeholder={'商品名を入力してください'}
+              setIsKeyboardUp={setIsKeyboardUp}
             />
             <CommonSingleSelect
               label={'分類'}
@@ -228,6 +233,7 @@ const RegisterScreen = () => {
               }}
               selectText={classification}
             />
+            <CommonInputDate setIsKeyboardUp={setIsKeyboardUp} />
             <CommonSingleSelect
               label={'保存方法'}
               onPress={() => {
@@ -252,7 +258,7 @@ const RegisterScreen = () => {
         radioTextData={radioTextData}
         onPressSelect={onPressSelect}
       />
-    </>
+    </KeyboardAvoidingView>
   );
 };
 
