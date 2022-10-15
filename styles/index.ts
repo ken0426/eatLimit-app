@@ -16,6 +16,11 @@ export const theme = {
     headerTextButton: 27,
   },
 
+  /** フォントファミリー */
+  font: {
+    hiragino: 'HiraginoSans-W3',
+  },
+
   /** テキスト||ボタンのカラー */
   colors: {
     white: '#fff',
