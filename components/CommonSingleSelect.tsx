@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   label: {
-    fontFamily: 'HiraginoSans-W3',
+    fontFamily: theme.font.hiragino,
     marginBottom: 10,
     fontSize: 25,
     fontWeight: 'bold',
