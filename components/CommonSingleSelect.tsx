@@ -11,15 +11,7 @@ const CommonSingleSelect = ({ label, onPress, selectText }) => {
         onPress={onPress}
         style={styles.touchArea}
       >
-        <Text
-          style={{
-            fontSize: 20,
-            color: theme.colors.black,
-            fontFamily: 'HiraginoSans-W3',
-          }}
-        >
-          {selectText}
-        </Text>
+        <Text style={styles.selectText}>{selectText}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -44,6 +36,11 @@ const styles = StyleSheet.create({
     paddingRight: 8,
     paddingLeft: 8,
     justifyContent: 'center',
+  },
+  selectText: {
+    fontSize: 20,
+    color: theme.colors.black,
+    fontFamily: theme.font.hiragino,
   },
 });
 
