@@ -41,7 +41,7 @@ const SelectorModal = ({
               }}
               activeOpacity={1}
             >
-              <Text style={{ fontSize: 28, fontFamily: 'HiraginoSans-W3' }}>
+              <Text style={{ fontSize: 28, fontFamily: theme.font.hiragino }}>
                 {item.buttonName}
               </Text>
               <View
