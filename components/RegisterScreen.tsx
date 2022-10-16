@@ -18,6 +18,7 @@ import { classificationData, keepMethodData, selectData } from '../constants';
 import CommonSingleSelect from './CommonSingleSelect';
 import CommonInputText from './CommonInputText';
 import CommonInputDate from './CommonInputDate';
+import CommonMultiInputText from './CommonMultiInputText';
 
 const RegisterScreen = () => {
   /** 画像が挿入されているかどうかのフラグ */
@@ -116,18 +117,21 @@ const RegisterScreen = () => {
   };
 
   return (
-    <KeyboardAvoidingView behavior='position' enabled={isKeyboardUp}>
+    <KeyboardAvoidingView
+      behavior='position'
+      style={{ flex: 1 }}
+      contentContainerStyle={{ flex: 1 }}
+      enabled={isKeyboardUp}
+      keyboardVerticalOffset={30}
+    >
       <TouchableWithoutFeedback
         onPress={() => {
           Keyboard.dismiss();
         }}
       >
-        <ScrollView
-          style={{ height: '100%', backgroundColor: theme.colors.white }}
-        >
+        <ScrollView style={{ backgroundColor: theme.colors.white }}>
           <View
             style={{
-              height: '100%',
               paddingTop: 20,
               paddingRight: 20,
               paddingLeft: 20,
@@ -138,7 +142,7 @@ const RegisterScreen = () => {
                 marginBottom: 10,
                 fontSize: 25,
                 fontWeight: 'bold',
-                fontFamily: 'HiraginoSans-W3',
+                fontFamily: theme.font.hiragino,
               }}
             >
               画像
@@ -249,8 +253,11 @@ const RegisterScreen = () => {
               }}
               selectText={keepMethod}
             />
-            <View></View>
-            <View></View>
+            <CommonMultiInputText
+              label={'メモ'}
+              placeholder={'タップしてメモを追加'}
+              setIsKeyboardUp={setIsKeyboardUp}
+            />
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>
