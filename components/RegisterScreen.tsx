@@ -20,7 +20,11 @@ import CommonInputText from './CommonInputText';
 import CommonInputDate from './CommonInputDate';
 import CommonMultiInputText from './CommonMultiInputText';
 import { useDispatch } from 'react-redux';
-import { setImageData } from '../redux/common/commonRegisterSlice';
+import {
+  setClassifying,
+  setImageData,
+  setKeepMethodTextData,
+} from '../redux/common/commonRegisterSlice';
 
 const RegisterScreen = () => {
   const dispatch = useDispatch();
@@ -120,6 +124,11 @@ const RegisterScreen = () => {
       }
     );
   };
+
+  /** reduxに分類のテキストをdispatchする */
+  dispatch(setClassifying(classification));
+  /** reduxに保存方法のテキストをdispatchする */
+  dispatch(setKeepMethodTextData(keepMethod));
 
   return (
     <KeyboardAvoidingView

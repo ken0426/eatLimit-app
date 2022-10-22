@@ -1,8 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { setProductTextData } from '../redux/common/commonRegisterSlice';
 import { theme } from '../styles';
 
 const CommonInputText = ({ label, placeholder, setIsKeyboardUp }) => {
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.textInputArea}>
       <Text style={styles.label}>{label}</Text>
@@ -11,6 +15,7 @@ const CommonInputText = ({ label, placeholder, setIsKeyboardUp }) => {
           onPressIn={() => setIsKeyboardUp(false)}
           placeholder={placeholder}
           style={styles.textInput}
+          onChangeText={(text) => dispatch(setProductTextData(text))}
         />
       </View>
     </View>

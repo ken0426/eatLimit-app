@@ -86,7 +86,7 @@ const RootStackScreen = () => {
       />
       <Stack.Screen
         name='updateRegisterScreen'
-        component={UpdateRegisterScreen}
+        component={RegisterScreen}
         options={{
           title: '編集',
           headerStyle: {

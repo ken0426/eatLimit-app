@@ -1,9 +1,12 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { setRegisterDate } from '../redux/common/commonRegisterSlice';
 import { theme } from '../styles';
 
 const CommonInputDate = ({ setIsKeyboardUp }) => {
+  const dispatch = useDispatch();
   /** 年の値 */
   const [year, setYear] = useState('');
 
@@ -15,6 +18,17 @@ const CommonInputDate = ({ setIsKeyboardUp }) => {
 
   /** 年＋月＋日の結合したテキストデータ */
   const [registerData, setRegisterData] = useState('');
+
+  if (
+    moment(registerData).isValid() &&
+    year !== '' &&
+    month !== '' &&
+    day !== ''
+  ) {
+    dispatch(setRegisterDate(registerData));
+  } else {
+    dispatch(setRegisterDate(''));
+  }
 
   /** 日付を生成するロジック */
   useEffect(() => {

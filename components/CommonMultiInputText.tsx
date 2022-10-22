@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { setRegisterMemo } from '../redux/common/commonRegisterSlice';
 import { theme } from '../styles';
 
 const CommonMultiInputText = ({ label, placeholder, setIsKeyboardUp }) => {
+  const dispatch = useDispatch();
   /** テキストインプットエリアで入力高さをstateで管理する */
   const [inputHeight, setInputHeight] = useState(50);
 
   const [text, setText] = useState('');
+
+  dispatch(setRegisterMemo(text));
 
   return (
     <View style={styles.textInputArea}>
