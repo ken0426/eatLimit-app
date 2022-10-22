@@ -8,22 +8,21 @@ import { RegisterScreenNavigationProp } from '../../../type';
 interface HeaderRightButtonProps {
   newAddButton: boolean;
   rightButtonText?: string;
+  onPress: () => void;
 }
 
 const HeaderRightButton: React.FC<HeaderRightButtonProps> = ({
   newAddButton,
   rightButtonText,
+  onPress,
 }) => {
-  const navigation = useNavigation<RegisterScreenNavigationProp>();
   return newAddButton ? (
     <>
       <TouchableOpacity
         style={{
           alignItems: 'center',
         }}
-        onPress={() => {
-          navigation.navigate('registerScreen');
-        }}
+        onPress={onPress}
       >
         <Image
           style={{ width: 22, height: 22 }}
@@ -32,14 +31,7 @@ const HeaderRightButton: React.FC<HeaderRightButtonProps> = ({
       </TouchableOpacity>
     </>
   ) : (
-    <TouchableOpacity
-      onPress={() => {
-        rightButtonText === '登録'
-          ? navigation.goBack()
-          : // : navigation.navigate('updateRegisterScreen');
-            navigation.navigate('registerScreen');
-      }}
-    >
+    <TouchableOpacity onPress={onPress}>
       <Text style={{ color: theme.colors.white, fontSize: 18 }}>
         {rightButtonText}
       </Text>
