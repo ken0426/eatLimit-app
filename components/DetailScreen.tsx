@@ -100,9 +100,7 @@ const DetailScreen: React.FC<DetailScreenProps> = ({ route, navigation }) => {
           />
         </View>
         <View style={{ width: '60%', alignItems: 'center' }}>
-          <Text style={styles.detailText} numberOfLines={2}>
-            {`${item.eatName}`}
-          </Text>
+          <Text style={styles.detailText}>{`${item.eatName}`}</Text>
         </View>
       </View>
       <View style={[styles.detailItemStyle, { marginBottom: 10 }]}>
