@@ -36,7 +36,8 @@ const HeaderRightButton: React.FC<HeaderRightButtonProps> = ({
       onPress={() => {
         rightButtonText === '登録'
           ? navigation.goBack()
-          : navigation.navigate('updateRegisterScreen');
+          : // : navigation.navigate('updateRegisterScreen');
+            navigation.navigate('registerScreen');
       }}
     >
       <Text style={{ color: theme.colors.white, fontSize: 18 }}>

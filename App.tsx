@@ -9,98 +9,102 @@ import HeaderLeftButton from './components/atoms/buttons/HeaderLeftButton';
 import { StackPramList } from './type';
 import { theme } from './styles';
 import UpdateRegisterScreen from './components/UpdateRegisterScreen';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name='homeScreen'
-          component={HomeScreen}
-          options={{
-            title: 'ホーム',
-            headerStyle: {
-              backgroundColor: theme.colors.rightBlue,
-            },
-            headerTitleStyle: {
-              fontWeight: 'bold',
-              fontSize: theme.fontSize.headerTextButton,
-            },
-            headerTintColor: theme.colors.white,
-            headerRight: () => <HeaderRightButton newAddButton={true} />,
-          }}
-        />
-        <Stack.Screen
-          name='detailScreen'
-          component={DetailScreen}
-          options={{
-            title: '詳細',
-            headerStyle: {
-              backgroundColor: theme.colors.rightBlue,
-            },
-            headerTitleStyle: {
-              fontWeight: 'bold',
-              fontSize: theme.fontSize.headerTextButton,
-            },
-            headerTintColor: theme.colors.white,
-            headerRight: () => (
-              <HeaderRightButton
-                newAddButton={false}
-                rightButtonText={'編集'}
-              />
-            ),
-          }}
-        />
-        <Stack.Screen
-          name='registerScreen'
-          component={RegisterScreen}
-          options={{
-            title: '新規登録',
-            headerStyle: {
-              backgroundColor: theme.colors.rightBlue,
-            },
-            headerTitleStyle: {
-              fontWeight: 'bold',
-              fontSize: theme.fontSize.headerTextButton,
-            },
-            headerTintColor: theme.colors.white,
-            presentation: 'fullScreenModal',
-            headerRight: () => (
-              <HeaderRightButton
-                newAddButton={false}
-                rightButtonText={'登録'}
-              />
-            ),
-            headerLeft: () => <HeaderLeftButton />,
-          }}
-        />
-        <Stack.Screen
-          name='updateRegisterScreen'
-          component={UpdateRegisterScreen}
-          options={{
-            title: '編集',
-            headerStyle: {
-              backgroundColor: theme.colors.rightBlue,
-            },
-            headerTitleStyle: {
-              fontWeight: 'bold',
-              fontSize: theme.fontSize.headerTextButton,
-            },
-            headerTintColor: theme.colors.white,
-            presentation: 'fullScreenModal',
-            headerRight: () => (
-              <HeaderRightButton
-                newAddButton={false}
-                rightButtonText={'登録'}
-              />
-            ),
-            headerLeft: () => <HeaderLeftButton />,
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name='homeScreen'
+            component={HomeScreen}
+            options={{
+              title: 'ホーム',
+              headerStyle: {
+                backgroundColor: theme.colors.rightBlue,
+              },
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                fontSize: theme.fontSize.headerTextButton,
+              },
+              headerTintColor: theme.colors.white,
+              headerRight: () => <HeaderRightButton newAddButton={true} />,
+            }}
+          />
+          <Stack.Screen
+            name='detailScreen'
+            component={DetailScreen}
+            options={{
+              title: '詳細',
+              headerStyle: {
+                backgroundColor: theme.colors.rightBlue,
+              },
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                fontSize: theme.fontSize.headerTextButton,
+              },
+              headerTintColor: theme.colors.white,
+              headerRight: () => (
+                <HeaderRightButton
+                  newAddButton={false}
+                  rightButtonText={'編集'}
+                />
+              ),
+            }}
+          />
+          <Stack.Screen
+            name='registerScreen'
+            component={RegisterScreen}
+            options={{
+              title: '新規登録',
+              headerStyle: {
+                backgroundColor: theme.colors.rightBlue,
+              },
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                fontSize: theme.fontSize.headerTextButton,
+              },
+              headerTintColor: theme.colors.white,
+              presentation: 'fullScreenModal',
+              headerRight: () => (
+                <HeaderRightButton
+                  newAddButton={false}
+                  rightButtonText={'登録'}
+                />
+              ),
+              headerLeft: () => <HeaderLeftButton />,
+            }}
+          />
+          <Stack.Screen
+            name='updateRegisterScreen'
+            component={UpdateRegisterScreen}
+            options={{
+              title: '編集',
+              headerStyle: {
+                backgroundColor: theme.colors.rightBlue,
+              },
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                fontSize: theme.fontSize.headerTextButton,
+              },
+              headerTintColor: theme.colors.white,
+              presentation: 'fullScreenModal',
+              headerRight: () => (
+                <HeaderRightButton
+                  newAddButton={false}
+                  rightButtonText={'登録'}
+                />
+              ),
+              headerLeft: () => <HeaderLeftButton />,
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 

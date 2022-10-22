@@ -19,8 +19,11 @@ import CommonSingleSelect from './CommonSingleSelect';
 import CommonInputText from './CommonInputText';
 import CommonInputDate from './CommonInputDate';
 import CommonMultiInputText from './CommonMultiInputText';
+import { useDispatch } from 'react-redux';
+import { setImageData } from '../redux/common/commonUpdateRegisterSlice';
 
 const RegisterScreen = () => {
+  const dispatch = useDispatch();
   /** 画像が挿入されているかどうかのフラグ */
   const [image, setImage] = useState(null);
 
@@ -72,6 +75,7 @@ const RegisterScreen = () => {
 
     if (!result.cancelled) {
       setImage(result.uri);
+      dispatch(setImageData(result.uri));
     }
   };
 
@@ -87,6 +91,7 @@ const RegisterScreen = () => {
 
     if (!result.cancelled) {
       setImage(result.uri);
+      dispatch(setImageData(result.uri));
     }
   };
 
