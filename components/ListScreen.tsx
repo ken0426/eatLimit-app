@@ -19,6 +19,7 @@ import {
   setRegisterDate,
 } from '../redux/common/commonRegisterSlice';
 import moment from 'moment';
+import { setIsAlertModal } from '../redux/common/commonSlice';
 
 /**
  * @param {object}  item                          APIからのデータ（※現在はモックデータ）
@@ -128,6 +129,7 @@ const ListScreen: React.FC<ListScreenProps> = ({
           } else {
             dispatch(setImageData(null));
           }
+          dispatch(setIsAlertModal(false));
           dispatch(setProductTextData(item.eatName));
           dispatch(setClassifying(categoryLabelText));
           dispatch(

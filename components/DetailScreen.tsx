@@ -1,4 +1,5 @@
-import React from 'react';
+import moment from 'moment';
+import React, { useEffect, useState } from 'react';
 import {
   Alert,
   Image,
@@ -7,7 +8,17 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { LABEL_ID, LABEL_NAME } from '../constants';
+import {
+  setClassifying,
+  setImageData,
+  setKeepMethodTextData,
+  setProductTextData,
+  setRegisterDate,
+} from '../redux/common/commonRegisterSlice';
+import { setIsAlertModal } from '../redux/common/commonSlice';
+import { RootState } from '../redux/store';
 import { theme } from '../styles';
 
 interface DetailScreenProps {
@@ -28,8 +39,45 @@ interface DetailScreenProps {
 }
 
 const DetailScreen: React.FC<DetailScreenProps> = ({ route, navigation }) => {
+  const dispatch = useDispatch();
+  const { isAlertModal } = useSelector((state: RootState) => state.common);
   const { item } = route.params;
   const { categoryLabelText } = route.params;
+
+  const [data, setData] = useState({
+    eatImage: '',
+    eatName: '',
+    limitDate: '',
+    label: 1 | 2 | 3,
+  });
+
+  useEffect(() => {
+    setData(item);
+    dispatch(setIsAlertModal(false));
+  }, []);
+
+  if (isAlertModal) {
+    if (data?.eatImage) {
+      dispatch(setImageData(data.eatImage));
+    } else {
+      dispatch(setImageData(null));
+    }
+    dispatch(setProductTextData(data.eatName));
+    dispatch(setClassifying(categoryLabelText));
+    dispatch(setRegisterDate(moment(data.limitDate).format('YYYY-MM-DD')));
+    dispatch(
+      setKeepMethodTextData(
+        data.label === LABEL_ID.refrigeration
+          ? LABEL_NAME.refrigeration
+          : data.label === LABEL_ID.frozen
+          ? LABEL_NAME.frozen
+          : LABEL_NAME.normal
+      )
+    );
+    dispatch(setIsAlertModal(false));
+  }
+
+  useEffect(() => {}, []);
   return (
     <View style={styles.detailScreenStyle}>
       <View style={styles.namePicture}>

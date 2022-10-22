@@ -16,6 +16,7 @@ import {
   setRegisterDate,
   setRegisterMemo,
 } from '../redux/common/commonRegisterSlice';
+import { setIsAlertModal } from '../redux/common/commonSlice';
 import { theme } from '../styles';
 import { RegisterScreenNavigationProp, StackPramList } from '../type';
 
@@ -94,12 +95,21 @@ const RootStackScreen = () => {
           presentation: 'fullScreenModal',
           headerRight: () => (
             <HeaderRightButton
-              onPress={() => navigation.goBack()}
+              onPress={() => {
+                navigation.goBack();
+              }}
               newAddButton={false}
               rightButtonText={'登録'}
             />
           ),
-          headerLeft: () => <HeaderLeftButton />,
+          headerLeft: () => (
+            <HeaderLeftButton
+              onPress={() => {
+                dispatch(setIsAlertModal(true));
+                navigation.goBack();
+              }}
+            />
+          ),
         }}
       />
       <Stack.Screen
@@ -123,7 +133,9 @@ const RootStackScreen = () => {
               onPress={() => navigation.goBack()}
             />
           ),
-          headerLeft: () => <HeaderLeftButton />,
+          headerLeft: () => (
+            <HeaderLeftButton onPress={() => navigation.goBack()} />
+          ),
         }}
       />
     </Stack.Navigator>
