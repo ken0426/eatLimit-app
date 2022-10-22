@@ -42,6 +42,7 @@ export const eatMockData = [
     limitTextData: 'expiration',
     label: 5,
     labelName: 'refrigeration',
+    eatImage: 'https://item-shopping.c.yimg.jp/i/n/amicashop_x20521004006',
     key: 3,
   },
   {
@@ -50,7 +51,7 @@ export const eatMockData = [
     limitTextData: 'purchase',
     label: 5,
     labelName: 'refrigeration',
-    eatIMage:
+    eatImage:
       'https://image.itmedia.co.jp/business/articles/2110/31/kk_tama_00.jpg',
     key: 4,
   },
@@ -61,6 +62,8 @@ export const eatMockData = [
     limitTextData: 'expiration',
     label: 5,
     labelName: 'refrigeration',
+    eatImage:
+      'https://furu-sato.com/magazine/wp-content/uploads/2020/02/69baed275d220dd5309d6c404fce24d2.png',
     key: 5,
   },
   {
@@ -94,6 +97,8 @@ export const eatMockData = [
     limitTextData: 'expiration',
     label: 5,
     labelName: 'refrigeration',
+    eatImage:
+      'https://video.kurashiru.com/production/articles/992cc573-5d02-4438-b412-35035b68c59b/wide_thumbnail_normal.jpg?1661759463',
     key: 8,
   },
   {
@@ -103,6 +108,8 @@ export const eatMockData = [
     limitTextData: 'expiration',
     label: 5,
     labelName: 'refrigeration',
+    eatImage:
+      'https://storage.topvalu.net/assets/contents/images/product/165507/4549414045017_PC_L.jpg',
     key: 9,
   },
   {
@@ -112,6 +119,8 @@ export const eatMockData = [
     limitTextData: 'expiration',
     label: 6,
     labelName: 'frozen',
+    eatImage:
+      'https://www.j-cast.com/images/origin/2017/09/news_20170915170953.jpg',
     key: 10,
   },
   {
