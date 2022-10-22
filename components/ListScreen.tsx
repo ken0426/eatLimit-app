@@ -147,7 +147,7 @@ const ListScreen: React.FC<ListScreenProps> = ({
         {isOptionDisplayImageButton ? (
           <View style={styles.eatImage}>
             {item.eatImage ? (
-              <Image style={theme.maxSize} source={item.eatImage} />
+              <Image style={theme.maxSize} source={{ uri: item.eatImage }} />
             ) : (
               <Image
                 style={theme.maxSize}

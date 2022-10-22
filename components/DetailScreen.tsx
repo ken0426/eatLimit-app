@@ -45,7 +45,9 @@ const DetailScreen: React.FC<DetailScreenProps> = ({ route, navigation }) => {
               item.eatImage ? { width: '100%', height: '80%' } : theme.maxSize
             }
             source={
-              item.eatImage ? item.eatImage : require('../images/noImage.png')
+              item.eatImage
+                ? { uri: item.eatImage }
+                : require('../images/noImage.png')
             }
           />
         </View>

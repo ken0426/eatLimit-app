@@ -20,7 +20,8 @@ export const eatMockData = [
     limitTextData: 'expiry',
     label: 5,
     labelName: 'refrigeration',
-    eatImage: require('../moc/mocImages/ra-yuokazu.jpeg'),
+    // eatImage: require('../moc/mocImages/ra-yuokazu.jpeg'),
+    eatImage: 'https://cdn.sbfoods.co.jp/products/16559_1_l.jpg',
     key: 1,
   },
   {
@@ -30,6 +31,8 @@ export const eatMockData = [
     limitTextData: 'expiry',
     label: 7,
     labelName: 'normal',
+    eatImage:
+      'https://media.delishkitchen.tv/article/1100/eco9bggfutt.jpeg?version=1636508482',
     key: 2,
   },
   {
@@ -47,6 +50,8 @@ export const eatMockData = [
     limitTextData: 'purchase',
     label: 5,
     labelName: 'refrigeration',
+    eatIMage:
+      'https://image.itmedia.co.jp/business/articles/2110/31/kk_tama_00.jpg',
     key: 4,
   },
   {
@@ -65,7 +70,9 @@ export const eatMockData = [
     limitTextData: 'expiration',
     label: 5,
     labelName: 'refrigeration',
-    eatImage: require('../moc/mocImages/gyuunyuu.jpeg'),
+    // eatImage: require('../moc/mocImages/gyuunyuu.jpeg'),
+    eatImage:
+      'https://www.meiji.co.jp/products/milk_drink/assets/img/4902705029354.jpg',
     key: 6,
   },
   {
@@ -75,7 +82,9 @@ export const eatMockData = [
     limitTextData: 'expiration',
     label: 5,
     labelName: 'refrigeration',
-    eatImage: require('../moc/mocImages/yo-guruto.jpeg'),
+    // eatImage: require('../moc/mocImages/yo-guruto.jpeg'),
+    eatImage:
+      'https://chiik.jp/wp-content/uploads/migration/item_products/images/000/156/274/medium/73ecda7c-c40b-44fa-b6f7-f50711fd8fac.jpg?1587577920',
     key: 7,
   },
   {
@@ -163,7 +172,9 @@ export const eatMockData = [
     limitTextData: 'expiration',
     label: 5,
     labelName: 'refrigeration',
-    eatImage: require('../moc/mocImages/nattou.jpeg'),
+    // eatImage: require('../moc/mocImages/nattou.jpeg'),
+    eatImage:
+      'https://p1-e6eeae93.imageflux.jp/c!/f=jpg,w=1200,u=0/mkdirect/44ad107de29c650eed06.jpg',
     key: 17,
   },
 ];
