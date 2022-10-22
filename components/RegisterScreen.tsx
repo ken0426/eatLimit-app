@@ -20,7 +20,7 @@ import CommonInputText from './CommonInputText';
 import CommonInputDate from './CommonInputDate';
 import CommonMultiInputText from './CommonMultiInputText';
 import { useDispatch } from 'react-redux';
-import { setImageData } from '../redux/common/commonUpdateRegisterSlice';
+import { setImageData } from '../redux/common/commonRegisterSlice';
 
 const RegisterScreen = () => {
   const dispatch = useDispatch();

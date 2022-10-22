@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { commonUpdateRegisterSlice } from './common/commonUpdateRegisterSlice';
+import { commonRegisterSlice } from './common/commonRegisterSlice';
 
 export const rootReducer = combineReducers({
-  common: commonUpdateRegisterSlice.reducer,
+  common: commonRegisterSlice.reducer,
 });
