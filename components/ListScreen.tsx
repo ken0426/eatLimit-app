@@ -123,7 +123,11 @@ const ListScreen: React.FC<ListScreenProps> = ({
             categoryLabelText: categoryLabelText,
             navigation: navigation,
           });
-          dispatch(setImageData(item?.eatImage));
+          if (item?.eatImage) {
+            dispatch(setImageData(item.eatImage));
+          } else {
+            dispatch(setImageData(null));
+          }
           dispatch(setProductTextData(item.eatName));
           dispatch(setClassifying(categoryLabelText));
           dispatch(
