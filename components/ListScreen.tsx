@@ -10,6 +10,15 @@ import {
 import { ListItem } from '@rneui/themed';
 import { theme } from '../styles';
 import { LABEL_ID, LABEL_NAME } from '../constants';
+import { useDispatch } from 'react-redux';
+import {
+  setClassifying,
+  setImageData,
+  setKeepMethodTextData,
+  setProductTextData,
+  setRegisterDate,
+} from '../redux/common/commonRegisterSlice';
+import moment from 'moment';
 
 /**
  * @param {object}  item                          APIからのデータ（※現在はモックデータ）
@@ -51,6 +60,7 @@ const ListScreen: React.FC<ListScreenProps> = ({
   apiData,
   setApiData,
 }) => {
+  const dispatch = useDispatch();
   let categoryLabelText: string;
 
   if (item.limitTextData === 'expiration') {
@@ -113,6 +123,21 @@ const ListScreen: React.FC<ListScreenProps> = ({
             categoryLabelText: categoryLabelText,
             navigation: navigation,
           });
+          dispatch(setImageData(item?.eatImage));
+          dispatch(setProductTextData(item.eatName));
+          dispatch(setClassifying(categoryLabelText));
+          dispatch(
+            setRegisterDate(moment(item.limitDate).format('YYYY-MM-DD'))
+          );
+          dispatch(
+            setKeepMethodTextData(
+              item.label === LABEL_ID.refrigeration
+                ? LABEL_NAME.refrigeration
+                : item.label === LABEL_ID.frozen
+                ? LABEL_NAME.frozen
+                : LABEL_NAME.normal
+            )
+          );
         }}
       >
         {isOptionDisplayImageButton ? (

@@ -5,7 +5,7 @@ interface commonUpdateRegisterState {
   productTextData: string;
   classifying: string;
   registerDate: string;
-  keepMethod: string;
+  keepMethodTextData: string;
   registerMemo: string;
 }
 
@@ -19,13 +19,13 @@ export const commonRegisterState: commonUpdateRegisterState = {
   /** 日付のデータ */
   registerDate: '',
   /** 保存方法 */
-  keepMethod: '',
+  keepMethodTextData: '',
   /** メモ */
   registerMemo: '',
 };
 
 export const commonRegisterSlice = createSlice({
-  name: 'commonRegisterSlice',
+  name: 'commonRegister',
   initialState: commonRegisterState,
   reducers: {
     setImageData: (state, { payload }) => {
@@ -41,7 +41,7 @@ export const commonRegisterSlice = createSlice({
       state.registerDate = payload;
     },
     setKeepMethodTextData: (state, { payload }) => {
-      state.keepMethod = payload;
+      state.keepMethodTextData = payload;
     },
     setRegisterMemo: (state, { payload }) => {
       state.registerMemo = payload;

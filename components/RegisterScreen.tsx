@@ -19,26 +19,30 @@ import CommonSingleSelect from './CommonSingleSelect';
 import CommonInputText from './CommonInputText';
 import CommonInputDate from './CommonInputDate';
 import CommonMultiInputText from './CommonMultiInputText';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   setClassifying,
   setImageData,
   setKeepMethodTextData,
 } from '../redux/common/commonRegisterSlice';
+import { RootState } from '../redux/store';
 
 const RegisterScreen = () => {
   const dispatch = useDispatch();
+  const { imageData, classifying, keepMethodTextData } = useSelector(
+    (state: RootState) => state.commonRegister
+  );
   /** 画像が挿入されているかどうかのフラグ */
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(imageData);
 
   /** モーダルの表示非表示のフラグ */
   const [isModal, setIsModal] = useState(false);
 
   /** 分類のテキスト */
-  const [classification, setClassification] = useState('選択してください');
+  const [classification, setClassification] = useState(classifying);
 
   /** 保存方法のテキスト */
-  const [keepMethod, setKeepMethod] = useState('選択してください');
+  const [keepMethod, setKeepMethod] = useState(keepMethodTextData);
 
   /** 選択されたのテキストデータ */
   const [radioTextData, setRadioTextData] = useState('');

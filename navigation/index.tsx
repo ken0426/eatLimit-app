@@ -1,18 +1,28 @@
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import HeaderLeftButton from '../components/atoms/buttons/HeaderLeftButton';
 import HeaderRightButton from '../components/atoms/buttons/HeaderRightButton';
 import DetailScreen from '../components/DetailScreen';
 import HomeScreen from '../components/HomeScreen';
 import RegisterScreen from '../components/RegisterScreen';
 import UpdateRegisterScreen from '../components/UpdateRegisterScreen';
+import {
+  setClassifying,
+  setImageData,
+  setKeepMethodTextData,
+  setProductTextData,
+  setRegisterDate,
+  setRegisterMemo,
+} from '../redux/common/commonRegisterSlice';
 import { theme } from '../styles';
 import { RegisterScreenNavigationProp, StackPramList } from '../type';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
 const RootStackScreen = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation<RegisterScreenNavigationProp>();
 
   return (
@@ -32,7 +42,15 @@ const RootStackScreen = () => {
           headerTintColor: theme.colors.white,
           headerRight: () => (
             <HeaderRightButton
-              onPress={() => navigation.navigate('registerScreen')}
+              onPress={() => {
+                dispatch(setImageData(null));
+                dispatch(setProductTextData(''));
+                dispatch(setClassifying('選択してください'));
+                dispatch(setRegisterDate(''));
+                dispatch(setKeepMethodTextData('選択してください'));
+                dispatch(setRegisterMemo(''));
+                navigation.navigate('registerScreen');
+              }}
               newAddButton={true}
             />
           ),

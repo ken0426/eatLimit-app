@@ -1,20 +1,29 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setRegisterDate } from '../redux/common/commonRegisterSlice';
+import { RootState } from '../redux/store';
 import { theme } from '../styles';
 
 const CommonInputDate = ({ setIsKeyboardUp }) => {
   const dispatch = useDispatch();
+  const { registerDate } = useSelector(
+    (state: RootState) => state.commonRegister
+  );
+  const yearData =
+    registerDate === '' ? '' : moment(registerDate).format('YYYY');
+  const monthData = registerDate === '' ? '' : moment(registerDate).format('M');
+  const dayData = registerDate === '' ? '' : moment(registerDate).format('D');
+
   /** 年の値 */
-  const [year, setYear] = useState('');
+  const [year, setYear] = useState(yearData);
 
   /** 月の値 */
-  const [month, setMonth] = useState('');
+  const [month, setMonth] = useState(monthData);
 
   /** 日の値 */
-  const [day, setDay] = useState('');
+  const [day, setDay] = useState(dayData);
 
   /** 年＋月＋日の結合したテキストデータ */
   const [registerData, setRegisterData] = useState('');
@@ -57,6 +66,7 @@ const CommonInputDate = ({ setIsKeyboardUp }) => {
       <View style={styles.textInputArea}>
         <>
           <TextInput
+            value={year}
             placeholder={moment().format('YYYY')}
             keyboardType='number-pad'
             style={styles.yearTextInputArea}
@@ -68,6 +78,7 @@ const CommonInputDate = ({ setIsKeyboardUp }) => {
         </>
         <>
           <TextInput
+            value={month}
             placeholder={moment().format('M')}
             keyboardType='number-pad'
             style={styles.dateInputTextArea}
@@ -79,6 +90,7 @@ const CommonInputDate = ({ setIsKeyboardUp }) => {
         </>
         <>
           <TextInput
+            value={day}
             placeholder={moment().format('D')}
             keyboardType='number-pad'
             style={styles.dateInputTextArea}
