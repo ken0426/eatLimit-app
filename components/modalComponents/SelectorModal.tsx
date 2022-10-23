@@ -2,7 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Modal from 'react-native-modal';
+import { useDispatch } from 'react-redux';
 import { selectData } from '../../constants';
+import { setIsDataChange } from '../../redux/common/commonRegisterSlice';
 import { theme } from '../../styles';
 
 const SelectorModal = ({
@@ -14,6 +16,7 @@ const SelectorModal = ({
   radioTextData,
   onPressSelect,
 }) => {
+  const dispatch = useDispatch();
   return (
     <Modal
       isVisible={isModal}
@@ -37,6 +40,7 @@ const SelectorModal = ({
                     }
                   }
                 });
+                dispatch(setIsDataChange(true));
                 setIsModal(!isModal);
               }}
               activeOpacity={1}
