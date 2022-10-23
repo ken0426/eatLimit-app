@@ -2,7 +2,10 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { setRegisterDate } from '../redux/common/commonRegisterSlice';
+import {
+  setIsDataChange,
+  setRegisterDate,
+} from '../redux/common/commonRegisterSlice';
 import { RootState } from '../redux/store';
 import { theme } from '../styles';
 
@@ -71,7 +74,10 @@ const CommonInputDate = ({ setIsKeyboardUp }) => {
             keyboardType='number-pad'
             style={styles.yearTextInputArea}
             onPressIn={() => setIsKeyboardUp(true)}
-            onChangeText={(e) => setYear(e)}
+            onChangeText={(e) => {
+              setYear(e);
+              dispatch(setIsDataChange(true));
+            }}
             maxLength={4}
           />
           <Text style={styles.timeLabel}>年</Text>
@@ -83,7 +89,10 @@ const CommonInputDate = ({ setIsKeyboardUp }) => {
             keyboardType='number-pad'
             style={styles.dateInputTextArea}
             onPressIn={() => setIsKeyboardUp(true)}
-            onChangeText={(e) => setMonth(e)}
+            onChangeText={(e) => {
+              setMonth(e);
+              dispatch(setIsDataChange(true));
+            }}
             maxLength={2}
           />
           <Text style={styles.timeLabel}>月</Text>
@@ -95,7 +104,10 @@ const CommonInputDate = ({ setIsKeyboardUp }) => {
             keyboardType='number-pad'
             style={styles.dateInputTextArea}
             onPressIn={() => setIsKeyboardUp(true)}
-            onChangeText={(e) => setDay(e)}
+            onChangeText={(e) => {
+              setDay(e);
+              dispatch(setIsDataChange(true));
+            }}
             maxLength={2}
           />
           <Text style={styles.timeLabel}>日</Text>
