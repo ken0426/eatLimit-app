@@ -26,22 +26,50 @@ const AlertModal = ({ isAlertModal, navigation }) => {
     <Modal isVisible={isAlertModal} backdropOpacity={0.4}>
       <View
         style={{
-          width: 350,
           height: 250,
           borderRadius: 30,
           backgroundColor: theme.colors.white,
           justifyContent: 'space-around',
           alignItems: 'center',
+          paddingTop: 25,
+          paddingBottom: 20,
         }}
       >
-        <Text style={{ fontSize: 20, textAlign: 'center' }}>
+        <Text style={{ fontSize: 22, textAlign: 'center' }}>
           {textMessage()}
         </Text>
-        <View style={{ flexDirection: 'row' }}>
-          <TouchableOpacity onPress={() => dispatch(setIsAlertModal(false))}>
-            <Text>キャンセル</Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            width: '90%',
+          }}
+        >
+          <TouchableOpacity
+            style={{
+              borderRadius: 50,
+              borderWidth: 1,
+              borderColor: theme.colors.rightBlue,
+            }}
+            onPress={() => dispatch(setIsAlertModal(false))}
+          >
+            <Text
+              style={{
+                width: 140,
+                textAlign: 'center',
+                color: theme.colors.rightBlue,
+                fontSize: 20,
+                padding: 15,
+              }}
+            >
+              キャンセル
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
+            style={{
+              borderRadius: 50,
+              backgroundColor: theme.colors.rightBlue,
+            }}
             onPress={() => {
               navigation.goBack();
               if (selectScreen === 'registerScreen') {
@@ -53,7 +81,17 @@ const AlertModal = ({ isAlertModal, navigation }) => {
               dispatch(setIsDataChange(false));
             }}
           >
-            <Text>OK</Text>
+            <Text
+              style={{
+                width: 140,
+                textAlign: 'center',
+                color: theme.colors.white,
+                fontSize: 20,
+                padding: 15,
+              }}
+            >
+              OK
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
