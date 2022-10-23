@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setProductTextData } from '../redux/common/commonRegisterSlice';
+import { setIsDataChange } from '../redux/common/commonSlice';
 import { RootState } from '../redux/store';
 import { theme } from '../styles';
 
@@ -24,6 +25,7 @@ const CommonInputText = ({ label, placeholder, setIsKeyboardUp }) => {
           onChangeText={(text) => {
             setTextData(text);
             dispatch(setProductTextData(text));
+            dispatch(setIsDataChange(true));
           }}
         />
       </View>

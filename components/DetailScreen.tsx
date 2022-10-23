@@ -17,7 +17,7 @@ import {
   setProductTextData,
   setRegisterDate,
 } from '../redux/common/commonRegisterSlice';
-import { setIsAlertModal } from '../redux/common/commonSlice';
+import { setBeforeData, setIsAlertModal } from '../redux/common/commonSlice';
 import { RootState } from '../redux/store';
 import { theme } from '../styles';
 
@@ -40,7 +40,7 @@ interface DetailScreenProps {
 
 const DetailScreen: React.FC<DetailScreenProps> = ({ route, navigation }) => {
   const dispatch = useDispatch();
-  const { isAlertModal } = useSelector((state: RootState) => state.common);
+  const { beforeData } = useSelector((state: RootState) => state.common);
   const { item } = route.params;
   const { categoryLabelText } = route.params;
 
@@ -56,7 +56,7 @@ const DetailScreen: React.FC<DetailScreenProps> = ({ route, navigation }) => {
     dispatch(setIsAlertModal(false));
   }, []);
 
-  if (isAlertModal) {
+  if (beforeData) {
     if (data?.eatImage) {
       dispatch(setImageData(data.eatImage));
     } else {
@@ -74,7 +74,7 @@ const DetailScreen: React.FC<DetailScreenProps> = ({ route, navigation }) => {
           : LABEL_NAME.normal
       )
     );
-    dispatch(setIsAlertModal(false));
+    dispatch(setBeforeData(false));
   }
 
   useEffect(() => {}, []);

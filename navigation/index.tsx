@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import HeaderLeftButton from '../components/atoms/buttons/HeaderLeftButton';
 import HeaderRightButton from '../components/atoms/buttons/HeaderRightButton';
 import DetailScreen from '../components/DetailScreen';
@@ -16,6 +16,7 @@ import {
   setRegisterMemo,
 } from '../redux/common/commonRegisterSlice';
 import { setIsAlertModal } from '../redux/common/commonSlice';
+import { RootState } from '../redux/store';
 import { theme } from '../styles';
 import { RegisterScreenNavigationProp, StackPramList } from '../type';
 
@@ -24,6 +25,7 @@ const Stack = createNativeStackNavigator<StackPramList>();
 const RootStackScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation<RegisterScreenNavigationProp>();
+  const { isDataChange } = useSelector((state: RootState) => state.common);
 
   return (
     <Stack.Navigator>
@@ -104,8 +106,11 @@ const RootStackScreen = () => {
           headerLeft: () => (
             <HeaderLeftButton
               onPress={() => {
-                dispatch(setIsAlertModal(true));
-                navigation.goBack();
+                if (isDataChange) {
+                  dispatch(setIsAlertModal(true));
+                } else {
+                  navigation.goBack();
+                }
               }}
             />
           ),

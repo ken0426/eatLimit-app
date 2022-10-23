@@ -26,12 +26,19 @@ import {
   setKeepMethodTextData,
 } from '../redux/common/commonRegisterSlice';
 import { RootState } from '../redux/store';
+import AlertModal from './modalComponents/AlertModal';
+import { useNavigation } from '@react-navigation/native';
+import { RegisterScreenNavigationProp } from '../type';
 
 const RegisterScreen = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation<RegisterScreenNavigationProp>();
   const { imageData, classifying, keepMethodTextData } = useSelector(
     (state: RootState) => state.commonRegister
   );
+
+  const { isAlertModal } = useSelector((state: RootState) => state.common);
+
   /** 画像が挿入されているかどうかのフラグ */
   const [image, setImage] = useState(imageData);
 
@@ -288,6 +295,7 @@ const RegisterScreen = () => {
         radioTextData={radioTextData}
         onPressSelect={onPressSelect}
       />
+      <AlertModal isAlertModal={isAlertModal} navigation={navigation} />
     </KeyboardAvoidingView>
   );
 };
