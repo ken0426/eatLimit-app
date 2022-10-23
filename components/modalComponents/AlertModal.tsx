@@ -1,16 +1,27 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import Modal from 'react-native-modal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   setBeforeData,
   setIsDataChange,
 } from '../../redux/common/commonRegisterSlice';
 import { setIsAlertModal } from '../../redux/common/commonSlice';
+import { RootState } from '../../redux/store';
 import { theme } from '../../styles';
 
 const AlertModal = ({ isAlertModal, navigation }) => {
   const dispatch = useDispatch();
+  const { selectScreen } = useSelector((state: RootState) => state.common);
+
+  const textMessage = () => {
+    if (selectScreen === 'registerScreen') {
+      return `新規登録をしていません。\nよろしいですか？`;
+    } else if (selectScreen === 'upDataRegisterScreen') {
+      return `変更内容が保存されていません。\nよろしいですか？`;
+    }
+  };
+
   return (
     <Modal isVisible={isAlertModal} backdropOpacity={0.4}>
       <View
@@ -24,7 +35,7 @@ const AlertModal = ({ isAlertModal, navigation }) => {
         }}
       >
         <Text style={{ fontSize: 20, textAlign: 'center' }}>
-          変更内容が保存されていません。{'\n'}よろしいですか？
+          {textMessage()}
         </Text>
         <View style={{ flexDirection: 'row' }}>
           <TouchableOpacity onPress={() => dispatch(setIsAlertModal(false))}>
@@ -33,7 +44,11 @@ const AlertModal = ({ isAlertModal, navigation }) => {
           <TouchableOpacity
             onPress={() => {
               navigation.goBack();
-              dispatch(setBeforeData(true));
+              if (selectScreen === 'registerScreen') {
+                dispatch(setBeforeData(false));
+              } else if (selectScreen === 'upDataRegisterScreen') {
+                dispatch(setBeforeData(true));
+              }
               dispatch(setIsAlertModal(false));
               dispatch(setIsDataChange(false));
             }}

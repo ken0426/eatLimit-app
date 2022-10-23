@@ -15,7 +15,7 @@ import {
   setRegisterDate,
   setRegisterMemo,
 } from '../redux/common/commonRegisterSlice';
-import { setIsAlertModal } from '../redux/common/commonSlice';
+import { setIsAlertModal, setSelectScreen } from '../redux/common/commonSlice';
 import { RootState } from '../redux/store';
 import { theme } from '../styles';
 import { RegisterScreenNavigationProp, StackPramList } from '../type';
@@ -47,6 +47,7 @@ const RootStackScreen = () => {
           headerRight: () => (
             <HeaderRightButton
               onPress={() => {
+                dispatch(setSelectScreen('registerScreen'));
                 dispatch(setImageData(null));
                 dispatch(setProductTextData(''));
                 dispatch(setClassifying('選択してください'));
@@ -77,7 +78,10 @@ const RootStackScreen = () => {
             <HeaderRightButton
               newAddButton={false}
               rightButtonText={'編集'}
-              onPress={() => navigation.navigate('registerScreen')}
+              onPress={() => {
+                dispatch(setSelectScreen('upDataRegisterScreen'));
+                navigation.navigate('registerScreen');
+              }}
             />
           ),
         }}
