@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { theme } from '../../../styles';
 
 /**
@@ -25,19 +25,17 @@ const DisplayOrderButton: React.FC<DisplayOrderButtonProps> = ({
 }) => {
   return (
     <View
-      style={{
-        backgroundColor: selectButton
-          ? theme.colors.rightBlue
-          : theme.colors.white,
-        borderRadius: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 130,
-        height: 40,
-        borderWidth: !selectButton && 1,
-        borderColor: !selectButton && theme.colors.rightBlue,
-        marginBottom: categoryMargin && 20,
-      }}
+      style={[
+        styles.homeModalSelectButton,
+        {
+          backgroundColor: selectButton
+            ? theme.colors.rightBlue
+            : theme.colors.white,
+          borderWidth: !selectButton && 1,
+          borderColor: !selectButton && theme.colors.rightBlue,
+          marginBottom: categoryMargin && 20,
+        },
+      ]}
     >
       <TouchableOpacity
         style={[
@@ -60,5 +58,15 @@ const DisplayOrderButton: React.FC<DisplayOrderButtonProps> = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  homeModalSelectButton: {
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 130,
+    height: 40,
+  },
+});
 
 export default DisplayOrderButton;
