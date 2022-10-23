@@ -7,7 +7,6 @@ import HeaderRightButton from '../components/atoms/buttons/HeaderRightButton';
 import DetailScreen from '../components/DetailScreen';
 import HomeScreen from '../components/HomeScreen';
 import RegisterScreen from '../components/RegisterScreen';
-import UpdateRegisterScreen from '../components/UpdateRegisterScreen';
 import {
   setClassifying,
   setImageData,
