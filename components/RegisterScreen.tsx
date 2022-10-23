@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   setClassifying,
   setImageData,
+  setIsDataChange,
   setKeepMethodTextData,
 } from '../redux/common/commonRegisterSlice';
 import { RootState } from '../redux/store';
@@ -91,6 +92,7 @@ const RegisterScreen = () => {
     if (!result.cancelled) {
       setImage(result.uri);
       dispatch(setImageData(result.uri));
+      dispatch(setIsDataChange(true));
     }
   };
 
@@ -107,6 +109,7 @@ const RegisterScreen = () => {
     if (!result.cancelled) {
       setImage(result.uri);
       dispatch(setImageData(result.uri));
+      dispatch(setIsDataChange(true));
     }
   };
 
