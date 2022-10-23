@@ -7,6 +7,8 @@ interface commonUpdateRegisterState {
   registerDate: string;
   keepMethodTextData: string;
   registerMemo: string;
+  isDataChange: boolean;
+  beforeData: boolean;
 }
 
 export const commonRegisterState: commonUpdateRegisterState = {
@@ -22,6 +24,10 @@ export const commonRegisterState: commonUpdateRegisterState = {
   keepMethodTextData: '',
   /** メモ */
   registerMemo: '',
+  /** 初期のデータから変更があるかどうかのフラグ */
+  isDataChange: false,
+  /** 初期値のデータに戻すフラグ */
+  beforeData: false,
 };
 
 export const commonRegisterSlice = createSlice({
@@ -46,6 +52,12 @@ export const commonRegisterSlice = createSlice({
     setRegisterMemo: (state, { payload }) => {
       state.registerMemo = payload;
     },
+    setIsDataChange: (state, { payload }) => {
+      state.isDataChange = payload;
+    },
+    setBeforeData: (state, { payload }) => {
+      state.beforeData = payload;
+    },
   },
 });
 
@@ -56,4 +68,6 @@ export const {
   setRegisterDate,
   setKeepMethodTextData,
   setRegisterMemo,
+  setIsDataChange,
+  setBeforeData,
 } = commonRegisterSlice.actions;

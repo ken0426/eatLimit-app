@@ -25,7 +25,9 @@ const Stack = createNativeStackNavigator<StackPramList>();
 const RootStackScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation<RegisterScreenNavigationProp>();
-  const { isDataChange } = useSelector((state: RootState) => state.common);
+  const { isDataChange } = useSelector(
+    (state: RootState) => state.commonRegister
+  );
 
   return (
     <Stack.Navigator>

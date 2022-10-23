@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { setProductTextData } from '../redux/common/commonRegisterSlice';
-import { setIsDataChange } from '../redux/common/commonSlice';
+import {
+  setIsDataChange,
+  setProductTextData,
+} from '../redux/common/commonRegisterSlice';
 import { RootState } from '../redux/store';
 import { theme } from '../styles';
 

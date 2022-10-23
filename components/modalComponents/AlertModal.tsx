@@ -4,9 +4,9 @@ import Modal from 'react-native-modal';
 import { useDispatch } from 'react-redux';
 import {
   setBeforeData,
-  setIsAlertModal,
   setIsDataChange,
-} from '../../redux/common/commonSlice';
+} from '../../redux/common/commonRegisterSlice';
+import { setIsAlertModal } from '../../redux/common/commonSlice';
 import { theme } from '../../styles';
 
 const AlertModal = ({ isAlertModal, navigation }) => {

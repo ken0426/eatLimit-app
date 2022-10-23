@@ -11,13 +11,14 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { LABEL_ID, LABEL_NAME } from '../constants';
 import {
+  setBeforeData,
   setClassifying,
   setImageData,
   setKeepMethodTextData,
   setProductTextData,
   setRegisterDate,
 } from '../redux/common/commonRegisterSlice';
-import { setBeforeData, setIsAlertModal } from '../redux/common/commonSlice';
+import { setIsAlertModal } from '../redux/common/commonSlice';
 import { RootState } from '../redux/store';
 import { theme } from '../styles';
 
@@ -40,7 +41,9 @@ interface DetailScreenProps {
 
 const DetailScreen: React.FC<DetailScreenProps> = ({ route, navigation }) => {
   const dispatch = useDispatch();
-  const { beforeData } = useSelector((state: RootState) => state.common);
+  const { beforeData } = useSelector(
+    (state: RootState) => state.commonRegister
+  );
   const { item } = route.params;
   const { categoryLabelText } = route.params;
 
