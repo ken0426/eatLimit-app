@@ -9,6 +9,7 @@ import {
   ScrollView,
   ActionSheetIOS,
   KeyboardAvoidingView,
+  StyleSheet,
 } from 'react-native';
 import { theme } from '../styles';
 import * as ImagePicker from 'expo-image-picker';
@@ -158,23 +159,8 @@ const RegisterScreen = () => {
         }}
       >
         <ScrollView style={{ backgroundColor: theme.colors.white }}>
-          <View
-            style={{
-              paddingTop: 20,
-              paddingRight: 20,
-              paddingLeft: 20,
-            }}
-          >
-            <Text
-              style={{
-                marginBottom: 10,
-                fontSize: 25,
-                fontWeight: 'bold',
-                fontFamily: theme.font.hiragino,
-              }}
-            >
-              画像
-            </Text>
+          <View style={styles.registerArea}>
+            <Text style={styles.label}>画像</Text>
             {!image ? (
               <TouchableOpacity
                 activeOpacity={1}
@@ -182,73 +168,27 @@ const RegisterScreen = () => {
                   onPressAction({ isImage: false });
                 }}
               >
-                <View
-                  style={{
-                    width: '100%',
-                    height: 100,
-                    marginBottom: 20,
-                    borderWidth: 2,
-                    borderStyle: 'dashed',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: '#dcdcdc',
-                  }}
-                >
-                  <View
-                    style={{
-                      width: 30,
-                      height: 30,
-                      marginBottom: 10,
-                    }}
-                  >
-                    <Image
-                      style={{
-                        width: 30,
-                        height: 30,
-                      }}
-                      source={require('../images/upload_24.png')}
-                    />
-                  </View>
+                <View style={styles.imageSelectArea}>
+                  <Image
+                    style={styles.imageIcon}
+                    source={require('../images/upload_24.png')}
+                  />
                   <Text style={{ width: '100%', textAlign: 'center' }}>
                     画像をアップロードする
                   </Text>
                 </View>
               </TouchableOpacity>
             ) : (
-              <View
-                style={{
-                  width: '100%',
-                  height: 100,
-                  marginBottom: 20,
-                  alignItems: 'center',
-                }}
-              >
-                <View
-                  style={{
-                    position: 'relative',
-                  }}
-                >
-                  <Image
-                    source={{ uri: image }}
-                    style={{
-                      alignItems: 'center',
-                      width: 140,
-                      height: '100%',
-                    }}
-                  />
+              <View style={styles.setImageArea}>
+                <View>
+                  <Image source={{ uri: image }} style={styles.image} />
                   <TouchableOpacity
                     onPress={() => onPressAction({ isImage: true })}
                     activeOpacity={1}
                     style={{ position: 'absolute', bottom: 0, right: 0 }}
                   >
                     <Image
-                      style={{
-                        width: 40,
-                        height: 40,
-                        position: 'absolute',
-                        bottom: -10,
-                        right: -15,
-                      }}
+                      style={styles.cameraImageIcon}
                       source={require('../images/cameraIcon.png')}
                     />
                   </TouchableOpacity>
@@ -302,5 +242,53 @@ const RegisterScreen = () => {
     </KeyboardAvoidingView>
   );
 };
+
+const styles = StyleSheet.create({
+  registerArea: {
+    paddingTop: 20,
+    paddingRight: 20,
+    paddingLeft: 20,
+  },
+  label: {
+    marginBottom: 10,
+    fontSize: 25,
+    fontWeight: 'bold',
+    fontFamily: theme.font.hiragino,
+  },
+  imageSelectArea: {
+    width: '100%',
+    height: 100,
+    marginBottom: 20,
+    borderWidth: 2,
+    borderStyle: 'dashed',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#dcdcdc',
+  },
+  imageIcon: {
+    width: 30,
+    height: 30,
+    marginBottom: 10,
+  },
+  setImageArea: {
+    width: '100%',
+    height: 100,
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+  image: {
+    alignItems: 'center',
+    width: 140,
+    height: '100%',
+    position: 'relative',
+  },
+  cameraImageIcon: {
+    width: 40,
+    height: 40,
+    position: 'absolute',
+    bottom: -10,
+    right: -15,
+  },
+});
 
 export default RegisterScreen;
